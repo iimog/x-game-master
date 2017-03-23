@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import MyButton from './MyButton';
 
 export default class xMobile extends Component {
   render() {
@@ -26,6 +27,7 @@ export default class xMobile extends Component {
           Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
         </Text>
+        <MyButton text="My Button" onPress={() => console.log("Button pressed!")}></MyButton>
       </View>
     );
   }
