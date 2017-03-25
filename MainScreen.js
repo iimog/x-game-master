@@ -16,11 +16,12 @@ export class MainScreen extends Component {
     header: {visible: false},
   };
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Image source={require('./img/X.png')} style={styles.logo}/>
         <View style={styles.buttons}>
-          <MyButton text="New Game" onPress={() => console.log("New Game button pressed!")}></MyButton>
+          <MyButton text="New Game" onPress={() => navigate("NewGame")}></MyButton>
           <MyButton text="Continue Game" onPress={() => console.log("Continue Game button pressed!")}></MyButton>
           <MyButton text="Settings" onPress={() => console.log("Settings button pressed!")}></MyButton>
         </View>

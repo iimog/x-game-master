@@ -4,10 +4,12 @@ import {
   Text,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { MainScreen, HomeScreen } from './MainScreen';
+import { MainScreen } from './MainScreen';
+import { NewGameScreen } from './NewGame';
 
 const xMobile = StackNavigator({
   Home: { screen: MainScreen },
+  NewGame: { screen: NewGameScreen }
 });
 
 AppRegistry.registerComponent('xMobile', () => xMobile);
