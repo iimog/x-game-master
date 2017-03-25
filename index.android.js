@@ -9,7 +9,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 import MyButton from './MyButton';
 
@@ -17,6 +18,7 @@ export default class xMobile extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image source={require('./img/X.png')} style={styles.logo}/>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -40,10 +42,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  logo: {
+    width: 150,
+    height: 121
+  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    color: 'green'
   },
   instructions: {
     textAlign: 'center',
