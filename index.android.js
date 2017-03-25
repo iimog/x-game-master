@@ -19,17 +19,11 @@ export default class xMobile extends Component {
     return (
       <View style={styles.container}>
         <Image source={require('./img/X.png')} style={styles.logo}/>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-        <MyButton text="My Button" onPress={() => console.log("Button pressed!")}></MyButton>
+        <View style={styles.buttons}>
+          <MyButton text="New Game" onPress={() => console.log("New Game button pressed!")}></MyButton>
+          <MyButton text="Continue Game" onPress={() => console.log("Continue Game button pressed!")}></MyButton>
+          <MyButton text="Settings" onPress={() => console.log("Settings button pressed!")}></MyButton>
+        </View>
       </View>
     );
   }
@@ -44,18 +38,13 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 150,
-    height: 121
+    height: 121,
+    margin: 20
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'green'
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  buttons: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around'
   },
 });
 

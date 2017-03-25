@@ -20,11 +20,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'darkgrey',
-    borderRadius: 5
+    borderColor: '#333333',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 10
   },
   text: {
     fontSize: 20,
-    color: 'black',
+    color: '#333333',
     textAlign: 'center',
     margin: 10,
   },
