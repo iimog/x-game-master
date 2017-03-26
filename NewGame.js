@@ -18,7 +18,7 @@ export class NewGameScreen extends Component {
     title: "New Game",
   };
   state = {
-    players: ['Player1', 'Player2'],
+    players: ['Hannah', 'Markus', 'Tobi', 'Lo', 'Moritz'],
   };
 
   onAddPlayer = (text) => {
