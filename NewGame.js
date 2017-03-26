@@ -39,6 +39,7 @@ export class NewGameScreen extends Component {
 
   render() {
     const {players} = this.state
+    const { navigate } = this.props.navigation
 
     return (
       <View>
@@ -49,6 +50,10 @@ export class NewGameScreen extends Component {
         <List
           list={players}
           onPressItem={this.onRemovePlayer}
+        />
+        <MyButton
+          text="Start"
+          onPress={()=>navigate('Team', {players: players})}
         />
       </View>
     );
