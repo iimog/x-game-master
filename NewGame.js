@@ -57,7 +57,7 @@ export class NewGameScreen extends Component {
           onPressItem={this.onRemovePlayer}
         />
         <MyButton
-          text="Start"
+          text="Select Teams"
           onPress={()=>navigate('Team', {players: players})}
         />
       </ScrollView>
