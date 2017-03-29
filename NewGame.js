@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  Alert
 } from 'react-native';
 import MyButton from './MyButton';
 import Input from './Input';
@@ -23,10 +24,13 @@ export class NewGameScreen extends Component {
 
   onAddPlayer = (text) => {
     const {players} = this.state
-
-    this.setState({
-      players: [text, ...players],
-    })
+    if(players.indexOf(text) > -1){
+      Alert.alert( 'Info', `Player ${text} already exists`, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )
+    } else  {
+      this.setState({
+        players: [text, ...players],
+      })
+    }
   }
 
   onRemovePlayer = (index) => {
