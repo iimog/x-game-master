@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Image,
   Alert
 } from 'react-native';
@@ -46,7 +47,7 @@ export class NewGameScreen extends Component {
     const { navigate } = this.props.navigation
 
     return (
-      <View>
+      <ScrollView>
         <Input
           onSubmitEditing={this.onAddPlayer}
           placeholder='Add players... Remove by tapping on them.'
@@ -59,7 +60,7 @@ export class NewGameScreen extends Component {
           text="Start"
           onPress={()=>navigate('Team', {players: players})}
         />
-      </View>
+      </ScrollView>
     );
   }
 };

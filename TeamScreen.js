@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Image
 } from 'react-native';
 import MyButton from './MyButton';
@@ -39,7 +40,7 @@ export class TeamScreen extends Component {
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
     return (
-      <View>
+      <ScrollView>
         <MyButton onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
         <TeamList
           title="Team Blue"
@@ -52,7 +53,7 @@ export class TeamScreen extends Component {
           color="red"
         />
         <MyButton onPress={()=>{}} text="Start"/>
-      </View>
+      </ScrollView>
     );
   }
 };
