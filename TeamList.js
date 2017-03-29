@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 export default class TeamList extends Component {
   renderItem = (text, i) => {
     return (
-      <Text style={styles.item}>{text}</Text>
+      <Text style={styles.item} key={text}>{text}</Text>
     )
   }
 
