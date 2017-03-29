@@ -20,7 +20,7 @@ export class TeamScreen extends Component {
     super(props);
     const {players} = props.navigation.state.params;
     this.state = {
-      players: players
+      players: [...players]
     };
   };
   /**
@@ -28,17 +28,19 @@ export class TeamScreen extends Component {
    * @param {Array} a items The array containing the items.
    */
   shuffle = (a) => {
-      for (let i = a.length; i; i--) {
+      let b = [...a];
+      for (let i = b.length; i; i--) {
           let j = Math.floor(Math.random() * i);
-          [a[i - 1], a[j]] = [a[j], a[i - 1]];
+          [b[i - 1], b[j]] = [b[j], b[i - 1]];
       }
+      return b;
   }
   render() {
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
     return (
       <View>
-        <MyButton onPress={()=>{this.setState({players: shuffle(players)})}} text="Shuffle"/>
+        <MyButton onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
         <TeamList
           title="Team Blue"
           list={this.state.players.slice(0,Math.ceil(this.state.players.length/2))}
