@@ -36,11 +36,11 @@ export class Game extends Component {
           Game {this.state.game}: Schnick-Schnack-Schnuck
         </Text>
         <MyButton
-          text="Team blue"
+          text={this.state.teams[0][Math.floor(Math.random()*this.state.teams[0].length)]}
           onPress={()=>console.log("blue")}
         />
         <MyButton
-          text="Team red"
+          text={this.state.teams[1][Math.floor(Math.random()*this.state.teams[1].length)]}
           onPress={()=>console.log("red")}
         />
       </View>
