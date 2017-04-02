@@ -29,12 +29,31 @@ export class Standing extends Component {
     }
   }
 
+  totalRounds = 15
+
   render() {
     const { teams, score } = this.state
     const { navigate } = this.props.navigation
     let standing = [0,0];
     for(let i=0; i<score.length; i++){
       standing[score[i]] += (i+1)
+    }
+    if(standing[score[score.length-1]]>((1+this.totalRounds)*this.totalRounds)/4){
+      return (
+        <View>
+          <Text>
+            And the winner is: Team {score[score.length-1] === 0 ? 'blue' : 'red'}!
+            Final score is {standing[0]} - {standing[1]} after {score.length} rounds.
+            Congratulations to {teams[score[score.length-1]].toString()}.
+
+            More luck next time to {teams[1-score[score.length-1]].toString()}
+          </Text>
+          <MyButton
+            text="Back to Main Menu"
+            onPress={() => navigate('Home')}
+          />
+        </View>
+      )
     }
 
     return (
