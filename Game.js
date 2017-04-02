@@ -20,35 +20,48 @@ export class Game extends Component {
   static navigationOptions = {
     header: {visible: false},
   };
+
   constructor(props) {
     super(props)
-    const {teams, game} = props.navigation.state.params;
+    const {teams, score} = props.navigation.state.params;
     this.state = {
       teams: teams,
-      game: game,
+      score: score,
       standing: [0,0]
     }
   }
 
+  setsToWin = 5
+
+  handleScore(teamIndex){
+    let st = [...this.state.standing]
+    st[teamIndex]++
+    if(st[teamIndex]>=this.setsToWin){
+      this.props.navigation.navigate('Standing', {teams: this.state.teams, score: [...this.state.score, teamIndex]})
+    } else {
+      this.setState({standing: st});
+    }
+  }
+
   render() {
-    const {players} = this.state
+    const {teams, score} = this.state
     const { navigate } = this.props.navigation
 
     return (
       <View>
         <Text>
-          Game {this.state.game}: Schnick-Schnack-Schnuck
+          Game {score.length+1}: Schnick-Schnack-Schnuck
         </Text>
         <MyText
           standing={this.state.standing}
         />
         <MyButton
           text={this.state.teams[0][Math.floor(Math.random()*this.state.teams[0].length)]}
-          onPress={()=>this.setState({standing: [this.state.standing[0]+1,this.state.standing[1]]})}
+          onPress={()=>this.handleScore(0)}
         />
         <MyButton
           text={this.state.teams[1][Math.floor(Math.random()*this.state.teams[1].length)]}
-          onPress={()=>this.setState({standing: [this.state.standing[0],this.state.standing[1]+1]})}
+          onPress={()=>this.handleScore(1)}
         />
       </View>
     );

@@ -48,7 +48,7 @@ export class TeamScreen extends Component {
           list={this.state.players.slice(Math.ceil(this.state.players.length/2))}
           color="red"
         />
-        <MyButton onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], game: 1})}} text="Start"/>
+        <MyButton onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
       </ScrollView>
     );
   }
