@@ -1,7 +1,3 @@
-/**
- * @flow
- */
-
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
