@@ -24,7 +24,9 @@ export class Game extends Component {
   constructor(props) {
     super(props)
     const {teams, score} = props.navigation.state.params;
+    const gameList = require('./games/simple.json');
     this.state = {
+      game: gameList[Math.floor(Math.random()*gameList.length)],
       teams: teams,
       score: score,
       standing: [0,0]
@@ -44,14 +46,18 @@ export class Game extends Component {
   }
 
   render() {
-    const {teams, score} = this.state
+    const {teams, score, game} = this.state
     const { navigate } = this.props.navigation
 
     return (
       <View>
         <Text>
-          Game {score.length+1}: Schnick-Schnack-Schnuck
+          Game {score.length+1}: {game.name}
         </Text>
+        <MyButton
+          text='Instructions'
+          onPress={()=>Alert.alert( 'Instructions', this.state.game.instructions, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
+        />
         <MyText
           standing={this.state.standing}
         />
