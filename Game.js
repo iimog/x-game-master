@@ -61,14 +61,16 @@ export class Game extends Component {
         <MyText
           standing={this.state.standing}
         />
-        <MyButton
-          text={this.state.teams[0][Math.floor(Math.random()*this.state.teams[0].length)]}
-          onPress={()=>this.handleScore(0)}
-        />
-        <MyButton
-          text={this.state.teams[1][Math.floor(Math.random()*this.state.teams[1].length)]}
-          onPress={()=>this.handleScore(1)}
-        />
+        <View style={styles.buttonView}>
+          <MyButton
+            text={this.state.teams[0][Math.floor(Math.random()*this.state.teams[0].length)]}
+            onPress={()=>this.handleScore(0)}
+          />
+          <MyButton
+            text={this.state.teams[1][Math.floor(Math.random()*this.state.teams[1].length)]}
+            onPress={()=>this.handleScore(1)}
+          />
+        </View>
       </View>
     );
   }
@@ -79,4 +81,12 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontSize: 22
   },
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  playerButton: {
+    flex: 1,
+    width: 500
+  }
 });

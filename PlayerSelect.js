@@ -11,7 +11,7 @@ import MyButton from './MyButton';
 import Input from './Input';
 import List from './List';
 
-export class NewGameScreen extends Component {
+export class PlayerSelect extends Component {
   static navigationOptions = {
     title: "New Game",
   };
