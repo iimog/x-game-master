@@ -51,7 +51,7 @@ export class Game extends Component {
 
     return (
       <View>
-        <Text>
+        <Text style={styles.title}>
           Game {score.length+1}: {game.name}
         </Text>
         <MyButton
@@ -78,8 +78,8 @@ export class Game extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    color: 'blue',
-    fontSize: 22
+    color: 'black',
+    fontSize: 30
   },
   buttonView: {
     flexDirection: 'row',
