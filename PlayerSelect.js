@@ -46,6 +46,7 @@ export class PlayerSelect extends Component {
       <ScrollView>
         <Input
           onSubmitEditing={this.onAddPlayer}
+          style={styles.input}
           placeholder='Add players... Remove by tapping on them.'
         />
         <List
@@ -62,8 +63,5 @@ export class PlayerSelect extends Component {
 };
 
 const styles = StyleSheet.create({
-  title: {
-    color: 'blue',
-    fontSize: 22
-  },
+
 });

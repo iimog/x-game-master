@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 export default class TeamList extends Component {
   renderItem = (text, i) => {
     return (
-      <Text style={styles.item} key={text}>{text}</Text>
+      <Text style={StyleSheet.flatten([styles.item,{backgroundColor: this.props.color}])} key={text}>{text}</Text>
     )
   }
 
@@ -16,7 +16,7 @@ export default class TeamList extends Component {
         <View style={styles.header} backgroundColor={color}>
           <Text style={styles.title}>{title}</Text>
         </View>
-        <View>
+        <View backgroundColor={color}>
           {list.map(this.renderItem)}
         </View>
       </View>
@@ -27,15 +27,21 @@ export default class TeamList extends Component {
 const styles = StyleSheet.create({
   item: {
     backgroundColor: 'whitesmoke',
-    marginBottom: 5,
+    marginBottom: 0,
     padding: 15,
+    fontSize: 18,
+    textAlign: 'center',
+    borderBottomWidth: 1,
+    borderColor: 'black'
   },
   header: {
     backgroundColor: 'skyblue',
     padding: 15,
+    borderBottomWidth: 1
   },
   title: {
     textAlign: 'center',
     color: 'white',
+    fontSize: 18
   },
 })

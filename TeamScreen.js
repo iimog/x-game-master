@@ -37,7 +37,6 @@ export class TeamScreen extends Component {
     const { params } = this.props.navigation.state;
     return (
       <ScrollView>
-        <MyButton onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
         <TeamList
           title="Team Blue"
           list={this.state.players.slice(0,Math.ceil(this.state.players.length/2))}
@@ -48,8 +47,20 @@ export class TeamScreen extends Component {
           list={this.state.players.slice(Math.ceil(this.state.players.length/2))}
           color="red"
         />
-        <MyButton onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
+        <View style={styles.buttons}>
+          <MyButton onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
+          <MyButton onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
+        </View>
       </ScrollView>
     );
   }
 };
+
+const styles = StyleSheet.create({
+  buttons: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10
+  },
+})

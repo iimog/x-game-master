@@ -12,7 +12,7 @@ export default class List extends Component {
         key={text}
         onPress={() => onPressItem(i)}
       >
-        <Text>{text}</Text>
+        <Text style={styles.text}>{text}</Text>
       </TouchableOpacity>
     )
   }
@@ -33,5 +33,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'whitesmoke',
     marginBottom: 5,
     padding: 15,
+  },
+  text: {
+    color: '#444444',
+    fontSize: 18,
+    textAlign: 'center'
   },
 })
