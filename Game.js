@@ -38,7 +38,7 @@ export class Game extends Component {
   handleScore(teamIndex){
     let st = [...this.state.standing]
     st[teamIndex]++
-    if(st[teamIndex]>=this.setsToWin){
+    if(st[teamIndex]>(this.state.game.bestOf/2)){
       this.props.navigation.navigate('Standing', {teams: this.state.teams, score: [...this.state.score, teamIndex]})
     } else {
       this.setState({standing: st});
@@ -53,6 +53,9 @@ export class Game extends Component {
       <View>
         <Text style={styles.title}>
           Game {score.length+1}: {game.name}
+        </Text>
+        <Text>
+          (best of {game.bestOf})
         </Text>
         <MyButton
           text='Instructions'
