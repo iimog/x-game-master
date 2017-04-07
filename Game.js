@@ -74,6 +74,10 @@ export class Game extends Component {
             onPress={()=>this.handleScore(1)}
           />
         </View>
+        <MyButton
+          text="Skip this game"
+          onPress={()=>Alert.alert( 'Skip game', "Are you sure you want to skip this game? The next one will start with 0-0.", [ {text: 'Yes', onPress: () => {navigate('Standing', {teams: this.state.teams, score: this.state.score})}}, {text: 'No', onPress: () => {}} ], { cancelable: true } )}
+        />
       </View>
     );
   }
