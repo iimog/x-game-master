@@ -43,6 +43,8 @@
     "bestOf": 1
   },
   {
-    "name": "Schafkopf"
-    "instructions": "Players of one team sit in the cross. Play four rounds (16 games). Add the value of all players of one team. The team with the greater total wins. If there are more than four players dealing rotates among all players and the four player after the dealer (dealer not included) play this round. But there have to be two players from each team at all times. So after two players from one team more players from the same team are skipped."
+    "name": "Schafkopf",
+    "instructions": "Players of one team sit in the cross. Play four rounds (16 games). Add the value of all players of one team. The team with the greater total wins. If there are more than four players dealing rotates among all players and the four player after the dealer (dealer not included) play this round. But there have to be two players from each team at all times. So after two players from one team more players from the same team are skipped.",
+    "bestOf": 1
+  }
 ]
