@@ -12,7 +12,16 @@ import MyButton from './MyButton';
 
 class MyText extends Component {
   render(){
-    return <Text>{this.props.standing[0]} - {this.props.standing[1]}</Text>
+    return(
+      <View style={styles.buttonView}>
+        <View style={styles.playerButtonView}>
+          <Text style={styles.standingText}>{this.props.standing[0]}</Text>
+        </View>
+        <View style={styles.playerButtonView}>
+          <Text style={styles.standingText}>{this.props.standing[1]}</Text>
+        </View>
+      </View>
+    );
   }
 };
 
@@ -57,17 +66,21 @@ export class Standing extends Component {
     }
 
     return (
-      <View>
-        <Text>
-          Standing after game {score.length}
-        </Text>
-        <MyText
-          standing={standing}
-        />
-        <MyButton
-          text="Next Game"
-          onPress={() => navigate('Game', {teams: teams, score: score})}
-        />
+      <View style={styles.main}>
+        <View style={styles.content}>
+          <Text style={styles.title}>
+            Standing after game {score.length}
+          </Text>
+          <MyText
+            standing={standing}
+          />
+        </View>
+        <View>
+          <MyButton
+            text="Next Game"
+            onPress={() => navigate('Game', {teams: teams, score: score})}
+          />
+        </View>
       </View>
     );
   }
@@ -75,7 +88,26 @@ export class Standing extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    color: 'blue',
-    fontSize: 22
+    color: 'black',
+    fontSize: 30
   },
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  playerButtonView: {
+    flex: 1,
+    padding: 5
+  },
+  standingText: {
+    alignSelf: 'center',
+    fontSize: 72
+  },
+  content: {
+    flex: 1,
+  },
+  main: {
+    flex: 1,
+    margin: 5
+  }
 });
