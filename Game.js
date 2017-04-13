@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -26,11 +28,25 @@ class MyText extends Component {
 };
 
 export class Game extends Component {
+  props: {
+    navigation: any
+  };
+  state: {
+    game: {
+      name: string,
+      description: string,
+      instructions: string,
+      bestOf: number
+    },
+    teams: Array<string>,
+    score: Array<number>,
+    standing: Array<number>
+  }
   static navigationOptions = {
     header: {visible: false},
   };
 
-  constructor(props) {
+  constructor(props: {navigation: any}) {
     super(props)
     const {teams, score} = props.navigation.state.params;
     const gameList = require('./games/simple.json');
@@ -44,7 +60,7 @@ export class Game extends Component {
 
   setsToWin = 5
 
-  handleScore(teamIndex){
+  handleScore(teamIndex: number){
     let st = [...this.state.standing]
     st[teamIndex]++
     if(st[teamIndex]>(this.state.game.bestOf/2)){
