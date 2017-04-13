@@ -14,6 +14,9 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
+; Ignore react-navigation test files with flow errors
+.*/node_modules/react-navigation/.*-test.js
+
 [include]
 
 [libs]
