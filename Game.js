@@ -65,14 +65,18 @@ export class Game extends Component {
           standing={this.state.standing}
         />
         <View style={styles.buttonView}>
+          <View style={styles.playerButtonView}>
           <MyButton
             text={this.state.teams[0][Math.floor(Math.random()*this.state.teams[0].length)]}
             onPress={()=>this.handleScore(0)}
           />
+          </View>
+          <View style={styles.playerButtonView}>
           <MyButton
             text={this.state.teams[1][Math.floor(Math.random()*this.state.teams[1].length)]}
             onPress={()=>this.handleScore(1)}
           />
+          </View>
         </View>
         <MyButton
           text="Skip this game"
@@ -92,8 +96,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center'
   },
-  playerButton: {
+  playerButtonView: {
     flex: 1,
-    width: 500
+    padding: 5
+  },
+  playerButton: {
   }
 });
