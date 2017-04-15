@@ -14,10 +14,6 @@ const styles: StyleSheet.Styles = StyleSheet.create({
     flex: 1,
     padding: 5
   },
-  standingText: {
-    alignSelf: 'center',
-    fontSize: 72
-  },
   content: {
     flex: 1,
   },

@@ -9,22 +9,8 @@ import {
   Alert
 } from 'react-native';
 import Button from '../../components/Button';
+import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
-
-class MyText extends Component {
-  render(){
-    return(
-      <View style={styles.buttonView}>
-        <View style={styles.playerButtonView}>
-          <Text style={styles.standingText}>{this.props.standing[0]}</Text>
-        </View>
-        <View style={styles.playerButtonView}>
-          <Text style={styles.standingText}>{this.props.standing[1]}</Text>
-        </View>
-      </View>
-    );
-  }
-};
 
 export class Game extends Component {
   props: {
@@ -83,7 +69,7 @@ export class Game extends Component {
           <Text alignSelf="center">
             (best of {game.bestOf})
           </Text>
-          <MyText
+          <ScoreBoard
             standing={this.state.standing}
           />
           <View style={styles.buttonView}>

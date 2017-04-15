@@ -8,24 +8,10 @@ import {
   Image,
   Alert
 } from 'react-native';
-import Button from '../../components/Button';
+import Button from '../../components/Button'
+import ScoreBoard from '../../components/ScoreBoard'
 import styles from './styles'
 
-
-class MyText extends Component {
-  render(){
-    return(
-      <View style={styles.buttonView}>
-        <View style={styles.playerButtonView}>
-          <Text style={styles.standingText}>{this.props.standing[0]}</Text>
-        </View>
-        <View style={styles.playerButtonView}>
-          <Text style={styles.standingText}>{this.props.standing[1]}</Text>
-        </View>
-      </View>
-    );
-  }
-};
 
 type myProps = {
   navigation: {
@@ -76,7 +62,7 @@ export class Score extends Component {
           <Text style={styles.title}>
             Standing after game {score.length}
           </Text>
-          <MyText
+          <ScoreBoard
             standing={standing}
           />
         </View>

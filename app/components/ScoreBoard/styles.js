@@ -2,25 +2,18 @@
 import { StyleSheet } from 'react-native';
 
 const styles: StyleSheet.Styles = StyleSheet.create({
-  title: {
-    color: 'black',
-    fontSize: 30
-  },
-  buttonView: {
+  scoreBoardContainer: {
     flexDirection: 'row',
     justifyContent: 'center'
   },
-  playerButtonView: {
+  scoreBoardNumberContainer: {
     flex: 1,
     padding: 5
   },
-  content: {
-    flex: 1,
+  standingText: {
+    alignSelf: 'center',
+    fontSize: 72
   },
-  main: {
-    flex: 1,
-    margin: 5,
-  }
 });
 
 export default styles;
