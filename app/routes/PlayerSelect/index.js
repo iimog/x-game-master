@@ -7,9 +7,9 @@ import {
   Image,
   Alert
 } from 'react-native';
-import MyButton from './MyButton';
-import Input from './Input';
-import List from './List';
+import MyButton from '../../../MyButton';
+import Input from '../../../Input';
+import List from '../../../List';
 
 export class PlayerSelect extends Component {
   static navigationOptions = {
