@@ -1,10 +1,12 @@
+/* @flow */
+
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 import styles from './styles'
 
 export default class PlayerList extends Component {
 
-  renderItem = (text, i) => {
+  renderItem = (text: string, i: number) => {
     const {onPressItem} = this.props
 
     return (
