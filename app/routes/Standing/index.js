@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
@@ -8,6 +7,7 @@ import {
   Alert
 } from 'react-native';
 import MyButton from '../../../MyButton';
+import styles from './styles'
 
 
 class MyText extends Component {
@@ -85,29 +85,3 @@ export class Standing extends Component {
     );
   }
 };
-
-const styles = StyleSheet.create({
-  title: {
-    color: 'black',
-    fontSize: 30
-  },
-  buttonView: {
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  playerButtonView: {
-    flex: 1,
-    padding: 5
-  },
-  standingText: {
-    alignSelf: 'center',
-    fontSize: 72
-  },
-  content: {
-    flex: 1,
-  },
-  main: {
-    flex: 1,
-    margin: 5
-  }
-});
