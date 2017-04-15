@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react'
 import { TextInput } from 'react-native'
 import styles from './styles'
@@ -8,7 +10,7 @@ export default class Input extends Component {
     text: '',
   }
 
-  onChangeText = (text) => this.setState({text})
+  onChangeText = (text: string) => this.setState({text})
 
   onSubmitEditing = () => {
     const {onSubmitEditing} = this.props
