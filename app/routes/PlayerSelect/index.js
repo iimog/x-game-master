@@ -9,7 +9,7 @@ import {
   Alert
 } from 'react-native';
 import MyButton from '../../../MyButton';
-import Input from '../../../Input';
+import Input from '../../components/Input';
 import List from '../../../List';
 
 export class PlayerSelect extends Component {
