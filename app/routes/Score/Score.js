@@ -46,7 +46,7 @@ export class Score extends Component {
 
   totalRounds = 15
 
-  render() {
+  componentWillMount(){
     const { teams, score } = this.state
     const { navigate } = this.props.navigation
     let standing = [0,0];
@@ -55,6 +55,15 @@ export class Score extends Component {
     }
     if(standing[score[score.length-1]]>((1+this.totalRounds)*this.totalRounds)/4){
       navigate('FinalScore', {teams: teams, score: score})
+    }
+  }
+
+  render() {
+    const { teams, score } = this.state
+    const { navigate } = this.props.navigation
+    let standing = [0,0];
+    for(let i=0; i<score.length; i++){
+      standing[score[i]] += (i+1)
     }
 
     return (
