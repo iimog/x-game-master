@@ -8,7 +8,7 @@ import {
   Image
 } from 'react-native';
 import Button from '../../components/Button';
-import TeamList from '../../../TeamList';
+import TeamList from '../../components/TeamList';
 import styles from './styles';
 
 export class TeamSelect extends Component {

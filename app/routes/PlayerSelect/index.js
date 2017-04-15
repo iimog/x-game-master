@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import List from '../../../List';
+import PlayerList from '../../components/PlayerList';
 
 export class PlayerSelect extends Component {
   static navigationOptions = {
@@ -49,7 +49,7 @@ export class PlayerSelect extends Component {
           onSubmitEditing={this.onAddPlayer}
           placeholder='Add players... Remove by tapping on them.'
         />
-        <List
+        <PlayerList
           list={players}
           onPressItem={this.onRemovePlayer}
         />
