@@ -34,7 +34,7 @@ export class Game extends Component {
   constructor(props: {navigation: any}) {
     super(props)
     const {teams, score} = props.navigation.state.params;
-    const gameList = require('../../../games/simple.json');
+    const gameList = require('../../games/simple.json');
     this.state = {
       game: gameList[Math.floor(Math.random()*gameList.length)],
       teams: teams,
