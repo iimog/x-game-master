@@ -39,7 +39,7 @@ type myProps = {
   }
 }
 
-export class Standing extends Component {
+export class Score extends Component {
   static navigationOptions = {
     header: {visible: false},
   };

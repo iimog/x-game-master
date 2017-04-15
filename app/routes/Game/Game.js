@@ -63,7 +63,7 @@ export class Game extends Component {
     let st = [...this.state.standing]
     st[teamIndex]++
     if(st[teamIndex]>(this.state.game.bestOf/2)){
-      this.props.navigation.navigate('Standing', {teams: this.state.teams, score: [...this.state.score, teamIndex]})
+      this.props.navigation.navigate('Score', {teams: this.state.teams, score: [...this.state.score, teamIndex]})
     } else {
       this.setState({standing: st});
     }
@@ -108,7 +108,7 @@ export class Game extends Component {
           />
           <Button
             text="Skip this game"
-            onPress={()=>Alert.alert( 'Skip game', "Are you sure you want to skip this game? The next one will start with 0-0.", [ {text: 'Yes', onPress: () => {navigate('Standing', {teams: this.state.teams, score: this.state.score})}}, {text: 'No', onPress: () => {}} ], { cancelable: true } )}
+            onPress={()=>Alert.alert( 'Skip game', "Are you sure you want to skip this game? The next one will start with 0-0.", [ {text: 'Yes', onPress: () => {navigate('Score', {teams: this.state.teams, score: this.state.score})}}, {text: 'No', onPress: () => {}} ], { cancelable: true } )}
           />
         </View>
       </View>

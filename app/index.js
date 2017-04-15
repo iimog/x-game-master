@@ -12,14 +12,14 @@ import Home from './routes/Home';
 import PlayerSelect from './routes/PlayerSelect';
 import TeamSelect from './routes/TeamSelect';
 import Game from './routes/Game';
-import Standing from './routes/Standing';
+import Score from './routes/Score';
 
 const xMobile = StackNavigator({
   Home: { screen: Home },
   NewGame: { screen: PlayerSelect },
   Team: { screen: TeamSelect },
   Game: { screen: Game },
-  Standing: { screen: Standing }
+  Score: { screen: Score }
 });
 
 AppRegistry.registerComponent('xMobile', () => xMobile);
