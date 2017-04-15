@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Button from '../../components/Button'
 import ScoreBoard from '../../components/ScoreBoard'
+import ProgressBoard from '../../components/ProgressBoard'
 import styles from './styles'
 
 
@@ -64,6 +65,9 @@ export class Score extends Component {
           </Text>
           <ScoreBoard
             standing={standing}
+          />
+          <ProgressBoard
+            score={score}
           />
         </View>
         <View>
