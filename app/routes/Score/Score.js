@@ -67,21 +67,7 @@ export class Score extends Component {
       standing[score[i]] += (i+1)
     }
     if(standing[score[score.length-1]]>((1+this.totalRounds)*this.totalRounds)/4){
-      return (
-        <View>
-          <Text>
-            And the winner is: Team {score[score.length-1] === 0 ? 'blue' : 'red'}!
-            Final score is {standing[0]} - {standing[1]} after {score.length} rounds.
-            Congratulations to {teams[score[score.length-1]].toString()}.
-
-            More luck next time to {teams[1-score[score.length-1]].toString()}
-          </Text>
-          <Button
-            text="Back to Main Menu"
-            onPress={() => navigate('Home')}
-          />
-        </View>
-      )
+      navigate('FinalScore', {teams: teams, score: score})
     }
 
     return (
