@@ -5,10 +5,10 @@ import {
   View,
   Image
 } from 'react-native';
-import MyButton from './MyButton';
-import images from './app/config/images';
+import MyButton from '../../../MyButton';
+import images from '../../config/images';
 
-export class MainScreen extends Component {
+export class Home extends Component {
   static navigationOptions = {
     header: {visible: false},
   };

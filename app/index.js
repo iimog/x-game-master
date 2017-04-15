@@ -8,14 +8,14 @@ import {
   Text,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { MainScreen } from '../MainScreen';
+import { Home } from './routes/Home';
 import { PlayerSelect } from '../PlayerSelect';
 import { TeamScreen } from '../TeamScreen';
 import { Game } from '../Game';
 import { Standing } from '../Standing';
 
 const xMobile = StackNavigator({
-  Home: { screen: MainScreen },
+  Home: { screen: Home },
   NewGame: { screen: PlayerSelect },
   Team: { screen: TeamScreen },
   Game: { screen: Game },
