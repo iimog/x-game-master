@@ -1,6 +1,7 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
@@ -19,7 +20,7 @@ export class PlayerSelect extends Component {
     players: ['Hannah', 'Markus', 'Tobi', 'Lo', 'Moritz'],
   };
 
-  onAddPlayer = (text) => {
+  onAddPlayer = (text: string) => {
     const {players} = this.state
     if(players.indexOf(text) > -1){
       Alert.alert( 'Info', `Player ${text} already exists`, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )
@@ -30,7 +31,7 @@ export class PlayerSelect extends Component {
     }
   }
 
-  onRemovePlayer = (index) => {
+  onRemovePlayer = (index: number) => {
     const {players} = this.state
 
     this.setState({
@@ -46,7 +47,6 @@ export class PlayerSelect extends Component {
       <ScrollView>
         <Input
           onSubmitEditing={this.onAddPlayer}
-          style={styles.input}
           placeholder='Add players... Remove by tapping on them.'
         />
         <List
@@ -61,7 +61,3 @@ export class PlayerSelect extends Component {
     );
   }
 };
-
-const styles = StyleSheet.create({
-
-});
