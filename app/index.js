@@ -11,7 +11,7 @@ import { StackNavigator } from 'react-navigation';
 import { Home } from './routes/Home';
 import { PlayerSelect } from './routes/PlayerSelect';
 import { TeamSelect } from './routes/TeamSelect';
-import { Game } from '../Game';
+import { Game } from './routes/Game';
 import { Standing } from '../Standing';
 
 const xMobile = StackNavigator({
