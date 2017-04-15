@@ -1,9 +1,11 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import {
   TouchableHighlight,
-  Text,
-  StyleSheet
+  Text
 } from 'react-native';
+import styles from './styles';
 
 export default class Button extends Component {
   render() {
@@ -14,21 +16,3 @@ export default class Button extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'darkgrey',
-    borderColor: '#333333',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderRadius: 10
-  },
-  text: {
-    fontSize: 20,
-    color: '#333333',
-    textAlign: 'center',
-    margin: 10,
-  },
-});
