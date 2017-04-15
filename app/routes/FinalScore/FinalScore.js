@@ -50,7 +50,7 @@ export class FinalScore extends Component {
     }
     return (
       <View>
-        <Text>
+        <Text style={styles.text}>
           And the winner is: Team {score[score.length-1] === 0 ? 'blue' : 'red'}!
           Final score is {standing[0]} - {standing[1]} after {score.length} rounds.
           Congratulations to {teams[score[score.length-1]].toString()}.
