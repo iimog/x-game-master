@@ -12,7 +12,7 @@ import { Home } from './routes/Home';
 import { PlayerSelect } from './routes/PlayerSelect';
 import { TeamSelect } from './routes/TeamSelect';
 import { Game } from './routes/Game';
-import { Standing } from '../Standing';
+import { Standing } from './routes/Standing';
 
 const xMobile = StackNavigator({
   Home: { screen: Home },

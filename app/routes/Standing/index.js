@@ -7,7 +7,7 @@ import {
   Image,
   Alert
 } from 'react-native';
-import MyButton from './MyButton';
+import MyButton from '../../../MyButton';
 
 
 class MyText extends Component {
