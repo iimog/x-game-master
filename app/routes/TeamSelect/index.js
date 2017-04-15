@@ -6,10 +6,10 @@ import {
   ScrollView,
   Image
 } from 'react-native';
-import MyButton from './MyButton';
-import TeamList from './TeamList';
+import MyButton from '../../../MyButton';
+import TeamList from '../../../TeamList';
 
-export class TeamScreen extends Component {
+export class TeamSelect extends Component {
   static navigationOptions = {
     title: "Teams",
   };
