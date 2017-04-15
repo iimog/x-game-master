@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import {
   Text,
@@ -25,11 +27,28 @@ class MyText extends Component {
   }
 };
 
+type myProps = {
+  navigation: {
+    navigate: any,
+    state: {
+      params: {
+        teams: [Array<string>,Array<string>],
+        score: Array<number>,
+      }
+    }
+  }
+}
+
 export class Standing extends Component {
   static navigationOptions = {
     header: {visible: false},
   };
-  constructor(props) {
+  props: myProps;
+  state: {
+    teams: [Array<string>, Array<string>],
+    score: Array<number>
+  }
+  constructor(props: myProps) {
     super(props)
     const {teams, score} = props.navigation.state.params;
     this.state = {
