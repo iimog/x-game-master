@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import styles from './styles'
 
-function Tile(props: {num: number, winner: ?number}){
+function Tile(props: {num: string, winner: ?number}){
   let backgroundColor: string = 'transparent'
   if(typeof props.winner === 'number'){
     backgroundColor = ['red', 'blue'][props.winner]
