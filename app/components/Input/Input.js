@@ -1,5 +1,8 @@
+/* @flow */
+
 import React, { Component } from 'react'
-import { TextInput, StyleSheet } from 'react-native'
+import { TextInput } from 'react-native'
+import styles from './styles'
 
 export default class Input extends Component {
 
@@ -7,7 +10,7 @@ export default class Input extends Component {
     text: '',
   }
 
-  onChangeText = (text) => this.setState({text})
+  onChangeText = (text: string) => this.setState({text})
 
   onSubmitEditing = () => {
     const {onSubmitEditing} = this.props
@@ -34,11 +37,3 @@ export default class Input extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  input: {
-    padding: 15,
-    height: 50,
-    fontSize: 16
-  },
-})

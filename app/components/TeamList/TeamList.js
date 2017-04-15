@@ -1,8 +1,11 @@
+/* @flow */
+
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import styles from './styles'
 
 export default class TeamList extends Component {
-  renderItem = (text, i) => {
+  renderItem = (text: string, i: number) => {
     return (
       <Text style={StyleSheet.flatten([styles.item,{backgroundColor: this.props.color}])} key={text}>{text}</Text>
     )
@@ -23,25 +26,3 @@ export default class TeamList extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: 'whitesmoke',
-    marginBottom: 0,
-    padding: 15,
-    fontSize: 18,
-    textAlign: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'black'
-  },
-  header: {
-    backgroundColor: 'skyblue',
-    padding: 15,
-    borderBottomWidth: 1
-  },
-  title: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 18
-  },
-})

@@ -1,19 +1,27 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
   Image
 } from 'react-native';
-import MyButton from './MyButton';
-import TeamList from './TeamList';
+import Button from '../../components/Button';
+import TeamList from '../../components/TeamList';
+import styles from './styles';
 
-export class TeamScreen extends Component {
+export class TeamSelect extends Component {
+  props: {
+    navigation: any
+  };
+  state: {
+    players: Array<String>
+  }
   static navigationOptions = {
     title: "Teams",
   };
-  constructor(props) {
+  constructor(props: {navigation: any}) {
     super(props);
     const {players} = props.navigation.state.params;
     this.state = {
@@ -24,11 +32,14 @@ export class TeamScreen extends Component {
    * Shuffles array in place. ES6 version
    * @param {Array} a items The array containing the items.
    */
-  shuffle = (a) => {
+  shuffle = <T>(a: Array<T>): Array<T> => {
       let b = [...a];
       for (let i = b.length; i; i--) {
           let j = Math.floor(Math.random() * i);
-          [b[i - 1], b[j]] = [b[j], b[i - 1]];
+          // the next three lines could be replaced by [b[i - 1]b[j]] = [b[j], b[i - 1]] but flow (v0.38.0) does not like it
+          let [x,y] = [b[j], b[i - 1]];
+          b[i - 1] = x;
+          b[j] = y;
       }
       return b;
   }
@@ -48,19 +59,10 @@ export class TeamScreen extends Component {
           color="red"
         />
         <View style={styles.buttons}>
-          <MyButton onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
-          <MyButton onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
+          <Button onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
+          <Button onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
         </View>
       </ScrollView>
     );
   }
 };
-
-const styles = StyleSheet.create({
-  buttons: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10
-  },
-})

@@ -1,15 +1,16 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
   Image,
   Alert
 } from 'react-native';
-import MyButton from './MyButton';
-import Input from './Input';
-import List from './List';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import PlayerList from '../../components/PlayerList';
 
 export class PlayerSelect extends Component {
   static navigationOptions = {
@@ -19,7 +20,7 @@ export class PlayerSelect extends Component {
     players: ['Hannah', 'Markus', 'Tobi', 'Lo', 'Moritz'],
   };
 
-  onAddPlayer = (text) => {
+  onAddPlayer = (text: string) => {
     const {players} = this.state
     if(players.indexOf(text) > -1){
       Alert.alert( 'Info', `Player ${text} already exists`, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )
@@ -30,7 +31,7 @@ export class PlayerSelect extends Component {
     }
   }
 
-  onRemovePlayer = (index) => {
+  onRemovePlayer = (index: number) => {
     const {players} = this.state
 
     this.setState({
@@ -46,14 +47,13 @@ export class PlayerSelect extends Component {
       <ScrollView>
         <Input
           onSubmitEditing={this.onAddPlayer}
-          style={styles.input}
           placeholder='Add players... Remove by tapping on them.'
         />
-        <List
+        <PlayerList
           list={players}
           onPressItem={this.onRemovePlayer}
         />
-        <MyButton
+        <Button
           text="Select Teams"
           onPress={()=>navigate('Team', {players: players})}
         />
@@ -61,7 +61,3 @@ export class PlayerSelect extends Component {
     );
   }
 };
-
-const styles = StyleSheet.create({
-
-});
