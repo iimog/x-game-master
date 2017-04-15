@@ -6,6 +6,7 @@ import {
   Image
 } from 'react-native';
 import MyButton from './MyButton';
+import images from './app/config/images';
 
 export class MainScreen extends Component {
   static navigationOptions = {
@@ -15,7 +16,7 @@ export class MainScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Image source={require('./img/X.png')} style={styles.logo}/>
+        <Image source={images.logo} style={styles.logo}/>
         <View style={styles.buttons}>
           <MyButton text="New Game" onPress={() => navigate("NewGame")}></MyButton>
           <MyButton text="Continue Game" onPress={() => console.log("Continue Game button pressed!")}></MyButton>
