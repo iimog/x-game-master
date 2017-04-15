@@ -2,20 +2,15 @@
 import { StyleSheet } from 'react-native';
 
 const styles: StyleSheet.Styles = StyleSheet.create({
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'darkgrey',
-    borderColor: '#333333',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderRadius: 10
+  item: {
+    backgroundColor: 'whitesmoke',
+    marginBottom: 5,
+    padding: 15,
   },
   text: {
-    fontSize: 20,
-    color: '#333333',
-    textAlign: 'center',
-    margin: 10,
+    color: '#444444',
+    fontSize: 18,
+    textAlign: 'center'
   },
 });
 

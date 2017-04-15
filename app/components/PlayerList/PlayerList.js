@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
+import styles from './styles'
 
 export default class PlayerList extends Component {
 
@@ -27,16 +28,3 @@ export default class PlayerList extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: 'whitesmoke',
-    marginBottom: 5,
-    padding: 15,
-  },
-  text: {
-    color: '#444444',
-    fontSize: 18,
-    textAlign: 'center'
-  },
-})
