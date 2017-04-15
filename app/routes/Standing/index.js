@@ -8,7 +8,7 @@ import {
   Image,
   Alert
 } from 'react-native';
-import MyButton from '../../../MyButton';
+import Button from '../../components/Button';
 import styles from './styles'
 
 
@@ -76,7 +76,7 @@ export class Standing extends Component {
 
             More luck next time to {teams[1-score[score.length-1]].toString()}
           </Text>
-          <MyButton
+          <Button
             text="Back to Main Menu"
             onPress={() => navigate('Home')}
           />
@@ -95,7 +95,7 @@ export class Standing extends Component {
           />
         </View>
         <View>
-          <MyButton
+          <Button
             text="Next Game"
             onPress={() => navigate('Game', {teams: teams, score: score})}
           />

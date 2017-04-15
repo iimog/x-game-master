@@ -7,7 +7,7 @@ import {
   ScrollView,
   Image
 } from 'react-native';
-import MyButton from '../../../MyButton';
+import Button from '../../components/Button';
 import TeamList from '../../../TeamList';
 import styles from './styles';
 
@@ -59,8 +59,8 @@ export class TeamSelect extends Component {
           color="red"
         />
         <View style={styles.buttons}>
-          <MyButton onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
-          <MyButton onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
+          <Button onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
+          <Button onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
         </View>
       </ScrollView>
     );

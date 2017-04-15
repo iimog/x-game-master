@@ -8,7 +8,7 @@ import {
   Image,
   Alert
 } from 'react-native';
-import MyButton from '../../../MyButton';
+import Button from '../../components/Button';
 import styles from './styles';
 
 class MyText extends Component {
@@ -88,13 +88,13 @@ export class Game extends Component {
           />
           <View style={styles.buttonView}>
             <View style={styles.playerButtonView}>
-            <MyButton
+            <Button
               text={this.state.teams[0][Math.floor(Math.random()*this.state.teams[0].length)]}
               onPress={()=>this.handleScore(0)}
             />
             </View>
             <View style={styles.playerButtonView}>
-            <MyButton
+            <Button
               text={this.state.teams[1][Math.floor(Math.random()*this.state.teams[1].length)]}
               onPress={()=>this.handleScore(1)}
             />
@@ -102,11 +102,11 @@ export class Game extends Component {
           </View>
         </View>
         <View>
-          <MyButton
+          <Button
             text='Instructions'
             onPress={()=>Alert.alert( 'Instructions', this.state.game.instructions, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
           />
-          <MyButton
+          <Button
             text="Skip this game"
             onPress={()=>Alert.alert( 'Skip game', "Are you sure you want to skip this game? The next one will start with 0-0.", [ {text: 'Yes', onPress: () => {navigate('Standing', {teams: this.state.teams, score: this.state.score})}}, {text: 'No', onPress: () => {}} ], { cancelable: true } )}
           />

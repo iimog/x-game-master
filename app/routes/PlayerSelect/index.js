@@ -8,7 +8,7 @@ import {
   Image,
   Alert
 } from 'react-native';
-import MyButton from '../../../MyButton';
+import Button from '../../components/Button';
 import Input from '../../components/Input';
 import List from '../../../List';
 
@@ -53,7 +53,7 @@ export class PlayerSelect extends Component {
           list={players}
           onPressItem={this.onRemovePlayer}
         />
-        <MyButton
+        <Button
           text="Select Teams"
           onPress={()=>navigate('Team', {players: players})}
         />

@@ -6,7 +6,7 @@ import {
   View,
   Image
 } from 'react-native';
-import MyButton from '../../../MyButton';
+import Button from '../../components/Button';
 import images from '../../config/images';
 import styles from './styles'
 
@@ -20,9 +20,9 @@ export class Home extends Component {
       <View style={styles.container}>
         <Image source={images.logo} style={styles.logo}/>
         <View style={styles.buttons}>
-          <MyButton text="New Game" onPress={() => navigate("NewGame")}></MyButton>
-          <MyButton text="Continue Game" onPress={() => console.log("Continue Game button pressed!")}></MyButton>
-          <MyButton text="Settings" onPress={() => console.log("Settings button pressed!")}></MyButton>
+          <Button text="New Game" onPress={() => navigate("NewGame")}></Button>
+          <Button text="Continue Game" onPress={() => console.log("Continue Game button pressed!")}></Button>
+          <Button text="Settings" onPress={() => console.log("Settings button pressed!")}></Button>
         </View>
       </View>
     );
