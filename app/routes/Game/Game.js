@@ -8,6 +8,7 @@ import {
   Image,
   Alert
 } from 'react-native';
+import { connect } from 'react-redux'
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
@@ -15,10 +16,15 @@ import I18n, {gameT} from '../../i18n'
 import defaultGame from './DefaultGame'
 import _ from 'lodash'
 
-export class Game extends Component {
-  props: {
-    navigation: any
-  };
+const mapStateToProps = (store) => ({players: store.players, teams: store.teams})
+
+type props = {
+  navigation: any,
+  teams: [Array<number>,Array<number>],
+  players: Array<string>
+};
+
+class Game extends Component {
   state: {
     game: {
       name: string,
@@ -26,7 +32,7 @@ export class Game extends Component {
       instructions: string,
       bestOf: number
     },
-    teams: Array<string>,
+    teams: Array<Array<string>>,
     score: Array<number>,
     standing: Array<number>
   }
@@ -34,15 +40,17 @@ export class Game extends Component {
     header: {visible: false},
   };
 
-  constructor(props: {navigation: any}) {
+  constructor(props: props) {
     super(props)
-    const {teams, score} = props.navigation.state.params;
+    const {score} = props.navigation.state.params;
+    const {players, teams} = props;
+    const teamNames = teams.map((a) => a.map((e) => players[e]))
     const gameList = require('../../games/simple.json');
     const gameIndex = Math.floor(Math.random()*gameList.length)
     const game = _.merge(defaultGame, gameList[gameIndex])
     this.state = {
       game: game,
-      teams: teams,
+      teams: teamNames,
       score: score,
       standing: [0,0]
     }
@@ -106,3 +114,5 @@ export class Game extends Component {
     );
   }
 };
+
+export default connect(mapStateToProps)(Game)

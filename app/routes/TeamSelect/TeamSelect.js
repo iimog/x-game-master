@@ -38,7 +38,7 @@ class TeamSelect extends Component {
         />
         <View style={styles.buttons}>
           <Button onPress={()=>{this.props.dispatch(actionCreators.shuffle())}} text={I18n.t('shuffle')}/>
-          <Button onPress={()=>{navigate('Game', {teams: teams, score: []})}} text={I18n.t('start')}/>
+          <Button onPress={()=>{navigate('Game', {score: []})}} text={I18n.t('start')}/>
         </View>
       </ScrollView>
     );
