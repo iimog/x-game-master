@@ -11,7 +11,9 @@ import {
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
-import I18n from '../../i18n'
+import I18n, {extendI18n, resetI18n} from '../../i18n'
+import defaultGame from './DefaultGame'
+import _ from 'lodash'
 
 export class Game extends Component {
   props: {
@@ -37,7 +39,7 @@ export class Game extends Component {
     const {teams, score} = props.navigation.state.params;
     const gameList = require('../../games/simple.json');
     this.state = {
-      game: gameList[Math.floor(Math.random()*gameList.length)],
+      game: _.merge(defaultGame, gameList[Math.floor(Math.random()*gameList.length)]),
       teams: teams,
       score: score,
       standing: [0,0]
