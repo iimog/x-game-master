@@ -18,6 +18,12 @@ const de = {
   score: "Spielstand",
   after: "nach",
   nextGame: "Nächstes Spiel",
+  winnerIs: "Der Sieger ist",
+  finalScore: "Endstand",
+  rounds: "Runden",
+  congratulations: "Glückwunsch",
+  moreLuck: "Mehr Erfolg beim nächsten Mal",
+  backToMain: "Zurück zum Hauptmenü",
 }
 
 export default de

@@ -18,5 +18,11 @@ const en = {
   score: "Score",
   after: "after",
   nextGame: "Next Game",
+  winnerIs: "And the winner is",
+  finalScore: "Final score",
+  rounds: "rounds",
+  congratulations: "Congratulations",
+  moreLuck: "More luck next time",
+  backToMain: "Back to Main Menu",
 }
 export default en
