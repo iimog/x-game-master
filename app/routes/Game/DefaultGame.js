@@ -3,7 +3,7 @@ export type Game = {
   instructions: string,
   bestOf: number,
   translations: {
-    ["en"|"de"]: {
+    ["string"]: {
       name?: string,
       instructions?: string,
     }
