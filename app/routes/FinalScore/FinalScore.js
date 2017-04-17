@@ -8,6 +8,7 @@ import {
   Image,
   Alert
 } from 'react-native';
+import { connect } from 'react-redux'
 import Button from '../../components/Button';
 import styles from './styles'
 import I18n from '../../i18n'
@@ -17,27 +18,32 @@ type myProps = {
     navigate: any,
     state: {
       params: {
-        teams: [Array<string>,Array<string>],
         score: Array<number>,
       }
     }
-  }
+  },
+  players: Array<string>,
+  teams: [Array<number>,Array<number>]
 }
 
-export class FinalScore extends Component {
+const mapStateToProps = (store) => ({players: store.players, teams: store.teams})
+
+class FinalScore extends Component {
   static navigationOptions = {
     header: {visible: false},
   };
   props: myProps;
   state: {
-    teams: [Array<string>, Array<string>],
+    teams: Array<Array<string>>,
     score: Array<number>
   }
   constructor(props: myProps) {
     super(props)
-    const {teams, score} = props.navigation.state.params;
+    const {score} = props.navigation.state.params;
+    const {players, teams} = props
+    const teamNames = teams.map((a) => a.map((e) => players[e]))
     this.state = {
-      teams: teams,
+      teams: teamNames,
       score: score
     }
   }
@@ -65,3 +71,5 @@ export class FinalScore extends Component {
     )
   }
 };
+
+export default connect(mapStateToProps)(FinalScore)
