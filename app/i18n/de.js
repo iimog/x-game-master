@@ -10,7 +10,11 @@ const de = {
   shuffle: "Mischen",
   start: "Start",
   team1: "Monster",
-  team2: "Alien"
+  team2: "Alien",
+  game: "Spiel",
+  instructions: "Anleitung",
+  skipGame: "Spiel überspringen",
+  skipGameDialog: "Spiel wirklich überspringen? Dieses Spiel wird dann unabhängig vom Spielstand nicht gewertet.",
 }
 
 export default de

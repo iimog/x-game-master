@@ -11,5 +11,9 @@ const en = {
   start: "Start",
   team1: "Monsters",
   team2: "Aliens",
+  game: "Game",
+  instructions: "Instructions",
+  skipGame: "Skip this game",
+  skipGameDialog: "Are you sure you want to skip this game? The next one will start with 0-0.",
 }
 export default en

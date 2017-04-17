@@ -11,6 +11,7 @@ import {
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
+import I18n from '../../i18n'
 
 export class Game extends Component {
   props: {
@@ -64,7 +65,7 @@ export class Game extends Component {
         <View></View>
         <View style={styles.content}>
           <Text style={styles.title}>
-            Game {score.length+1}: {game.name}
+            {I18n.t('game')} {score.length+1}: {game.name}
           </Text>
           <Text alignSelf="center">
             (best of {game.bestOf})
@@ -89,12 +90,12 @@ export class Game extends Component {
         </View>
         <View>
           <Button
-            text='Instructions'
+            text={I18n.t('instructions')}
             onPress={()=>Alert.alert( 'Instructions', this.state.game.instructions, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
           />
           <Button
-            text="Skip this game"
-            onPress={()=>Alert.alert( 'Skip game', "Are you sure you want to skip this game? The next one will start with 0-0.", [ {text: 'Yes', onPress: () => {navigate('Score', {teams: this.state.teams, score: this.state.score})}}, {text: 'No', onPress: () => {}} ], { cancelable: true } )}
+            text={I18n.t('skipGame')}
+            onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: 'Yes', onPress: () => {navigate('Score', {teams: this.state.teams, score: this.state.score})}}, {text: 'No', onPress: () => {}} ], { cancelable: true } )}
           />
         </View>
       </View>
