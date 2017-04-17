@@ -36,13 +36,13 @@ export const reducer = (state: typeof initialState = initialState, action: {type
     case types.ADD: {
       return {
         ...state,
-        todos: [payload, ...players],
+        players: [payload, ...players],
       }
     }
     case types.REMOVE: {
       return {
         ...state,
-        todos: players.filter((todo, i) => i !== payload),
+        players: players.filter((todo, i) => i !== payload),
       }
     }
   }
