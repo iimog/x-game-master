@@ -9,6 +9,7 @@ import {
 import Button from '../../components/Button';
 import images from '../../config/images';
 import styles from './styles'
+import I18n from 'react-native-i18n'
 
 export class Home extends Component {
   static navigationOptions = {
@@ -20,11 +21,25 @@ export class Home extends Component {
       <View style={styles.container}>
         <Image source={images.logo} style={styles.logo}/>
         <View style={styles.buttons}>
-          <Button text="New Game" onPress={() => navigate("NewGame")}></Button>
-          <Button text="Continue Game" onPress={() => console.log("Continue Game button pressed!")}></Button>
-          <Button text="Settings" onPress={() => console.log("Settings button pressed!")}></Button>
+          <Button text={I18n.t('newGame')} onPress={() => navigate("NewGame")}></Button>
+          <Button text={I18n.t('continueGame')} onPress={() => console.log("Continue Game button pressed!")}></Button>
+          <Button text={I18n.t('settings')} onPress={() => console.log("Settings button pressed!")}></Button>
         </View>
       </View>
     );
   }
 };
+
+I18n.fallbacks = true
+I18n.translations = {
+  en: {
+    newGame: "New Game",
+    continueGame: "Continue Game",
+    settings: "Settings"
+  },
+  de: {
+    newGame: "Neues Spiel",
+    continueGame: "Spiel fortsetzen",
+    settings: "Einstellungen"
+  }
+}
