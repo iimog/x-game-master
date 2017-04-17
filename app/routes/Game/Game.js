@@ -62,7 +62,7 @@ class Game extends Component {
     let st = [...this.state.standing]
     st[teamIndex]++
     if(st[teamIndex]>(this.state.game.bestOf/2)){
-      this.props.navigation.navigate('Score', {teams: this.state.teams, score: [...this.state.score, teamIndex]})
+      this.props.navigation.navigate('Score', {score: [...this.state.score, teamIndex]})
     } else {
       this.setState({standing: st});
     }

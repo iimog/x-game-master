@@ -20,7 +20,6 @@ type myProps = {
     navigate: any,
     state: {
       params: {
-        teams: [Array<string>,Array<string>],
         score: Array<number>,
       }
     }
@@ -33,14 +32,12 @@ export class Score extends Component {
   };
   props: myProps;
   state: {
-    teams: [Array<string>, Array<string>],
     score: Array<number>
   }
   constructor(props: myProps) {
     super(props)
-    const {teams, score} = props.navigation.state.params;
+    const {score} = props.navigation.state.params;
     this.state = {
-      teams: teams,
       score: score
     }
   }
@@ -48,19 +45,19 @@ export class Score extends Component {
   totalRounds = 15
 
   componentWillMount(){
-    const { teams, score } = this.state
+    const { score } = this.state
     const { navigate } = this.props.navigation
     let standing = [0,0];
     for(let i=0; i<score.length; i++){
       standing[score[i]] += (i+1)
     }
     if(standing[score[score.length-1]]>((1+this.totalRounds)*this.totalRounds)/4){
-      navigate('FinalScore', {teams: teams, score: score})
+      navigate('FinalScore', {score: score})
     }
   }
 
   render() {
-    const { teams, score } = this.state
+    const { score } = this.state
     const { navigate } = this.props.navigation
     let standing = [0,0];
     for(let i=0; i<score.length; i++){
@@ -83,7 +80,7 @@ export class Score extends Component {
         <View>
           <Button
             text={I18n.t('nextGame')}
-            onPress={() => navigate('Game', {teams: teams, score: score})}
+            onPress={() => navigate('Game', {score: score})}
           />
         </View>
       </View>
