@@ -57,7 +57,7 @@ export const reducer = (state: typeof initialState = initialState, action: {type
     case types.ADD: {
       let p = [payload, ...players]
       let t = Array.from({length: p.length}, (value, key) => key)
-      t = [t.slice(0, Math.ceil(t.length)),t.slice(Math.ceil(t.length))]
+      t = [t.slice(0, Math.ceil(t.length/2)),t.slice(Math.ceil(t.length/2))]
       return {
         ...state,
         players: p,
@@ -67,7 +67,7 @@ export const reducer = (state: typeof initialState = initialState, action: {type
     case types.REMOVE: {
       let p = players.filter((todo, i) => i !== payload)
       let t = Array.from({length: p.length}, (value, key) => key)
-      t = [t.slice(0, Math.ceil(t.length)),t.slice(Math.ceil(t.length))]
+      t = [t.slice(0, Math.ceil(t.length/2)),t.slice(Math.ceil(t.length/2))]
       return {
         ...state,
         players: p,
@@ -77,7 +77,7 @@ export const reducer = (state: typeof initialState = initialState, action: {type
     case types.SHUFFLE: {
       let t = Array.from({length: players.length}, (value, key) => key)
       t = shuffle(t)
-      t = [t.slice(0, Math.ceil(t.length)),t.slice(Math.ceil(t.length))]
+      t = [t.slice(0, Math.ceil(t.length/2)),t.slice(Math.ceil(t.length/2))]
       return {
         ...state,
         teams: t
