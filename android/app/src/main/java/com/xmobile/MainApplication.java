@@ -2,6 +2,8 @@ package com.xmobile;
 
 import android.app.Application;
 
+import com.i18n.reactnativei18n.ReactNativeI18n;
+
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -22,7 +24,8 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+          new ReactNativeI18n()
       );
     }
   };
