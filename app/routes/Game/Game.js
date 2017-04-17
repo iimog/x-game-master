@@ -11,7 +11,7 @@ import {
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
-import I18n, {extendI18n, resetI18n} from '../../i18n'
+import I18n, {gameT} from '../../i18n'
 import defaultGame from './DefaultGame'
 import _ from 'lodash'
 
@@ -38,8 +38,10 @@ export class Game extends Component {
     super(props)
     const {teams, score} = props.navigation.state.params;
     const gameList = require('../../games/simple.json');
+    const gameIndex = Math.floor(Math.random()*gameList.length)
+    const game = _.merge(defaultGame, gameList[gameIndex])
     this.state = {
-      game: _.merge(defaultGame, gameList[Math.floor(Math.random()*gameList.length)]),
+      game: game,
       teams: teams,
       score: score,
       standing: [0,0]
@@ -67,7 +69,7 @@ export class Game extends Component {
         <View></View>
         <View style={styles.content}>
           <Text style={styles.title}>
-            {I18n.t('game')} {score.length+1}: {game.name}
+            {I18n.t('game')} {score.length+1}: {gameT('name', game)}
           </Text>
           <Text alignSelf="center">
             (best of {game.bestOf})
@@ -93,7 +95,7 @@ export class Game extends Component {
         <View>
           <Button
             text={I18n.t('instructions')}
-            onPress={()=>Alert.alert( 'Instructions', this.state.game.instructions, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
+            onPress={()=>Alert.alert( 'Instructions', gameT('instructions', game), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
           />
           <Button
             text={I18n.t('skipGame')}

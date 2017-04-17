@@ -10,7 +10,7 @@ import {
 import Button from '../../components/Button';
 import TeamList from '../../components/TeamList';
 import styles from './styles';
-import I18n, {extendI18n} from '../../i18n'
+import I18n from '../../i18n'
 
 export class TeamSelect extends Component {
   props: {
