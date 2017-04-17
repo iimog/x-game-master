@@ -10,6 +10,7 @@ import {
 import Button from '../../components/Button';
 import TeamList from '../../components/TeamList';
 import styles from './styles';
+import I18n from '../../i18n'
 
 export class TeamSelect extends Component {
   props: {
@@ -19,7 +20,7 @@ export class TeamSelect extends Component {
     players: Array<String>
   }
   static navigationOptions = {
-    title: "Teams",
+    title: I18n.t('teams'),
   };
   constructor(props: {navigation: any}) {
     super(props);
@@ -49,18 +50,18 @@ export class TeamSelect extends Component {
     return (
       <ScrollView>
         <TeamList
-          title="Team Blue"
+          title={I18n.t('team1')}
           list={this.state.players.slice(0,Math.ceil(this.state.players.length/2))}
           color="skyblue"
         />
         <TeamList
-          title="Team Red"
+          title={I18n.t('team2')}
           list={this.state.players.slice(Math.ceil(this.state.players.length/2))}
           color="red"
         />
         <View style={styles.buttons}>
-          <Button onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text="Shuffle"/>
-          <Button onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text="Start"/>
+          <Button onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text={I18n.t('shuffle')}/>
+          <Button onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text={I18n.t('start')}/>
         </View>
       </ScrollView>
     );

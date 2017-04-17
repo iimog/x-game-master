@@ -11,10 +11,11 @@ import {
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import PlayerList from '../../components/PlayerList';
+import I18n from '../../i18n'
 
 export class PlayerSelect extends Component {
   static navigationOptions = {
-    title: "New Game",
+    title: I18n.t('newGame'),
   };
   state = {
     players: ['Hannah', 'Markus', 'Tobi', 'Lo', 'Moritz'],
@@ -23,7 +24,7 @@ export class PlayerSelect extends Component {
   onAddPlayer = (text: string) => {
     const {players} = this.state
     if(players.indexOf(text) > -1){
-      Alert.alert( 'Info', `Player ${text} already exists`, [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )
+      Alert.alert( 'Info', I18n.t("playerExists", {name: text}), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )
     } else  {
       this.setState({
         players: [text, ...players],
@@ -47,14 +48,14 @@ export class PlayerSelect extends Component {
       <ScrollView>
         <Input
           onSubmitEditing={this.onAddPlayer}
-          placeholder='Add players... Remove by tapping on them.'
+          placeholder={I18n.t('addPlayers')+'... '+I18n.t('removePlayer')}
         />
         <PlayerList
           list={players}
           onPressItem={this.onRemovePlayer}
         />
         <Button
-          text="Select Teams"
+          text={I18n.t('teamSelect')}
           onPress={()=>navigate('Team', {players: players})}
         />
       </ScrollView>

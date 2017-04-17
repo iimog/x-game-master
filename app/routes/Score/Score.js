@@ -12,6 +12,7 @@ import Button from '../../components/Button'
 import ScoreBoard from '../../components/ScoreBoard'
 import ProgressBoard from '../../components/ProgressBoard'
 import styles from './styles'
+import I18n from '../../i18n'
 
 
 type myProps = {
@@ -70,7 +71,7 @@ export class Score extends Component {
       <View style={styles.main}>
         <View style={styles.content}>
           <Text style={styles.title}>
-            Standing after game {score.length}
+            {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {score.length}
           </Text>
           <ScoreBoard
             standing={standing}
@@ -81,7 +82,7 @@ export class Score extends Component {
         </View>
         <View>
           <Button
-            text="Next Game"
+            text={I18n.t('nextGame')}
             onPress={() => navigate('Game', {teams: teams, score: score})}
           />
         </View>
