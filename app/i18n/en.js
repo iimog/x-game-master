@@ -15,5 +15,8 @@ const en = {
   instructions: "Instructions",
   skipGame: "Skip this game",
   skipGameDialog: "Are you sure you want to skip this game? The next one will start with 0-0.",
+  score: "Score",
+  after: "after",
+  nextGame: "Next Game",
 }
 export default en

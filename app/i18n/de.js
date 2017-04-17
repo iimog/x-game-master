@@ -15,6 +15,9 @@ const de = {
   instructions: "Anleitung",
   skipGame: "Spiel überspringen",
   skipGameDialog: "Spiel wirklich überspringen? Dieses Spiel wird dann unabhängig vom Spielstand nicht gewertet.",
+  score: "Spielstand",
+  after: "nach",
+  nextGame: "Nächstes Spiel",
 }
 
 export default de
