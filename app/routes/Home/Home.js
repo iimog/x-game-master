@@ -9,7 +9,7 @@ import {
 import Button from '../../components/Button';
 import images from '../../config/images';
 import styles from './styles'
-import I18n from './i18n'
+import I18n from '../../i18n'
 
 export class Home extends Component {
   static navigationOptions = {
