@@ -1,10 +1,12 @@
 /* @flow */
 
+import _ from 'lodash'
+
 // The types of actions that you can dispatch to modify the state of the store
 export const types = {
   ADD: 'ADD',
   REMOVE: 'REMOVE',
-  SHUFFLE: 'SHUFFLE'
+  SET_TEAMS: 'SET_TEAMS'
 }
 
 // Helper functions to dispatch actions, optionally with payloads
@@ -15,8 +17,8 @@ export const actionCreators = {
   remove: (index: number) => {
     return {type: types.REMOVE, payload: index}
   },
-  shuffle: () => {
-    return {type: types.SHUFFLE, payload: null}
+  setTeams: (teams: [Array<number>,Array<number>]) => {
+    return {type: types.SET_TEAMS, payload: teams}
   },
 }
 
@@ -26,20 +28,17 @@ const initialState = {
   teams: [[0,1,2],[3,4]]
 }
 
-/**
- * Shuffles array in place. ES6 version
- * @param {Array} a items The array containing the items.
- */
-const shuffle = <T>(a: Array<T>): Array<T> => {
-    let b = [...a];
-    for (let i = b.length; i; i--) {
-        let j = Math.floor(Math.random() * i);
-        // the next three lines could be replaced by [b[i - 1]b[j]] = [b[j], b[i - 1]] but flow (v0.38.0) does not like it
-        let [x,y] = [b[j], b[i - 1]];
-        b[i - 1] = x;
-        b[j] = y;
+function isValidTeams(teams: [Array<number>,Array<number>], numTeams: number): boolean{
+  let allTeams = [...teams[0], ...teams[1]]
+  if(allTeams.length !== numTeams){
+    return false
+  }
+  for(let i=0; i<numTeams; i++){
+    if(_.indexOf(allTeams, i) === -1){
+      return false
     }
-    return b;
+  }
+  return true
 }
 
 // Function to handle actions and update the state of the store.
@@ -74,13 +73,12 @@ export const reducer = (state: typeof initialState = initialState, action: {type
         teams: t
       }
     }
-    case types.SHUFFLE: {
-      let t = Array.from({length: players.length}, (value, key) => key)
-      t = shuffle(t)
-      t = [t.slice(0, Math.ceil(t.length/2)),t.slice(Math.ceil(t.length/2))]
-      return {
-        ...state,
-        teams: t
+    case types.SET_TEAMS: {
+      if( isValidTeams(payload, players.length)){
+        return {
+          ...state,
+          teams: payload
+        }
       }
     }
   }

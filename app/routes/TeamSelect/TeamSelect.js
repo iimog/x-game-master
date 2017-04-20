@@ -13,6 +13,7 @@ import Button from '../../components/Button';
 import TeamList from '../../components/TeamList';
 import styles from './styles';
 import I18n from '../../i18n'
+import { shuffleTeams } from '../../lib'
 
 const mapStateToProps = (store) => ({players: store.players, teams: store.teams})
 
@@ -37,7 +38,7 @@ class TeamSelect extends Component {
           color="red"
         />
         <View style={styles.buttons}>
-          <Button onPress={()=>{this.props.dispatch(actionCreators.shuffle())}} text={I18n.t('shuffle')}/>
+          <Button onPress={()=>{this.props.dispatch(actionCreators.setTeams(shuffleTeams(teams)))}} text={I18n.t('shuffle')}/>
           <Button onPress={()=>{navigate('Game', {score: []})}} text={I18n.t('start')}/>
         </View>
       </ScrollView>
