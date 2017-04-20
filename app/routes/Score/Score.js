@@ -70,7 +70,7 @@ class Score extends Component {
 
     return (
       <View style={styles.main}>
-        <View style={styles.content}>
+        <ScrollView style={styles.content}>
           <Text style={styles.title}>
             {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {score.length}
           </Text>
@@ -81,7 +81,7 @@ class Score extends Component {
             score={score}
             numberOfGames={this.props.matchSettings.numberOfGames}
           />
-        </View>
+        </ScrollView>
         <View>
           <Button
             text={I18n.t('nextGame')}
