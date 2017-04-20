@@ -47,7 +47,7 @@ class Game extends Component {
     const teamNames = teams.map((a) => a.map((e) => players[e]))
     const gameList = require('../../games/simple.json');
     const gameIndex = Math.floor(Math.random()*gameList.length)
-    const game = _.merge(defaultGame, gameList[gameIndex])
+    const game = _.merge({...defaultGame}, gameList[gameIndex])
     this.state = {
       game: game,
       teams: teamNames,
@@ -55,8 +55,6 @@ class Game extends Component {
       standing: [0,0]
     }
   }
-
-  setsToWin = 5
 
   handleScore(teamIndex: number){
     let st = [...this.state.standing]
