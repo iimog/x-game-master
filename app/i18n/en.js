@@ -27,5 +27,7 @@ const en = {
   matchSettings: "Match Settings",
   numberOfGames: "Number of Games",
   bestOf: "Best of",
+  yes: "Yes",
+  no: "No"
 }
 export default en

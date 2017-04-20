@@ -27,6 +27,8 @@ const de = {
   matchSettings: "Match Einstellungen",
   numberOfGames: "Spielanzahl",
   bestOf: "Runden",
+  yes: "Ja",
+  no: "Nein",
 }
 
 export default de

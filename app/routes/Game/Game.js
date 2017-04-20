@@ -105,7 +105,7 @@ class Game extends Component {
           />
           <Button
             text={I18n.t('skipGame')}
-            onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: 'Yes', onPress: () => {navigate('Score', {teams: this.state.teams, score: this.state.score})}}, {text: 'No', onPress: () => {}} ], { cancelable: true } )}
+            onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {navigate('Score', {teams: this.state.teams, score: this.state.score})}}, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
           />
         </View>
       </View>
