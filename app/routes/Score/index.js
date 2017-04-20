@@ -1,4 +1,4 @@
 /* @flow */
 
-import { Score } from './Score'
+import Score from './Score'
 export default Score

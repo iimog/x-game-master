@@ -8,12 +8,15 @@ import {
   Image,
   Alert
 } from 'react-native';
+import { connect } from 'react-redux'
+import { actionCreators } from '../../redux'
 import Button from '../../components/Button'
 import ScoreBoard from '../../components/ScoreBoard'
 import ProgressBoard from '../../components/ProgressBoard'
 import styles from './styles'
 import I18n from '../../i18n'
 
+const mapStateToProps = (state) => ({matchSettings: state.matchSettings})
 
 type myProps = {
   navigation: {
@@ -23,16 +26,19 @@ type myProps = {
         score: Array<number>,
       }
     }
-  }
+  },
+  matchSettings: {
+    numberOfGames: number
+  },
 }
 
-export class Score extends Component {
+class Score extends Component {
   static navigationOptions = {
     header: {visible: false},
   };
   props: myProps;
   state: {
-    score: Array<number>
+    score: Array<number>,
   }
   constructor(props: myProps) {
     super(props)
@@ -42,8 +48,6 @@ export class Score extends Component {
     }
   }
 
-  totalRounds = 15
-
   componentWillMount(){
     const { score } = this.state
     const { navigate } = this.props.navigation
@@ -51,7 +55,7 @@ export class Score extends Component {
     for(let i=0; i<score.length; i++){
       standing[score[i]] += (i+1)
     }
-    if(standing[score[score.length-1]]>((1+this.totalRounds)*this.totalRounds)/4){
+    if(standing[score[score.length-1]]>((1+this.props.matchSettings.numberOfGames)*this.props.matchSettings.numberOfGames)/4){
       navigate('FinalScore', {score: score})
     }
   }
@@ -75,6 +79,7 @@ export class Score extends Component {
           />
           <ProgressBoard
             score={score}
+            numberOfGames={this.props.matchSettings.numberOfGames}
           />
         </View>
         <View>
@@ -87,3 +92,5 @@ export class Score extends Component {
     );
   }
 };
+
+export default connect(mapStateToProps)(Score)
