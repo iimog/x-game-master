@@ -22,18 +22,31 @@ class MatchSettings extends Component {
     title: I18n.t('matchSettings'),
   };
 
+  state: {
+    numberOfGames: number
+  }
+
+  constructor(props){
+    super(props)
+    this.state = {
+      numberOfGames: props.matchSettings.numberOfGames
+    }
+  }
+
   render() {
-    const { matchSettings } = this.props
+    const { matchSettings, dispatch } = this.props
     const { navigate } = this.props.navigation
 
     return (
       <ScrollView>
-        <Text>{I18n.t('numberOfGames')+": 7"}</Text>
+        <Text>{I18n.t('numberOfGames')+": "+this.state.numberOfGames}</Text>
         <Slider
           maximumValue={20}
           minimumValue={1}
-          value={7}
+          value={this.props.matchSettings.numberOfGames}
           step={1}
+          onSlidingComplete={(value) => dispatch(actionCreators.setNumberOfGames(value))}
+          onValueChange={(value) => this.setState({numberOfGames: value})}
         />
         <Button
           text={I18n.t('start')}
