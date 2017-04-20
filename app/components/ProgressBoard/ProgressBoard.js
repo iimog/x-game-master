@@ -11,7 +11,7 @@ import styles from './styles'
 function Tile(props: {num: string, winner: ?number}){
   let backgroundColor: string = 'transparent'
   if(typeof props.winner === 'number'){
-    backgroundColor = ['red', 'blue'][props.winner]
+    backgroundColor = ['skyblue', 'red'][props.winner]
   }
   return(
     <View style={StyleSheet.flatten([styles.scoreBoardNumberContainer,{backgroundColor: backgroundColor}])}>
