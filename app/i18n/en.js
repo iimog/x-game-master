@@ -25,5 +25,6 @@ const en = {
   moreLuck: "More luck next time",
   backToMain: "Back to Main Menu",
   matchSettings: "Match Settings",
+  numberOfGames: "Number of Games",
 }
 export default en

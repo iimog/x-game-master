@@ -25,6 +25,7 @@ const de = {
   moreLuck: "Mehr Erfolg beim nächsten Mal",
   backToMain: "Zurück zum Hauptmenü",
   matchSettings: "Match Einstellungen",
+  numberOfGames: "Spielanzahl",
 }
 
 export default de

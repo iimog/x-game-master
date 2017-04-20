@@ -6,7 +6,8 @@ import {
   View,
   ScrollView,
   Image,
-  Alert
+  Alert,
+  Slider,
 } from 'react-native';
 import { connect } from 'react-redux'
 import { actionCreators } from '../../redux'
@@ -27,6 +28,13 @@ class MatchSettings extends Component {
 
     return (
       <ScrollView>
+        <Text>{I18n.t('numberOfGames')+": 7"}</Text>
+        <Slider
+          maximumValue={20}
+          minimumValue={1}
+          value={7}
+          step={1}
+        />
         <Button
           text={I18n.t('start')}
           onPress={()=>{navigate('Game', {score: []})}}
