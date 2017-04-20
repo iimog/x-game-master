@@ -78,7 +78,7 @@ class Game extends Component {
             {I18n.t('game')} {score.length+1}: {gameT('name', game)}
           </Text>
           <Text alignSelf="center">
-            (best of {game.bestOf})
+            {I18n.t('bestOf')}: {game.bestOf}
           </Text>
           <ScoreBoard
             standing={this.state.standing}
@@ -101,7 +101,7 @@ class Game extends Component {
         <View>
           <Button
             text={I18n.t('instructions')}
-            onPress={()=>Alert.alert( 'Instructions', gameT('instructions', game), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
+            onPress={()=>Alert.alert( I18n.t('instructions'), gameT('instructions', game), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
           />
           <Button
             text={I18n.t('skipGame')}

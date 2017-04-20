@@ -26,6 +26,7 @@ const de = {
   backToMain: "Zurück zum Hauptmenü",
   matchSettings: "Match Einstellungen",
   numberOfGames: "Spielanzahl",
+  bestOf: "Runden",
 }
 
 export default de

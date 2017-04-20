@@ -26,5 +26,6 @@ const en = {
   backToMain: "Back to Main Menu",
   matchSettings: "Match Settings",
   numberOfGames: "Number of Games",
+  bestOf: "Best of",
 }
 export default en
