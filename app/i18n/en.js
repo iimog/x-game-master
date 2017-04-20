@@ -24,5 +24,6 @@ const en = {
   congratulations: "Congratulations",
   moreLuck: "More luck next time",
   backToMain: "Back to Main Menu",
+  matchSettings: "Match Settings",
 }
 export default en

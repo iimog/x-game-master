@@ -24,6 +24,7 @@ const de = {
   congratulations: "Glückwunsch",
   moreLuck: "Mehr Erfolg beim nächsten Mal",
   backToMain: "Zurück zum Hauptmenü",
+  matchSettings: "Match Einstellungen",
 }
 
 export default de

@@ -16,6 +16,7 @@ import TeamSelect from './routes/TeamSelect';
 import Game from './routes/Game';
 import Score from './routes/Score';
 import FinalScore from './routes/FinalScore';
+import MatchSettings from './routes/MatchSettings'
 import { reducer } from './redux'
 
 const AppNavigator = StackNavigator({
@@ -25,6 +26,7 @@ const AppNavigator = StackNavigator({
   Game: { screen: Game },
   Score: { screen: Score },
   FinalScore: { screen: FinalScore },
+  MatchSettings: { screen: MatchSettings },
 });
 
 const store = createStore(reducer);
