@@ -23,12 +23,42 @@
   },
   {
     "name": "Interception",
-    "description": "Catch something with your mouth",
     "instructions": "Somebody throws something and somebody catches something.",
     "translations": {
       "de": {
         "name": "Mundfangen",
         "instructions": "Jemand schmeißt etwas, das jemand mit dem Mund auffängt"
+      }
+    }
+  },
+  {
+    "name": "Blobby Volley",
+    "instructions": "Play this classic game: http://blobby.sourceforge.net/",
+    "bestOf": 1,
+    "translations": {
+      "de": {
+        "instructions": "Spiele diesen Klassiker: http://blobby.sourceforge.net/"
+      }
+    }
+  },
+  {
+    "name": "Darts",
+    "instructions": "Each round is played by each player throwing three darts the higher sum wins.",
+    "bestOf": 9,
+    "translations": {
+      "de": {
+        "instructions": "Jeder Spieler wirft drei Darts, die höhere Summe gewinnt die Runde."
+      }
+    }
+  },
+  {
+    "name": "Beer Pong",
+    "instructions": "Place ten empty cups at each end of a long table (in the shape of a triangle). The goal is to throw a ping-pong ball into one of the cups of your opponent. The ball has to be thrown from your end of the table (and has to hit the table once before falling into the cup). This cup is removed and the team wins if the opponent has no more cups.",
+    "bestOf": 1,
+    "translations": {
+      "de": {
+        "name": "Bier Pong",
+        "instructions": "An beiden Enden eines langen Tisches werden je zehn leere Becher aufgestellt (in Form eines Dreiecks). Ziel ist es den Ball von der eigenen Seite aus (mit einmal aufkommen) in einen Becher des Gegners zu befördern. Dieser Becher wird aus dem Spiel genommen. Wer zuerst alle Becher des Gegners getroffen hat gewinnt."
       }
     }
   }
