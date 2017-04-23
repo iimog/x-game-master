@@ -77,7 +77,7 @@ class Score extends Component {
     const { matchSettings } = this.props
     let standing = getStanding(score, matchSettings.scoreIncreasing)
     if(isMatchOver(standing, matchSettings.numberOfGames, matchSettings.scoreIncreasing)){
-      navigate('FinalScore', {score: score})
+      navigate('FinalScore', {score: standing})
     }
   }
 
