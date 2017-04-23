@@ -28,8 +28,31 @@ type myProps = {
     }
   },
   matchSettings: {
-    numberOfGames: number
+    numberOfGames: number,
+    scoreIncreasing: boolean,
   },
+}
+
+function getStanding(score: Array<number>, scoreIncreasing: boolean): [number, number]{
+  let standing = [0,0];
+  for(let i=0; i<score.length; i++){
+    let step = scoreIncreasing ? (i+1) : 1
+    standing[score[i]] += step
+  }
+  return standing
+}
+
+function isMatchOver(standing: [number, number], numberOfGames:number, scoreIncreasing: boolean): boolean{
+  if(scoreIncreasing){
+    if(Math.max(standing[0], standing[1])>((1+numberOfGames)*numberOfGames)/4){
+      return true
+    }
+  } else {
+    if(Math.max(standing[0], standing[1])>(numberOfGames/2)){
+      return true
+    }
+  }
+  return false
 }
 
 class Score extends Component {
@@ -51,11 +74,9 @@ class Score extends Component {
   componentWillMount(){
     const { score } = this.state
     const { navigate } = this.props.navigation
-    let standing = [0,0];
-    for(let i=0; i<score.length; i++){
-      standing[score[i]] += (i+1)
-    }
-    if(standing[score[score.length-1]]>((1+this.props.matchSettings.numberOfGames)*this.props.matchSettings.numberOfGames)/4){
+    const { matchSettings } = this.props
+    let standing = getStanding(score, matchSettings.scoreIncreasing)
+    if(isMatchOver(standing, matchSettings.numberOfGames, matchSettings.scoreIncreasing)){
       navigate('FinalScore', {score: score})
     }
   }
@@ -63,10 +84,8 @@ class Score extends Component {
   render() {
     const { score } = this.state
     const { navigate } = this.props.navigation
-    let standing = [0,0];
-    for(let i=0; i<score.length; i++){
-      standing[score[i]] += (i+1)
-    }
+    const { matchSettings } = this.props
+    let standing = getStanding(score, matchSettings.scoreIncreasing)
 
     return (
       <View style={styles.main}>
