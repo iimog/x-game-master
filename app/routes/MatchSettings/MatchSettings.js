@@ -8,6 +8,7 @@ import {
   Image,
   Alert,
   Slider,
+  Switch,
 } from 'react-native';
 import { connect } from 'react-redux'
 import { actionCreators } from '../../redux'
@@ -23,13 +24,15 @@ class MatchSettings extends Component {
   };
 
   state: {
-    numberOfGames: number
+    numberOfGames: number,
+    eventSwitchIsOn: boolean,
   }
 
   constructor(props){
     super(props)
     this.state = {
-      numberOfGames: props.matchSettings.numberOfGames
+      numberOfGames: props.matchSettings.numberOfGames,
+      eventSwitchIsOn: true,
     }
   }
 
@@ -47,6 +50,12 @@ class MatchSettings extends Component {
           step={1}
           onSlidingComplete={(value) => dispatch(actionCreators.setNumberOfGames(value))}
           onValueChange={(value) => this.setState({numberOfGames: value})}
+        />
+        <Text>Score {matchSettings.scoreIncreasing ? 'increasing' : 'constant'}</Text>
+        <Switch
+          onValueChange={(value) => dispatch(actionCreators.setScoreIncreasing(value))}
+          style={{marginBottom: 10}}
+          value={matchSettings.scoreIncreasing}
         />
         <Button
           text={I18n.t('start')}
