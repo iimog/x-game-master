@@ -8,6 +8,7 @@ export const types = {
   REMOVE: 'REMOVE',
   SET_TEAMS: 'SET_TEAMS',
   SET_NUMBER_OF_GAMES: 'SET_NUMBER_OF_GAMES',
+  SET_SCORE_INCREASING: 'SET_SCORE_INCREASING',
 }
 
 // Helper functions to dispatch actions, optionally with payloads
@@ -24,6 +25,9 @@ export const actionCreators = {
   setNumberOfGames: (numberOfGames: number) => {
     return {type: types.SET_NUMBER_OF_GAMES, payload: numberOfGames}
   },
+  setScoreIncreasing: (increasing: boolean) => {
+    return {type: types.SET_SCORE_INCREASING, payload: increasing}
+  },
 }
 
 // Initial state of the store
@@ -32,6 +36,7 @@ const initialState = {
   teams: [[0,1,2],[3,4]],
   matchSettings: {
     numberOfGames: 7,
+    scoreIncreasing: true,
   },
 }
 
@@ -96,6 +101,15 @@ export const reducer = (state: typeof initialState = initialState, action: {type
         matchSettings: {
           ...state.matchSettings,
           numberOfGames: payload,
+        }
+      }
+    }
+    case types.SET_SCORE_INCREASING: {
+      return {
+        ...state,
+        matchSettings: {
+          ...state.matchSettings,
+          scoreIncreasing: payload,
         }
       }
     }
