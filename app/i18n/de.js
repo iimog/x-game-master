@@ -16,6 +16,7 @@ const de = {
   skipGame: "Spiel überspringen",
   skipGameDialog: "Spiel wirklich überspringen? Dieses Spiel wird dann unabhängig vom Spielstand nicht gewertet.",
   score: "Spielstand",
+  scoreCount: "Punkte",
   after: "nach",
   nextGame: "Nächstes Spiel",
   winnerIs: "Der Sieger ist",
@@ -29,6 +30,8 @@ const de = {
   bestOf: "Runden",
   yes: "Ja",
   no: "Nein",
+  increasing: "aufsteigend",
+  constant: "konstant",
 }
 
 export default de
