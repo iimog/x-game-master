@@ -54,7 +54,6 @@ class MatchSettings extends Component {
         <Text>{I18n.t('scoreCount')} {matchSettings.scoreIncreasing ? I18n.t('increasing') : I18n.t('constant')}</Text>
         <Switch
           onValueChange={(value) => dispatch(actionCreators.setScoreIncreasing(value))}
-          style={{marginBottom: 10}}
           value={matchSettings.scoreIncreasing}
         />
         <Button

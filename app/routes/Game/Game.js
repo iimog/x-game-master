@@ -24,6 +24,24 @@ type props = {
   players: Array<string>
 };
 
+class DrawRandomNoRepetitions{
+  all: Array<string>
+  remainder: Array<string>
+  constructor(team: Array<string>){
+    this.all = [...team]
+    this.reset()
+  }
+  reset(){
+    this.remainder = [...this.all]
+  }
+  nextRandom(): string{
+    if(this.remainder.length === 0){
+      this.reset()
+    }
+    return this.remainder.splice(Math.floor(Math.random()*this.remainder.length),1)[0]
+  }
+}
+
 class Game extends Component {
   state: {
     game: {
@@ -34,11 +52,15 @@ class Game extends Component {
     },
     teams: Array<Array<string>>,
     score: Array<number>,
-    standing: Array<number>
+    standing: Array<number>,
+    players: [string, string],
   }
   static navigationOptions = {
     header: {visible: false},
   };
+
+  drawRandomTeam1: DrawRandomNoRepetitions
+  drawRandomTeam2: DrawRandomNoRepetitions
 
   constructor(props: props) {
     super(props)
@@ -48,10 +70,13 @@ class Game extends Component {
     const gameList = require('../../games/simple.json');
     const gameIndex = Math.floor(Math.random()*gameList.length)
     const game = _.merge({...defaultGame}, gameList[gameIndex])
+    this.drawRandomTeam1 = new DrawRandomNoRepetitions(teamNames[0])
+    this.drawRandomTeam2 = new DrawRandomNoRepetitions(teamNames[1])
     this.state = {
       game: game,
       teams: teamNames,
       score: score,
+      players: [this.drawRandomTeam1.nextRandom(), this.drawRandomTeam2.nextRandom()],
       standing: [0,0]
     }
   }
@@ -62,12 +87,17 @@ class Game extends Component {
     if(st[teamIndex]>(this.state.game.bestOf/2)){
       this.props.navigation.navigate('Score', {score: [...this.state.score, teamIndex]})
     } else {
-      this.setState({standing: st});
+      this.setState({
+        standing: st,
+        players: [
+          this.drawRandomTeam1.nextRandom(),
+          this.drawRandomTeam2.nextRandom()
+        ]});
     }
   }
 
   render() {
-    const {teams, score, game} = this.state
+    const {teams, score, game, players} = this.state
     const { navigate } = this.props.navigation
 
     return (
@@ -86,13 +116,13 @@ class Game extends Component {
           <View style={styles.buttonView}>
             <View style={styles.playerButtonView}>
             <Button
-              text={this.state.teams[0][Math.floor(Math.random()*this.state.teams[0].length)]}
+              text={players[0]}
               onPress={()=>this.handleScore(0)}
             />
             </View>
             <View style={styles.playerButtonView}>
             <Button
-              text={this.state.teams[1][Math.floor(Math.random()*this.state.teams[1].length)]}
+              text={players[1]}
               onPress={()=>this.handleScore(1)}
             />
             </View>
