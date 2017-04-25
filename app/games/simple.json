@@ -1,5 +1,5 @@
-[
-  {
+{
+  "iimog/rock-paper-scissors": {
     "name": "Rock–Paper–Scissors",
     "instructions": "Rock–paper–scissors or Scissor-Paper-Rock, is a zero-sum hand game usually played between two people, in which each player simultaneously forms one of three shapes with an outstretched hand. These shapes are 'rock' (✊ a simple fist), 'paper' (✋ a flat hand), and 'scissors' (✌️ a fist with the index and middle fingers together forming a V). The game has only three possible outcomes other than a tie: a player who decides to play rock will beat another player who has chosen scissors ('rock crushes scissors') but will lose to one who has played paper ('paper covers rock'); a play of paper will lose to a play of scissors ('scissors cut paper'). If both players choose the same shape, the game is tied and is immediately replayed to break the tie. - Rock–paper–scissors. (2017, March 10). In Wikipedia, The Free Encyclopedia. Retrieved 15:15, April 3, 2017, from https://en.wikipedia.org/w/index.php?title=Rock%E2%80%93paper%E2%80%93scissors&oldid=769516750",
     "bestOf": 5,
@@ -10,7 +10,7 @@
       }
     }
   },
-  {
+  "iimog/coin-toss": {
     "name": "Coin Toss",
     "instructions": "Put a cup or a glas on a table 10cm from the edge. Take a small coin (e.g. a penny) into your flat hand. Now hit the edge of the table with your hand such that the penny lands in the glas. Ties are broken immediately by replaying until one player hits and the other does not (a slightly different modus is possible: like Elfmeterschiesen)",
     "bestOf": 5,
@@ -21,7 +21,7 @@
       }
     }
   },
-  {
+  "iimog/interception": {
     "name": "Interception",
     "instructions": "Somebody throws something and somebody catches something.",
     "translations": {
@@ -31,7 +31,7 @@
       }
     }
   },
-  {
+  "iimog/blobby-volley": {
     "name": "Blobby Volley",
     "instructions": "Play this classic game: http://blobby.sourceforge.net/",
     "bestOf": 1,
@@ -41,7 +41,7 @@
       }
     }
   },
-  {
+  "iimog/darts": {
     "name": "Darts",
     "instructions": "Each round is played by each player throwing three darts the higher sum wins.",
     "bestOf": 9,
@@ -51,7 +51,7 @@
       }
     }
   },
-  {
+  "iimog/beer-pong": {
     "name": "Beer Pong",
     "instructions": "Place ten empty cups at each end of a long table (in the shape of a triangle). The goal is to throw a ping-pong ball into one of the cups of your opponent. The ball has to be thrown from your end of the table (and has to hit the table once before falling into the cup). This cup is removed and the team wins if the opponent has no more cups.",
     "bestOf": 1,
@@ -62,4 +62,4 @@
       }
     }
   }
-]
+}
