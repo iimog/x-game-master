@@ -14,14 +14,16 @@ import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
 import I18n, {gameT} from '../../i18n'
 import defaultGame from './DefaultGame'
+import type Game from './DefaultGame'
 import _ from 'lodash'
 
-const mapStateToProps = (store) => ({players: store.players, teams: store.teams})
+const mapStateToProps = (store) => ({players: store.players, teams: store.teams, games: store.games})
 
 type props = {
   navigation: any,
   teams: [Array<number>,Array<number>],
-  players: Array<string>
+  players: Array<string>,
+  games: {[string]: Game},
 };
 
 class DrawRandomNoRepetitions{
@@ -42,7 +44,7 @@ class DrawRandomNoRepetitions{
   }
 }
 
-class Game extends Component {
+class GameScreen extends Component {
   state: {
     game: {
       name: string,
@@ -67,8 +69,8 @@ class Game extends Component {
     const {score} = props.navigation.state.params;
     const {players, teams} = props;
     const teamNames = teams.map((a) => a.map((e) => players[e]))
-    const gameList = require('../../games/simple.json');
-    const gameIndex = Math.floor(Math.random()*gameList.length)
+    const gameList = props.games;
+    const gameIndex = Object.keys(gameList)[Math.floor(Math.random()*Object.keys(gameList).length)]
     const game = _.merge({...defaultGame}, gameList[gameIndex])
     this.drawRandomTeam1 = new DrawRandomNoRepetitions(teamNames[0])
     this.drawRandomTeam2 = new DrawRandomNoRepetitions(teamNames[1])
@@ -143,4 +145,4 @@ class Game extends Component {
   }
 };
 
-export default connect(mapStateToProps)(Game)
+export default connect(mapStateToProps)(GameScreen)
