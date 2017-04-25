@@ -39,6 +39,7 @@ type myProps = {
   teams: [Array<number>,Array<number>],
   players: Array<string>,
   games: {[string]: Game},
+  dispatch: any,
 }
 
 function getStanding(score: Array<number>, scoreIncreasing: boolean): [number, number]{
@@ -118,7 +119,15 @@ class Score extends Component {
                 const gameID = Object.keys(games)[Math.floor(Math.random()*Object.keys(games).length)]
                 const game = _.merge(_.cloneDeep(defaultGame), games[gameID])
                 const teamNames = teams.map((a) => a.map((e) => players[e]))
-                navigate('Game', {teams: teamNames, gameNumber: score.length+1, game: game})}
+                navigate('Game', {
+                  teams: teamNames,
+                  gameNumber: score.length+1,
+                  game: game,
+                  gameOver: (winnerTeam) => {
+                    this.props.dispatch(actionCreators.addResult(gameID, winnerTeam))
+                    navigate('Score')
+                  }
+                })}
               }
             }
           />

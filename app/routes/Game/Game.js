@@ -8,8 +8,6 @@ import {
   Image,
   Alert
 } from 'react-native';
-import { connect } from 'react-redux'
-import { actionCreators } from '../../redux'
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
@@ -17,8 +15,6 @@ import I18n, {gameT} from '../../i18n'
 import defaultGame from './DefaultGame'
 import type Game from './DefaultGame'
 import _ from 'lodash'
-
-const mapStateToProps = (store) => ({})
 
 type props = {
   navigation: any,
@@ -80,8 +76,7 @@ class GameScreen extends Component {
     let st = [...this.state.standing]
     st[teamIndex]++
     if(st[teamIndex]>(this.state.game.bestOf/2)){
-      this.props.dispatch(actionCreators.addResult("pseudoGameID", teamIndex))
-      this.props.navigation.navigate('Score')
+      this.props.navigation.state.params.gameOver(teamIndex)
     } else {
       this.setState({
         standing: st,
@@ -132,8 +127,7 @@ class GameScreen extends Component {
           <Button
             text={I18n.t('skipGame')}
             onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {
-              this.props.dispatch(actionCreators.addResult("pseudoGameID", -1))
-              navigate('Score')}
+              this.props.gameOver(-1)}
             }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
           />
         </View>
@@ -142,4 +136,4 @@ class GameScreen extends Component {
   }
 };
 
-export default connect(mapStateToProps)(GameScreen)
+export default GameScreen
