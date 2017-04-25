@@ -79,14 +79,6 @@ class Score extends Component {
     }
   }
 
-  componentWillMount(){
-    const { score } = this.state
-    const { navigate } = this.props.navigation
-    const { matchSettings } = this.props
-    let standing = getStanding(score, matchSettings.scoreIncreasing)
-
-  }
-
   render() {
     const { score } = this.state
     const { navigate } = this.props.navigation
