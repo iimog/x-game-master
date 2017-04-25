@@ -73,7 +73,7 @@ class GameScreen extends Component {
     const teamNames = teams.map((a) => a.map((e) => players[e]))
     const gameList = props.games;
     const gameID = Object.keys(gameList)[Math.floor(Math.random()*Object.keys(gameList).length)]
-    const game = _.merge({...defaultGame}, gameList[gameID])
+    const game = _.merge(_.cloneDeep(defaultGame), gameList[gameID])
     this.drawRandomTeam1 = new DrawRandomNoRepetitions(teamNames[0])
     this.drawRandomTeam2 = new DrawRandomNoRepetitions(teamNames[1])
     this.state = {
