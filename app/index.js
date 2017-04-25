@@ -21,7 +21,7 @@ import { reducer } from './redux'
 
 const AppNavigator = StackNavigator({
   Home: { screen: Home },
-  NewGame: { screen: PlayerSelect },
+  PlayerSelect: { screen: PlayerSelect },
   Team: { screen: TeamSelect },
   Game: { screen: Game },
   Score: { screen: Score },

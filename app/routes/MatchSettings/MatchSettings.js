@@ -30,6 +30,7 @@ class MatchSettings extends Component {
 
   constructor(props){
     super(props)
+    console.log(props.matchSettings)
     this.state = {
       numberOfGames: props.matchSettings.numberOfGames,
       eventSwitchIsOn: true,
@@ -57,8 +58,8 @@ class MatchSettings extends Component {
           value={matchSettings.scoreIncreasing}
         />
         <Button
-          text={I18n.t('start')}
-          onPress={()=>{navigate('Game', {score: []})}}
+          text={I18n.t('playerSelect')}
+          onPress={()=>{navigate('PlayerSelect')}}
         />
       </ScrollView>
     );

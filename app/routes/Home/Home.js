@@ -10,8 +10,12 @@ import Button from '../../components/Button';
 import images from '../../config/images';
 import styles from './styles'
 import I18n from '../../i18n'
+import { connect } from 'react-redux'
+import { actionCreators, PlayMode } from '../../redux'
 
-export class Home extends Component {
+const mapStateToProps = (state) => ({})
+
+class Home extends Component {
   static navigationOptions = {
     header: {visible: false},
   };
@@ -21,11 +25,18 @@ export class Home extends Component {
       <View style={styles.container}>
         <Image source={images.logo} style={styles.logo}/>
         <View style={styles.buttons}>
-          <Button text={I18n.t('newGame')} onPress={() => navigate("NewGame")}></Button>
-          <Button text={I18n.t('continueGame')} onPress={() => console.log("Continue Game button pressed!")}></Button>
-          <Button text={I18n.t('settings')} onPress={() => console.log("Settings button pressed!")}></Button>
+          <Button text={I18n.t('classicMatch')} onPress={() => {
+            this.props.dispatch(actionCreators.setPlayMode(PlayMode.CLASSIC))
+            navigate("MatchSettings")
+          }}></Button>
+          <Button text={I18n.t('clubMatch')} onPress={() => {
+            this.props.dispatch(actionCreators.setPlayMode(PlayMode.CLUB))
+            navigate("MatchSettings")
+          }}></Button>
         </View>
       </View>
     );
   }
 };
+
+export default connect(mapStateToProps)(Home)
