@@ -30,14 +30,17 @@ class MatchSettings extends Component {
 
   constructor(props){
     super(props)
-    props.dispatch(actionCreators.resetMatch())
-    let gameList = require('../../games/simple.json')
-    gameList = {...gameList, ...require('../../games/lan.json')}
-    props.dispatch(actionCreators.setGames(gameList))
     this.state = {
       numberOfGames: props.matchSettings.numberOfGames,
       eventSwitchIsOn: true,
     }
+  }
+
+  componentWillMount(){
+    this.props.dispatch(actionCreators.resetMatch())
+    let gameList = require('../../games/simple.json')
+    gameList = {...gameList, ...require('../../games/lan.json')}
+    this.props.dispatch(actionCreators.setGames(gameList))
   }
 
   render() {
