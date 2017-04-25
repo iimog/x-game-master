@@ -104,7 +104,9 @@ class Score extends Component {
               if(matchOver){
                 navigate('FinalScore', {score: standing})
               } else {
-                navigate('Game', {score: score})}
+                const {teams, players} = this.props
+                const teamNames = teams.map((a) => a.map((e) => players[e]))
+                navigate('Game', {score: score, teams: teamNames})}
               }
             }
           />
