@@ -1,6 +1,7 @@
 /* @flow */
 
 import _ from 'lodash'
+import type Game from '../routes/Game/DefaultGame'
 
 // The types of actions that you can dispatch to modify the state of the store
 export const types = {
@@ -9,14 +10,17 @@ export const types = {
   SET_TEAMS: 'SET_TEAMS',
   SET_NUMBER_OF_GAMES: 'SET_NUMBER_OF_GAMES',
   SET_SCORE_INCREASING: 'SET_SCORE_INCREASING',
+  SET_PLAY_MODE: 'SET_PLAY_MODE',
+  SET_GAMES: 'SET_GAMES',
+  ADD_RESULT: 'ADD_RESULT',
 }
 
 // Helper functions to dispatch actions, optionally with payloads
 export const actionCreators = {
-  add: (item: string) => {
+  addPlayer: (item: string) => {
     return {type: types.ADD, payload: item}
   },
-  remove: (index: number) => {
+  removePlayer: (index: number) => {
     return {type: types.REMOVE, payload: index}
   },
   setTeams: (teams: [Array<number>,Array<number>]) => {
@@ -28,13 +32,32 @@ export const actionCreators = {
   setScoreIncreasing: (increasing: boolean) => {
     return {type: types.SET_SCORE_INCREASING, payload: increasing}
   },
+  setPlayMode: (mode: string) => {
+    return {type: types.SET_SCORE_INCREASING, payload: mode}
+  },
+  setGames: (games: {[string]: Game}) => {
+    return {type: types.SET_GAMES, payload: games}
+  },
+  addResult: (gameID: string, winnerTeam: -1|0|1) => {
+    return {type: types.ADD_RESULT, payload: {gameID: gameID, winnerTeam: winnerTeam}}
+  },
+}
+
+const PlayMode = {
+  CLASSIC: "CLASSIC",
+  CLUB: "CLUB",
 }
 
 // Initial state of the store
 const initialState = {
   players: ['Hannah', 'Markus', 'Tobi', 'Lo', 'Moritz'],
   teams: [[0,1,2],[3,4]],
+  games: {},
+  playedGames: [],
+  teamWin: [],
+  playerWin: [],
   matchSettings: {
+    playMode: PlayMode.CLASSIC,
     numberOfGames: 7,
     scoreIncreasing: true,
   },
@@ -51,6 +74,10 @@ function isValidTeams(teams: [Array<number>,Array<number>], numTeams: number): b
     }
   }
   return true
+}
+
+function isValidPlayMode(playMode: string): boolean{
+  return playMode === PlayMode.CLASSIC || playMode === PlayMode.CLUB
 }
 
 // Function to handle actions and update the state of the store.
@@ -111,6 +138,39 @@ export const reducer = (state: typeof initialState = initialState, action: {type
           ...state.matchSettings,
           scoreIncreasing: payload,
         }
+      }
+    }
+    case types.SET_PLAY_MODE: {
+      if(isValidPlayMode(payload)){
+        return {
+          ...state,
+          matchSettings: {
+            ...state.matchSettings,
+            playMode: payload,
+          }
+        }
+      } else {
+        return state
+      }
+    }
+    case types.SET_GAMES: {
+      return {
+        ...state,
+        games:  payload,
+      }
+    }
+    case types.ADD_RESULT: {
+      let teamWin = [...state.teamWin]
+      let playerWin = [...state.playerWin]
+      if(payload.winnerTeam != -1){
+        teamWin.push(payload.winnerTeam)
+        playerWin.push([...state.teams[payload.winnerTeam]])
+      }
+      return {
+        ...state,
+        playedGames: [...state.playedGames, payload.gameID],
+        teamWin: teamWin,
+        playerWin: playerWin,
       }
     }
   }

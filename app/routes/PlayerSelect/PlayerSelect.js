@@ -28,13 +28,13 @@ class PlayerSelect extends Component {
       Alert.alert( 'Info', I18n.t("playerExists", {name: text}), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )
     } else  {
       const {dispatch} = this.props
-      dispatch(actionCreators.add(text))
+      dispatch(actionCreators.addPlayer(text))
     }
   }
 
   onRemovePlayer = (index: number) => {
     const {dispatch} = this.props
-    dispatch(actionCreators.remove(index))
+    dispatch(actionCreators.removePlayer(index))
   }
 
   render() {
