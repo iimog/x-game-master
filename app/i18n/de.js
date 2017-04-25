@@ -5,6 +5,7 @@ const de = {
   addPlayers: "Spieler hinzufügen",
   removePlayer: "Entfernen durch antippen",
   teamSelect: "Teams wählen",
+  playerSelect: "Spieler wählen",
   playerExists: "Es gibt bereits einen Spieler namens {{name}}",
   teams: "Mannschaften",
   shuffle: "Mischen",
@@ -32,6 +33,8 @@ const de = {
   no: "Nein",
   increasing: "aufsteigend",
   constant: "konstant",
+  classicMatch: "Feste Teams",
+  clubMatch: "Schleifchenturnier",
 }
 
 export default de

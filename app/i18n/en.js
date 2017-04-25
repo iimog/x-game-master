@@ -5,6 +5,7 @@ const en = {
   addPlayers: "Add players",
   removePlayer: "Remove by tapping on them",
   teamSelect: "Select Teams",
+  playerSelect: "Set Players",
   playerExists: "Player {{name}} already exists",
   teams: "Teams",
   shuffle: "Shuffle",
@@ -32,5 +33,7 @@ const en = {
   no: "No",
   increasing: "increasing",
   constant: "constant",
+  classicMatch: "Classic Mode",
+  clubMatch: "Club Mode",
 }
 export default en
