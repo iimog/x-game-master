@@ -8,14 +8,14 @@ import {
   Image
 } from 'react-native';
 import { connect } from 'react-redux'
-import { actionCreators } from '../../redux'
+import { actionCreators, PlayMode } from '../../redux'
 import Button from '../../components/Button';
 import TeamList from '../../components/TeamList';
 import styles from './styles';
 import I18n from '../../i18n'
 import { shuffleTeams } from '../../lib'
 
-const mapStateToProps = (store) => ({players: store.players, teams: store.teams})
+const mapStateToProps = (store) => ({players: store.players, teams: store.teams, matchSettings: store.matchSettings})
 
 class TeamSelect extends Component {
   static navigationOptions = {
@@ -39,7 +39,13 @@ class TeamSelect extends Component {
         />
         <View style={styles.buttons}>
           <Button onPress={()=>{this.props.dispatch(actionCreators.setTeams(shuffleTeams(teams)))}} text={I18n.t('shuffle')}/>
-          <Button onPress={()=>{navigate('Score')}} text={I18n.t('start')}/>
+          <Button onPress={()=>{
+            if(this.props.matchSettings.playMode === PlayMode.CLASSIC){
+              navigate('Score')
+            } else {
+              navigate('ClubScore')
+            }
+          }} text={I18n.t('start')}/>
         </View>
       </ScrollView>
     );
