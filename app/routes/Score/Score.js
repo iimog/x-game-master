@@ -16,21 +16,17 @@ import ProgressBoard from '../../components/ProgressBoard'
 import styles from './styles'
 import I18n from '../../i18n'
 
-const mapStateToProps = (state) => ({matchSettings: state.matchSettings})
+const mapStateToProps = (state) => ({matchSettings: state.matchSettings, teamWin: state.teamWin})
 
 type myProps = {
   navigation: {
-    navigate: any,
-    state: {
-      params: {
-        score: Array<number>,
-      }
-    }
+    navigate: any
   },
   matchSettings: {
     numberOfGames: number,
     scoreIncreasing: boolean,
   },
+  teamWin: Array<number>,
 }
 
 function getStanding(score: Array<number>, scoreIncreasing: boolean): [number, number]{
@@ -65,9 +61,8 @@ class Score extends Component {
   }
   constructor(props: myProps) {
     super(props)
-    const {score} = props.navigation.state.params;
     this.state = {
-      score: score
+      score: props.teamWin
     }
   }
 

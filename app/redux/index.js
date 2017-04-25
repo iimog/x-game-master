@@ -38,7 +38,7 @@ export const actionCreators = {
   setGames: (games: {[string]: Game}) => {
     return {type: types.SET_GAMES, payload: games}
   },
-  addResult: (gameID: string, winnerTeam: -1|0|1) => {
+  addResult: (gameID: string, winnerTeam: number) => {
     return {type: types.ADD_RESULT, payload: {gameID: gameID, winnerTeam: winnerTeam}}
   },
 }

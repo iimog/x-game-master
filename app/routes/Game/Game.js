@@ -9,6 +9,7 @@ import {
   Alert
 } from 'react-native';
 import { connect } from 'react-redux'
+import { actionCreators } from '../../redux'
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
 import styles from './styles';
@@ -52,6 +53,7 @@ class GameScreen extends Component {
       instructions: string,
       bestOf: number
     },
+    gameID: string,
     teams: Array<Array<string>>,
     score: Array<number>,
     standing: Array<number>,
@@ -70,12 +72,13 @@ class GameScreen extends Component {
     const {players, teams} = props;
     const teamNames = teams.map((a) => a.map((e) => players[e]))
     const gameList = props.games;
-    const gameIndex = Object.keys(gameList)[Math.floor(Math.random()*Object.keys(gameList).length)]
-    const game = _.merge({...defaultGame}, gameList[gameIndex])
+    const gameID = Object.keys(gameList)[Math.floor(Math.random()*Object.keys(gameList).length)]
+    const game = _.merge({...defaultGame}, gameList[gameID])
     this.drawRandomTeam1 = new DrawRandomNoRepetitions(teamNames[0])
     this.drawRandomTeam2 = new DrawRandomNoRepetitions(teamNames[1])
     this.state = {
       game: game,
+      gameID: gameID,
       teams: teamNames,
       score: score,
       players: [this.drawRandomTeam1.nextRandom(), this.drawRandomTeam2.nextRandom()],
@@ -87,6 +90,7 @@ class GameScreen extends Component {
     let st = [...this.state.standing]
     st[teamIndex]++
     if(st[teamIndex]>(this.state.game.bestOf/2)){
+      this.props.dispatch(actionCreators.addResult(this.state.gameID, teamIndex))
       this.props.navigation.navigate('Score', {score: [...this.state.score, teamIndex]})
     } else {
       this.setState({
@@ -137,7 +141,10 @@ class GameScreen extends Component {
           />
           <Button
             text={I18n.t('skipGame')}
-            onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {navigate('Score', {teams: this.state.teams, score: this.state.score})}}, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
+            onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {
+              this.props.dispatch(actionCreators.addResult(this.state.gameID, -1))
+              navigate('Score')}
+            }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
           />
         </View>
       </View>
