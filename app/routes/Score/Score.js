@@ -15,8 +15,17 @@ import ScoreBoard from '../../components/ScoreBoard'
 import ProgressBoard from '../../components/ProgressBoard'
 import styles from './styles'
 import I18n from '../../i18n'
+import defaultGame from '../Game/DefaultGame'
+import type Game from '../Game/DefaultGame'
+import _ from 'lodash'
 
-const mapStateToProps = (state) => ({matchSettings: state.matchSettings, teamWin: state.teamWin, teams: state.teams, players: state.players})
+const mapStateToProps = (state) => ({
+  matchSettings: state.matchSettings,
+  teamWin: state.teamWin,
+  teams: state.teams,
+  players: state.players,
+  games: state.games,
+})
 
 type myProps = {
   navigation: {
@@ -29,6 +38,7 @@ type myProps = {
   teamWin: Array<number>,
   teams: [Array<number>,Array<number>],
   players: Array<string>,
+  games: {[string]: Game},
 }
 
 function getStanding(score: Array<number>, scoreIncreasing: boolean): [number, number]{
@@ -104,9 +114,11 @@ class Score extends Component {
               if(matchOver){
                 navigate('FinalScore', {score: standing})
               } else {
-                const {teams, players} = this.props
+                const {teams, players, games} = this.props
+                const gameID = Object.keys(games)[Math.floor(Math.random()*Object.keys(games).length)]
+                const game = _.merge(_.cloneDeep(defaultGame), games[gameID])
                 const teamNames = teams.map((a) => a.map((e) => players[e]))
-                navigate('Game', {score: score, teams: teamNames})}
+                navigate('Game', {teams: teamNames, gameNumber: score.length+1, game: game})}
               }
             }
           />

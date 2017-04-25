@@ -18,13 +18,10 @@ import defaultGame from './DefaultGame'
 import type Game from './DefaultGame'
 import _ from 'lodash'
 
-const mapStateToProps = (store) => ({players: store.players, teams: store.teams, games: store.games})
+const mapStateToProps = (store) => ({})
 
 type props = {
   navigation: any,
-  teams: [Array<number>,Array<number>],
-  players: Array<string>,
-  games: {[string]: Game},
 };
 
 class DrawRandomNoRepetitions{
@@ -53,9 +50,8 @@ class GameScreen extends Component {
       instructions: string,
       bestOf: number
     },
-    gameID: string,
     teams: Array<Array<string>>,
-    score: Array<number>,
+    gameNumber: number,
     standing: Array<number>,
     players: [string, string],
   }
@@ -68,17 +64,13 @@ class GameScreen extends Component {
 
   constructor(props: props) {
     super(props)
-    const {score, teams} = props.navigation.state.params;
-    const gameList = props.games;
-    const gameID = Object.keys(gameList)[Math.floor(Math.random()*Object.keys(gameList).length)]
-    const game = _.merge(_.cloneDeep(defaultGame), gameList[gameID])
+    const {teams, gameNumber, game} = props.navigation.state.params;
     this.drawRandomTeam1 = new DrawRandomNoRepetitions(teams[0])
     this.drawRandomTeam2 = new DrawRandomNoRepetitions(teams[1])
     this.state = {
       game: game,
-      gameID: gameID,
+      gameNumber: gameNumber,
       teams: teams,
-      score: score,
       players: [this.drawRandomTeam1.nextRandom(), this.drawRandomTeam2.nextRandom()],
       standing: [0,0]
     }
@@ -88,8 +80,8 @@ class GameScreen extends Component {
     let st = [...this.state.standing]
     st[teamIndex]++
     if(st[teamIndex]>(this.state.game.bestOf/2)){
-      this.props.dispatch(actionCreators.addResult(this.state.gameID, teamIndex))
-      this.props.navigation.navigate('Score', {score: [...this.state.score, teamIndex]})
+      this.props.dispatch(actionCreators.addResult("pseudoGameID", teamIndex))
+      this.props.navigation.navigate('Score')
     } else {
       this.setState({
         standing: st,
@@ -101,7 +93,7 @@ class GameScreen extends Component {
   }
 
   render() {
-    const {teams, score, game, players} = this.state
+    const {teams, game, players, gameNumber} = this.state
     const { navigate } = this.props.navigation
 
     return (
@@ -109,7 +101,7 @@ class GameScreen extends Component {
         <View></View>
         <View style={styles.content}>
           <Text style={styles.title}>
-            {I18n.t('game')} {score.length+1}: {gameT('name', game)}
+            {I18n.t('game')} {gameNumber}: {gameT('name', game)}
           </Text>
           <Text alignSelf="center">
             {I18n.t('bestOf')}: {game.bestOf}
@@ -140,7 +132,7 @@ class GameScreen extends Component {
           <Button
             text={I18n.t('skipGame')}
             onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {
-              this.props.dispatch(actionCreators.addResult(this.state.gameID, -1))
+              this.props.dispatch(actionCreators.addResult("pseudoGameID", -1))
               navigate('Score')}
             }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
           />
