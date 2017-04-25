@@ -13,6 +13,7 @@ export const types = {
   SET_PLAY_MODE: 'SET_PLAY_MODE',
   SET_GAMES: 'SET_GAMES',
   ADD_RESULT: 'ADD_RESULT',
+  RESET_MATCH: 'RESET_MATCH',
 }
 
 // Helper functions to dispatch actions, optionally with payloads
@@ -40,6 +41,9 @@ export const actionCreators = {
   },
   addResult: (gameID: string, winnerTeam: number) => {
     return {type: types.ADD_RESULT, payload: {gameID: gameID, winnerTeam: winnerTeam}}
+  },
+  resetMatch: () => {
+    return {type: types.RESET_MATCH, payload: null}
   },
 }
 
@@ -171,6 +175,14 @@ export const reducer = (state: typeof initialState = initialState, action: {type
         playedGames: [...state.playedGames, payload.gameID],
         teamWin: teamWin,
         playerWin: playerWin,
+      }
+    }
+    case types.RESET_MATCH: {
+      return {
+        ...state,
+        playedGames: [],
+        teamWin: [],
+        playerWin: [],
       }
     }
   }

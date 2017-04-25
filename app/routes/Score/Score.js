@@ -16,7 +16,7 @@ import ProgressBoard from '../../components/ProgressBoard'
 import styles from './styles'
 import I18n from '../../i18n'
 
-const mapStateToProps = (state) => ({matchSettings: state.matchSettings, teamWin: state.teamWin})
+const mapStateToProps = (state) => ({matchSettings: state.matchSettings, teamWin: state.teamWin, teams: state.teams, players: state.players})
 
 type myProps = {
   navigation: {
@@ -27,6 +27,8 @@ type myProps = {
     scoreIncreasing: boolean,
   },
   teamWin: Array<number>,
+  teams: [Array<number>,Array<number>],
+  players: Array<string>,
 }
 
 function getStanding(score: Array<number>, scoreIncreasing: boolean): [number, number]{
@@ -71,9 +73,7 @@ class Score extends Component {
     const { navigate } = this.props.navigation
     const { matchSettings } = this.props
     let standing = getStanding(score, matchSettings.scoreIncreasing)
-    if(isMatchOver(standing, matchSettings.numberOfGames, matchSettings.scoreIncreasing)){
-      navigate('FinalScore', {score: standing})
-    }
+
   }
 
   render() {
@@ -81,6 +81,7 @@ class Score extends Component {
     const { navigate } = this.props.navigation
     const { matchSettings } = this.props
     let standing = getStanding(score, matchSettings.scoreIncreasing)
+    let matchOver = isMatchOver(standing, matchSettings.numberOfGames, matchSettings.scoreIncreasing)
 
     return (
       <View style={styles.main}>
@@ -98,8 +99,14 @@ class Score extends Component {
         </ScrollView>
         <View>
           <Button
-            text={I18n.t('nextGame')}
-            onPress={() => navigate('Game', {score: score})}
+            text={matchOver ? I18n.t('gameOver') : I18n.t('nextGame')}
+            onPress={() => {
+              if(matchOver){
+                navigate('FinalScore', {score: standing})
+              } else {
+                navigate('Game', {score: score})}
+              }
+            }
           />
         </View>
       </View>

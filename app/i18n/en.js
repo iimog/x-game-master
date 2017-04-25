@@ -35,5 +35,6 @@ const en = {
   constant: "constant",
   classicMatch: "Classic Mode",
   clubMatch: "Club Mode",
+  gameOver: "Game Over",
 }
 export default en
