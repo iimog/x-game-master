@@ -33,7 +33,7 @@ export const actionCreators = {
     return {type: types.SET_SCORE_INCREASING, payload: increasing}
   },
   setPlayMode: (mode: string) => {
-    return {type: types.SET_SCORE_INCREASING, payload: mode}
+    return {type: types.SET_PLAY_MODE, payload: mode}
   },
   setGames: (games: {[string]: Game}) => {
     return {type: types.SET_GAMES, payload: games}
@@ -43,7 +43,7 @@ export const actionCreators = {
   },
 }
 
-const PlayMode = {
+export const PlayMode = {
   CLASSIC: "CLASSIC",
   CLUB: "CLUB",
 }
