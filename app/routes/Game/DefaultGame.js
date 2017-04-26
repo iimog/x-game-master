@@ -13,7 +13,7 @@ export type Game = {
 const defaultGame: Game = {
   name: "Default Game",
   instructions: "Dummy Instructions",
-  bestOf: 9,
+  bestOf: 5,
   translations: {}
 }
 

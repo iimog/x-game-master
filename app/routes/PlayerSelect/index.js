@@ -1,4 +1,4 @@
 /* @flow */
 
-import { PlayerSelect } from './PlayerSelect'
+import PlayerSelect from './PlayerSelect'
 export default PlayerSelect

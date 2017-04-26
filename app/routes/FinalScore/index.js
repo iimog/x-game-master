@@ -1,4 +1,4 @@
 /* @flow */
 
-import { FinalScore } from './FinalScore'
+import FinalScore from './FinalScore'
 export default FinalScore

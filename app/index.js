@@ -2,11 +2,13 @@
  * @flow
  */
 
-import React from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   Text,
 } from 'react-native';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import { StackNavigator } from 'react-navigation';
 import Home from './routes/Home';
 import PlayerSelect from './routes/PlayerSelect';
@@ -14,14 +16,31 @@ import TeamSelect from './routes/TeamSelect';
 import Game from './routes/Game';
 import Score from './routes/Score';
 import FinalScore from './routes/FinalScore';
+import MatchSettings from './routes/MatchSettings'
+import ClubScore from './routes/ClubScore'
+import { reducer } from './redux'
 
-const xMobile = StackNavigator({
+const AppNavigator = StackNavigator({
   Home: { screen: Home },
-  NewGame: { screen: PlayerSelect },
+  PlayerSelect: { screen: PlayerSelect },
   Team: { screen: TeamSelect },
   Game: { screen: Game },
   Score: { screen: Score },
   FinalScore: { screen: FinalScore },
+  MatchSettings: { screen: MatchSettings },
+  ClubScore: { screen: ClubScore },
 });
+
+const store = createStore(reducer);
+
+class xMobile extends Component{
+  render(){
+    return(
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
+    )
+  }
+}
 
 AppRegistry.registerComponent('xMobile', () => xMobile);

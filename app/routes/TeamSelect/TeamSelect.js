@@ -7,63 +7,45 @@ import {
   ScrollView,
   Image
 } from 'react-native';
+import { connect } from 'react-redux'
+import { actionCreators, PlayMode } from '../../redux'
 import Button from '../../components/Button';
 import TeamList from '../../components/TeamList';
 import styles from './styles';
 import I18n from '../../i18n'
+import { shuffleTeams } from '../../lib'
 
-export class TeamSelect extends Component {
-  props: {
-    navigation: any
-  };
-  state: {
-    players: Array<String>
-  }
+const mapStateToProps = (store) => ({players: store.players, teams: store.teams, matchSettings: store.matchSettings})
+
+class TeamSelect extends Component {
   static navigationOptions = {
     title: I18n.t('teams'),
   };
-  constructor(props: {navigation: any}) {
-    super(props);
-    const {players} = props.navigation.state.params;
-    this.state = {
-      players: [...players]
-    };
-  };
-  /**
-   * Shuffles array in place. ES6 version
-   * @param {Array} a items The array containing the items.
-   */
-  shuffle = <T>(a: Array<T>): Array<T> => {
-      let b = [...a];
-      for (let i = b.length; i; i--) {
-          let j = Math.floor(Math.random() * i);
-          // the next three lines could be replaced by [b[i - 1]b[j]] = [b[j], b[i - 1]] but flow (v0.38.0) does not like it
-          let [x,y] = [b[j], b[i - 1]];
-          b[i - 1] = x;
-          b[j] = y;
-      }
-      return b;
-  }
+
   render() {
     const { navigate } = this.props.navigation;
-    const { params } = this.props.navigation.state;
+    const { players, teams } = this.props;
     return (
       <ScrollView>
         <TeamList
           title={I18n.t('team1')}
-          list={this.state.players.slice(0,Math.ceil(this.state.players.length/2))}
+          list={teams[0].map(i => players[i])}
           color="skyblue"
         />
         <TeamList
           title={I18n.t('team2')}
-          list={this.state.players.slice(Math.ceil(this.state.players.length/2))}
+          list={teams[1].map(i => players[i])}
           color="red"
         />
         <View style={styles.buttons}>
-          <Button onPress={()=>{this.setState({players: this.shuffle(this.state.players)})}} text={I18n.t('shuffle')}/>
-          <Button onPress={()=>{navigate('Game', {teams: [this.state.players.slice(0,Math.ceil(this.state.players.length/2)), this.state.players.slice(Math.ceil(this.state.players.length/2))], score: []})}} text={I18n.t('start')}/>
+          <Button onPress={()=>{this.props.dispatch(actionCreators.setTeams(shuffleTeams(teams)))}} text={I18n.t('shuffle')}/>
+          <Button onPress={()=>{
+              navigate('Score')
+          }} text={I18n.t('start')}/>
         </View>
       </ScrollView>
     );
   }
 };
+
+export default connect(mapStateToProps)(TeamSelect)
