@@ -9,13 +9,13 @@ import {
   Alert
 } from 'react-native';
 import { connect } from 'react-redux'
-import { actionCreators } from '../../redux'
+import { actionCreators, PlayMode } from '../../redux'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import PlayerList from '../../components/PlayerList';
 import I18n from '../../i18n'
 
-const mapStateToProps = (state) => ({players: state.players})
+const mapStateToProps = (state) => ({players: state.players, matchSettings: state.matchSettings})
 
 class PlayerSelect extends Component {
   static navigationOptions = {
@@ -40,6 +40,7 @@ class PlayerSelect extends Component {
   render() {
     const {players} = this.props
     const { navigate } = this.props.navigation
+    const classic = this.props.matchSettings.playMode === PlayMode.CLASSIC
 
     return (
       <ScrollView>
@@ -52,8 +53,14 @@ class PlayerSelect extends Component {
           onPressItem={this.onRemovePlayer}
         />
         <Button
-          text={I18n.t('teamSelect')}
-          onPress={()=>navigate('Team', {players: players})}
+          text={classic ? I18n.t('teamSelect') : I18n.t('start')}
+          onPress={()=>{
+            if(classic){
+              navigate('Team')
+            } else {
+              navigate('ClubScore')
+            }
+          }}
         />
       </ScrollView>
     );

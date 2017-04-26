@@ -40,11 +40,7 @@ class TeamSelect extends Component {
         <View style={styles.buttons}>
           <Button onPress={()=>{this.props.dispatch(actionCreators.setTeams(shuffleTeams(teams)))}} text={I18n.t('shuffle')}/>
           <Button onPress={()=>{
-            if(this.props.matchSettings.playMode === PlayMode.CLASSIC){
               navigate('Score')
-            } else {
-              navigate('ClubScore')
-            }
           }} text={I18n.t('start')}/>
         </View>
       </ScrollView>
