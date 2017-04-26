@@ -18,6 +18,7 @@ import I18n from '../../i18n'
 import defaultGame from '../Game/DefaultGame'
 import type Game from '../Game/DefaultGame'
 import _ from 'lodash'
+import { getRandomGameID } from '../../lib'
 
 const mapStateToProps = (state) => ({
   matchSettings: state.matchSettings,
@@ -25,6 +26,7 @@ const mapStateToProps = (state) => ({
   teams: state.teams,
   players: state.players,
   games: state.games,
+  playedGames: state.playedGames,
 })
 
 type myProps = {
@@ -39,6 +41,7 @@ type myProps = {
   teams: [Array<number>,Array<number>],
   players: Array<string>,
   games: {[string]: Game},
+  playedGames: Array<string>,
   dispatch: any,
 }
 
@@ -108,7 +111,7 @@ class Score extends Component {
                 navigate('FinalScore', {score: standing})
               } else {
                 const {teams, players, games} = this.props
-                const gameID = Object.keys(games)[Math.floor(Math.random()*Object.keys(games).length)]
+                const gameID = getRandomGameID(Object.keys(games), this.props.playedGames)
                 const game = _.merge(_.cloneDeep(defaultGame), games[gameID])
                 const teamNames = teams.map((a) => a.map((e) => players[e]))
                 navigate('Game', {

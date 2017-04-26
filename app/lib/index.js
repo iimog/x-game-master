@@ -11,3 +11,12 @@ export function shuffleTeams(teams: Teams): Teams{
   let newTeams = [allTeams.slice(0, half),allTeams.slice(half)]
   return newTeams
 }
+
+export function getRandomGameID(possibleGames: Array<string>, playedGames: Array<string>): string{
+  let playedGameSet = new Set(playedGames)
+  if(playedGameSet.size < possibleGames.length){
+    possibleGames = possibleGames.filter(id => !(playedGameSet.has(id)))
+  }
+  const gameID = possibleGames[Math.floor(Math.random()*possibleGames.length)]
+  return gameID
+}
