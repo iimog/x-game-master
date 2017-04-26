@@ -14,9 +14,11 @@ import { connect } from 'react-redux'
 import { actionCreators } from '../../redux'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import I18n from '../../i18n'
+import I18n, { gameT } from '../../i18n'
+import type Game from '../Game/DefaultGame'
+import _ from 'lodash'
 
-const mapStateToProps = (state) => ({matchSettings: state.matchSettings})
+const mapStateToProps = (state) => ({matchSettings: state.matchSettings, games: state.games})
 
 class MatchSettings extends Component {
   static navigationOptions = {
@@ -26,26 +28,46 @@ class MatchSettings extends Component {
   state: {
     numberOfGames: number,
     eventSwitchIsOn: boolean,
+    allGames: {[string]: Game},
   }
 
   constructor(props){
     super(props)
+    let gameList = require('../../games/simple.json')
+    gameList = {...gameList, ...require('../../games/lan.json')}
     this.state = {
       numberOfGames: props.matchSettings.numberOfGames,
       eventSwitchIsOn: true,
+      allGames: gameList,
     }
   }
 
   componentWillMount(){
     this.props.dispatch(actionCreators.resetMatch())
-    let gameList = require('../../games/simple.json')
-    gameList = {...gameList, ...require('../../games/lan.json')}
-    this.props.dispatch(actionCreators.setGames(gameList))
+    this.props.dispatch(actionCreators.setGames(this.state.allGames))
   }
 
   render() {
-    const { matchSettings, dispatch } = this.props
+    const { matchSettings, dispatch, games } = this.props
     const { navigate } = this.props.navigation
+    const { allGames } = this.state
+    let gameSwitches = Array()
+    for(let gameID of Object.keys(allGames)){
+      gameSwitches.push(
+        <View key={gameID} style={{flexDirection: 'row'}}><Switch
+          value={gameID in games}
+          onValueChange={(value)=>{
+            let newGames = _.cloneDeep(games)
+            if(value){
+              newGames[gameID] = allGames[gameID]
+            } else {
+              delete newGames[gameID]
+            }
+            dispatch(actionCreators.setGames(newGames))
+          }}
+        /><Text>{gameT('name',allGames[gameID])}</Text></View>
+      )
+    }
 
     return (
       <ScrollView>
@@ -63,6 +85,8 @@ class MatchSettings extends Component {
           onValueChange={(value) => dispatch(actionCreators.setScoreIncreasing(value))}
           value={matchSettings.scoreIncreasing}
         />
+        <Text>{I18n.t('games')}</Text>
+        {gameSwitches}
         <Button
           text={I18n.t('playerSelect')}
           onPress={()=>{navigate('PlayerSelect')}}

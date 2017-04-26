@@ -36,6 +36,7 @@ const de = {
   classicMatch: "Feste Teams",
   clubMatch: "Schleifchenturnier",
   gameOver: "Siegerehrung",
+  games: "Spiele",
 }
 
 export default de
