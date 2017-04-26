@@ -33,12 +33,13 @@ class MatchSettings extends Component {
 
   constructor(props){
     super(props)
-    let gameList = require('../../games/simple.json')
-    gameList = {...gameList, ...require('../../games/lan.json')}
+    const simpleGames = require('../../games/simple.json')
+    const lanGames = require('../../games/lan.json')
+    const allList = {...simpleGames, ...lanGames}
     this.state = {
       numberOfGames: props.matchSettings.numberOfGames,
       eventSwitchIsOn: true,
-      allGames: gameList,
+      allGames: allList,
     }
   }
 
