@@ -5,6 +5,7 @@
     "bestOf": 5,
     "activePlayers": 1,
     "tiePossible": false,
+    "randomStarter": false,
     "translations": {
       "de": {
         "name": "Schnick Schnack Schnuck",
@@ -18,6 +19,7 @@
     "bestOf": 5,
     "activePlayers": 1,
     "tiePossible": true,
+    "randomStarter": true,
     "translations": {
       "de": {
         "name": "Münzschnackeln",
@@ -31,6 +33,7 @@
     "bestOf": 5,
     "activePlayers": 2,
     "tiePossible": true,
+    "randomStarter": true,
     "translations": {
       "de": {
         "name": "Mundfangen",
@@ -44,6 +47,7 @@
     "bestOf": 5,
     "activePlayers": 1,
     "tiePossible": false,
+    "randomStarter": true,
     "translations": {
       "de": {
         "instructions": "Spiele diesen Klassiker: http://blobby.sourceforge.net/"
@@ -56,6 +60,7 @@
     "bestOf": 9,
     "activePlayers": 1,
     "tiePossible": false,
+    "randomStarter": true,
     "translations": {
       "de": {
         "instructions": "Jeder Spieler wirft drei Darts, die höhere Summe gewinnt die Runde."
@@ -68,6 +73,7 @@
     "bestOf": 1,
     "activePlayers": 0,
     "tiePossible": false,
+    "randomStarter": true,
     "translations": {
       "de": {
         "name": "Bier Pong",
@@ -81,6 +87,7 @@
     "bestOf": 5,
     "activePlayers": 1,
     "tiePossible": false,
+    "randomStarter": true,
     "translations": {
       "de": {
         "name": "Münzfußball",
