@@ -38,5 +38,7 @@ const en = {
   gameOver: "Game Over",
   games: "Games",
   showTeams: "Show Teams",
+  nobody: "Nobody",
+  both: "Both",
 }
 export default en

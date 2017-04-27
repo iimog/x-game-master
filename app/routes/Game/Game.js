@@ -85,17 +85,23 @@ class GameScreen extends Component {
 
   handleScore(teamIndex: number){
     let st = [...this.state.standing]
-    st[teamIndex]++
-    if(st[teamIndex]>(this.state.game.bestOf/2)){
-      this.props.navigation.state.params.gameOver(teamIndex)
-    } else {
-      this.setState({
-        standing: st,
-        players: [
-          this.drawRandomTeam1.getRandomPlayers(this.state.game.activePlayers),
-          this.drawRandomTeam2.getRandomPlayers(this.state.game.activePlayers)
-        ]});
+    if(teamIndex === -1){
+      st[0]++
+      st[1]++
     }
+    if(teamIndex >= 0){
+      st[teamIndex]++
+      if(st[teamIndex]>(this.state.game.bestOf/2) && st[teamIndex]>st[1-teamIndex]){
+        this.props.navigation.state.params.gameOver(teamIndex)
+      }
+    }
+    this.setState({
+      standing: st,
+      players: [
+        this.drawRandomTeam1.getRandomPlayers(this.state.game.activePlayers),
+        this.drawRandomTeam2.getRandomPlayers(this.state.game.activePlayers)
+      ]
+    });
   }
 
   render() {
@@ -115,6 +121,13 @@ class GameScreen extends Component {
           <ScoreBoard
             standing={this.state.standing}
           />
+          {
+            game.tiePossible &&
+            <Button
+              text={I18n.t('both')}
+              onPress={()=>this.handleScore(-1)}
+            />
+          }
           <View style={styles.buttonView}>
             <View style={styles.playerButtonView}>
             <Button
@@ -129,6 +142,13 @@ class GameScreen extends Component {
             />
             </View>
           </View>
+          {
+            game.tiePossible &&
+            <Button
+              text={I18n.t('nobody')}
+              onPress={()=>this.handleScore(-2)}
+            />
+          }
         </View>
         <View>
           <Button

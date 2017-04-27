@@ -38,6 +38,8 @@ const de = {
   gameOver: "Siegerehrung",
   games: "Spiele",
   showTeams: "Teams anzeigen",
+  nobody: "Keiner",
+  both: "Beide",
 }
 
 export default de
