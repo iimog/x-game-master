@@ -14,6 +14,7 @@
     "name": "Coin Toss",
     "instructions": "Put a cup or a glas on a table 10cm from the edge. Take a small coin (e.g. a penny) into your flat hand. Now hit the edge of the table with your hand such that the penny lands in the glas. Ties are broken immediately by replaying until one player hits and the other does not (a slightly different modus is possible: like Elfmeterschiesen)",
     "bestOf": 5,
+    "tiePossible": true,
     "translations": {
       "de": {
         "name": "Münzschnackeln",
@@ -25,6 +26,7 @@
     "name": "Interception",
     "instructions": "Somebody throws something and somebody catches something.",
     "activePlayers": 2,
+    "tiePossible": true,
     "translations": {
       "de": {
         "name": "Mundfangen",
