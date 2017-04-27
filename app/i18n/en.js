@@ -40,5 +40,6 @@ const en = {
   showTeams: "Show Teams",
   nobody: "Nobody",
   both: "Both",
+  goingFirst: "Going first",
 }
 export default en

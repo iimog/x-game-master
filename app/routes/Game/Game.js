@@ -61,6 +61,7 @@ class GameScreen extends Component {
     gameNumber: number,
     standing: Array<number>,
     players: [string, string],
+    goingFirst: number,
   }
   static navigationOptions = {
     header: {visible: false},
@@ -74,12 +75,14 @@ class GameScreen extends Component {
     const {teams, gameNumber, game} = props.navigation.state.params;
     this.drawRandomTeam1 = new DrawRandomNoRepetitions(I18n.t('team1'), teams[0])
     this.drawRandomTeam2 = new DrawRandomNoRepetitions(I18n.t('team2'), teams[1])
+    let goingFirst = Math.floor(Math.random()*2)
     this.state = {
       game: game,
       gameNumber: gameNumber,
       teams: teams,
       players: [this.drawRandomTeam1.getRandomPlayers(game.activePlayers), this.drawRandomTeam2.getRandomPlayers(game.activePlayers)],
-      standing: [0,0]
+      standing: [0,0],
+      goingFirst: goingFirst,
     }
   }
 
@@ -100,7 +103,8 @@ class GameScreen extends Component {
       players: [
         this.drawRandomTeam1.getRandomPlayers(this.state.game.activePlayers),
         this.drawRandomTeam2.getRandomPlayers(this.state.game.activePlayers)
-      ]
+      ],
+      goingFirst: Math.floor(Math.random()*2),
     });
   }
 
@@ -148,6 +152,10 @@ class GameScreen extends Component {
               text={I18n.t('nobody')}
               onPress={()=>this.handleScore(-2)}
             />
+          }
+          {
+            game.randomStarter &&
+            <Text>{I18n.t('goingFirst')}: {players[this.state.goingFirst]}</Text>
           }
         </View>
         <View>

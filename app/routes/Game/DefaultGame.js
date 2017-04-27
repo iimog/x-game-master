@@ -4,6 +4,7 @@ export type Game = {
   bestOf: number,
   activePlayers: number,
   tiePossible: boolean,
+  randomStarter: boolean,
   translations: {
     ["string"]: {
       name?: string,
@@ -18,6 +19,7 @@ const defaultGame: Game = {
   bestOf: 5,
   activePlayers: 1,
   tiePossible: false,
+  randomStarter: false,
   translations: {}
 }
 

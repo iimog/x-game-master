@@ -40,6 +40,7 @@ const de = {
   showTeams: "Teams anzeigen",
   nobody: "Keiner",
   both: "Beide",
+  goingFirst: "Zuerst dran",
 }
 
 export default de
