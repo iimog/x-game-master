@@ -94,5 +94,19 @@
         "instructions": "Ziel des Spieles ist es, eine Münze in einer bestimmten Art und Weise in die Markierung des gegnerischen Tores zu schießen. Der durch Zufall bestimmte Beginner legt alle drei Münzen vor sein eigenes Tor und muss nun versuchen die mittlere Münze durch die beiden anderen in Richtung des Tores seines Gegners zu spielen. Bei jedem Spielzug muss dabei eine der Münzen durch die gedachte Verbindungslinie der beiden anderen bereits liegenden Münzen geschnippt werden. Es ist jeweils nur ein Versuch gestattet. In Tornähe versucht man dann, in das Tor des Gegners zu treffen. Man darf so lange weiterspielen, bis man entweder (1) eine der anderen Münzen berührt, (2) mit einer beliebigen Münze die Spielfeldbegrenzung überschritten hat, (3) es nicht gelingt, zwischen den beiden liegenden Münzen hindurch zu treffen oder (4) ein Tor erzielt hat. Tritt einer dieser Fälle ein, so ist der Mitspieler am Zug und darf nun seinerseits versuchen, erfolgreich zu sein. Die Runde endet nach dem ersten Treffer. Angepasst von: Seite „Englisch Fußball“. In: Wikipedia, Die freie Enzyklopädie. Bearbeitungsstand: 13. September 2016, 09:20 UTC. URL: https://de.wikipedia.org/w/index.php?title=Englisch_Fu%C3%9Fball&oldid=157888993 (Abgerufen: 27. April 2017, 14:02 UTC)"
       }
     }
+  },
+  "iimog/pitcher": {
+    "name": "Hold the pitcher",
+    "instructions": "A player from each team holds a pitcher with the arm stretched sideways (90°). The one who can hold the pitcher longer wins (threshold: 80°) the round.",
+    "bestOf": 3,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+        "name": "Krughalten",
+        "instructions": "Ein Spieler aus jedem Team hält einen vollen Maßkrug mit seitlich ausgestrecktem Arm (90°). Wer ihn länger halten kann (mind. 80°) gewinnt die Runde."
+      }
+    }
   }
 }
