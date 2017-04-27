@@ -37,6 +37,7 @@ const de = {
   clubMatch: "Schleifchenturnier",
   gameOver: "Siegerehrung",
   games: "Spiele",
+  showTeams: "Teams anzeigen",
 }
 
 export default de

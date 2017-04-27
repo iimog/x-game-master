@@ -121,6 +121,15 @@ class GameScreen extends Component {
         </View>
         <View>
           <Button
+            text={I18n.t('showTeams')}
+            onPress={()=>Alert.alert(
+              I18n.t('teams'),
+              I18n.t('team1')+":\n"+teams[0].join(", ")+"\n\n"+I18n.t('team2')+":\n"+teams[1].join(", "),
+              [ {text: 'OK', onPress: () => {}} ],
+              { cancelable: true }
+            )}
+          />
+          <Button
             text={I18n.t('instructions')}
             onPress={()=>Alert.alert( I18n.t('instructions'), gameT('instructions', game), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
           />
