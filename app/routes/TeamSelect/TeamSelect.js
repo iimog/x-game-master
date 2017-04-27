@@ -15,6 +15,7 @@ import styles from './styles';
 import I18n from '../../i18n'
 import { shuffleTeams } from '../../lib'
 import layout from '../../layouts'
+import globalStyle from '../../config/styles'
 
 const mapStateToProps = (store) => ({players: store.players, teams: store.teams, matchSettings: store.matchSettings})
 
@@ -32,12 +33,12 @@ class TeamSelect extends Component {
           <TeamList
             title={I18n.t('team1')}
             list={teams[0].map(i => players[i])}
-            color="skyblue"
+            color={globalStyle.teamColors[0]}
           />
           <TeamList
             title={I18n.t('team2')}
             list={teams[1].map(i => players[i])}
-            color="red"
+            color={globalStyle.teamColors[1]}
           />
         </ScrollView>
         <View style={styles.buttons}>

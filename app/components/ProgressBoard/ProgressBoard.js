@@ -7,11 +7,12 @@ import {
   StyleSheet,
 } from 'react-native';
 import styles from './styles'
+import globalStyle from '../../config/styles'
 
 function Tile(props: {num: number, winner: ?number}){
   let backgroundColor: string = 'transparent'
   if(typeof props.winner === 'number'){
-    backgroundColor = ['skyblue', 'red'][props.winner]
+    backgroundColor = globalStyle.teamColors[props.winner]
   }
   return(
     <View style={StyleSheet.flatten([styles.scoreBoardNumberContainer,{backgroundColor: backgroundColor}])}>
