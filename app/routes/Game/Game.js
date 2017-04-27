@@ -23,8 +23,10 @@ type props = {
 class DrawRandomNoRepetitions{
   all: Array<string>
   remainder: Array<string>
-  constructor(team: Array<string>){
-    this.all = [...team]
+  name: string
+  constructor(teamName: string, teamMembers: Array<string>){
+    this.all = [...teamMembers]
+    this.name = teamName
     this.reset()
   }
   reset(){
@@ -36,16 +38,24 @@ class DrawRandomNoRepetitions{
     }
     return this.remainder.splice(Math.floor(Math.random()*this.remainder.length),1)[0]
   }
+  getRandomPlayers(n: number): string{
+    if(n === 0){
+      return this.name
+    }
+    let players: Array<string> = Array()
+    while(players.length < n){
+      players.push(this.nextRandom())
+      if(this.all.length>=n){
+        players = _.uniq(players)
+      }
+    }
+    return players.join(', ')
+  }
 }
 
 class GameScreen extends Component {
   state: {
-    game: {
-      name: string,
-      description: string,
-      instructions: string,
-      bestOf: number
-    },
+    game: Game,
     teams: Array<Array<string>>,
     gameNumber: number,
     standing: Array<number>,
@@ -61,13 +71,13 @@ class GameScreen extends Component {
   constructor(props: props) {
     super(props)
     const {teams, gameNumber, game} = props.navigation.state.params;
-    this.drawRandomTeam1 = new DrawRandomNoRepetitions(teams[0])
-    this.drawRandomTeam2 = new DrawRandomNoRepetitions(teams[1])
+    this.drawRandomTeam1 = new DrawRandomNoRepetitions(I18n.t('team1'), teams[0])
+    this.drawRandomTeam2 = new DrawRandomNoRepetitions(I18n.t('team2'), teams[1])
     this.state = {
       game: game,
       gameNumber: gameNumber,
       teams: teams,
-      players: [this.drawRandomTeam1.nextRandom(), this.drawRandomTeam2.nextRandom()],
+      players: [this.drawRandomTeam1.getRandomPlayers(game.activePlayers), this.drawRandomTeam2.getRandomPlayers(game.activePlayers)],
       standing: [0,0]
     }
   }
@@ -81,8 +91,8 @@ class GameScreen extends Component {
       this.setState({
         standing: st,
         players: [
-          this.drawRandomTeam1.nextRandom(),
-          this.drawRandomTeam2.nextRandom()
+          this.drawRandomTeam1.getRandomPlayers(this.state.game.activePlayers),
+          this.drawRandomTeam2.getRandomPlayers(this.state.game.activePlayers)
         ]});
     }
   }
