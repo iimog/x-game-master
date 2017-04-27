@@ -19,6 +19,7 @@ import defaultGame from '../Game/DefaultGame'
 import type Game from '../Game/DefaultGame'
 import { shuffleTeams, getRandomGameID } from '../../lib/'
 import _ from 'lodash'
+import layout from '../../layouts'
 
 const mapStateToProps = (state) => ({
   matchSettings: state.matchSettings,
@@ -84,9 +85,9 @@ class ClubScore extends Component {
     )
 
     return (
-      <View style={styles.main}>
-        <ScrollView style={styles.content}>
-          <Text style={styles.title}>
+      <View style={layout.main}>
+        <ScrollView style={layout.content}>
+          <Text style={layout.title}>
             {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {playerWin.length}
           </Text>
           {playerScores}
