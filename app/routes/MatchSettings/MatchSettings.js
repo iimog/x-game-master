@@ -17,6 +17,7 @@ import Input from '../../components/Input';
 import I18n, { gameT } from '../../i18n'
 import type Game from '../Game/DefaultGame'
 import _ from 'lodash'
+import styles from './styles'
 
 const mapStateToProps = (state) => ({matchSettings: state.matchSettings, games: state.games})
 
@@ -54,7 +55,7 @@ class MatchSettings extends Component {
     let gameSwitches = Array()
     for(let gameID of Object.keys(allGames)){
       gameSwitches.push(
-        <View key={gameID} style={{flexDirection: 'row'}}><Switch
+        <View key={gameID} style={styles.gameSelector}><Switch
           value={gameID in games}
           onValueChange={(value)=>{
             let newGames = _.cloneDeep(games)
