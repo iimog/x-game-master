@@ -24,6 +24,7 @@
   "iimog/interception": {
     "name": "Interception",
     "instructions": "Somebody throws something and somebody catches something.",
+    "activePlayers": 2,
     "translations": {
       "de": {
         "name": "Mundfangen",
@@ -55,6 +56,7 @@
     "name": "Beer Pong",
     "instructions": "Place ten empty cups at each end of a long table (in the shape of a triangle). The goal is to throw a ping-pong ball into one of the cups of your opponent. The ball has to be thrown from your end of the table (and has to hit the table once before falling into the cup). This cup is removed and the team wins if the opponent has no more cups.",
     "bestOf": 1,
+    "activePlayers": 0,
     "translations": {
       "de": {
         "name": "Bier Pong",
