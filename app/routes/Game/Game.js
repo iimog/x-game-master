@@ -15,6 +15,7 @@ import I18n, {gameT} from '../../i18n'
 import defaultGame from './DefaultGame'
 import type Game from './DefaultGame'
 import _ from 'lodash'
+import layout from '../../layouts'
 
 type props = {
   navigation: any,
@@ -102,10 +103,10 @@ class GameScreen extends Component {
     const { navigate } = this.props.navigation
 
     return (
-      <View style={styles.main}>
+      <View style={layout.main}>
         <View></View>
-        <View style={styles.content}>
-          <Text style={styles.title}>
+        <View style={layout.content}>
+          <Text style={layout.title}>
             {I18n.t('game')} {gameNumber}: {gameT('name', game)}
           </Text>
           <Text alignSelf="center">
