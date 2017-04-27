@@ -108,5 +108,18 @@
         "instructions": "Ein Spieler aus jedem Team hält einen vollen Maßkrug mit seitlich ausgestrecktem Arm (90°). Wer ihn länger halten kann (mind. 80°) gewinnt die Runde."
       }
     }
+  },
+  "iimog/quizoid": {
+    "name": "Quizoid",
+    "instructions": "Each player plays a round of quizoid classic. The higher score wins the round.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "instructions": "Jeder spielt eine Runde Quizoid Classic. Der mit der höheren Punktzahl gewinnt. Teammitglieder dürfen Tipps geben aber entscheiden muss der aktive Spieler."
+      }
+    }
   }
 }
