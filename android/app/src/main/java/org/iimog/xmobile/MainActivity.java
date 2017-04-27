@@ -1,4 +1,4 @@
-package com.xmobile;
+package org.iimog.xmobile;
 
 import com.facebook.react.ReactActivity;
 
