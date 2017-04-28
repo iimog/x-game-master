@@ -6,10 +6,13 @@ const styles: StyleSheet.Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center'
   },
-  playerButtonView: {
+  multiButtonView: {
     flex: 1,
     padding: 5
   },
+  tieButtonView: {
+    padding: 5,
+  }
 });
 
 export default styles;

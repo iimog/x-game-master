@@ -127,19 +127,21 @@ class GameScreen extends Component {
           />
           {
             game.tiePossible &&
-            <Button
-              text={I18n.t('both')}
-              onPress={()=>this.handleScore(-1)}
-            />
+            <View style={styles.tieButtonView}>
+              <Button
+                text={I18n.t('both')}
+                onPress={()=>this.handleScore(-1)}
+              />
+            </View>
           }
           <View style={styles.buttonView}>
-            <View style={styles.playerButtonView}>
+            <View style={styles.multiButtonView}>
             <Button
               text={players[0]}
               onPress={()=>this.handleScore(0)}
             />
             </View>
-            <View style={styles.playerButtonView}>
+            <View style={styles.multiButtonView}>
             <Button
               text={players[1]}
               onPress={()=>this.handleScore(1)}
@@ -148,10 +150,13 @@ class GameScreen extends Component {
           </View>
           {
             game.tiePossible &&
-            <Button
-              text={I18n.t('nobody')}
-              onPress={()=>this.handleScore(-2)}
-            />
+            <View style={styles.tieButtonView}>
+              <Button
+                style={styles.tieButton}
+                text={I18n.t('nobody')}
+                onPress={()=>this.handleScore(-2)}
+              />
+            </View>
           }
           {
             game.randomStarter &&
@@ -159,7 +164,7 @@ class GameScreen extends Component {
           }
         </View>
         <View style={styles.buttonView}>
-          <View style={styles.playerButtonView}>
+          <View style={styles.multiButtonView}>
             <Button
               icon="users"
               onPress={()=>Alert.alert(
@@ -170,13 +175,13 @@ class GameScreen extends Component {
               )}
             />
           </View>
-          <View style={styles.playerButtonView}>
+          <View style={styles.multiButtonView}>
             <Button
               icon="infoCircle"
               onPress={()=>Alert.alert( I18n.t('instructions'), gameT('instructions', game), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
             />
           </View>
-          <View style={styles.playerButtonView}>
+          <View style={styles.multiButtonView}>
             <Button
               icon="exchange"
               onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {
