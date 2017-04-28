@@ -11,6 +11,7 @@
     "lodash": "^4.17.4",
     "react": "~15.4.1",
     "react-native": "0.42.3",
+    "react-native-fontawesome": "^5.7.0",
     "react-native-i18n": "^1.0.0",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^5.0.4",

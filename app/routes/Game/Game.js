@@ -158,26 +158,32 @@ class GameScreen extends Component {
             <Text>{I18n.t('goingFirst')}: {players[this.state.goingFirst]}</Text>
           }
         </View>
-        <View>
-          <Button
-            text={I18n.t('showTeams')}
-            onPress={()=>Alert.alert(
-              I18n.t('teams'),
-              I18n.t('team1')+":\n"+teams[0].join(", ")+"\n\n"+I18n.t('team2')+":\n"+teams[1].join(", "),
-              [ {text: 'OK', onPress: () => {}} ],
-              { cancelable: true }
-            )}
-          />
-          <Button
-            text={I18n.t('instructions')}
-            onPress={()=>Alert.alert( I18n.t('instructions'), gameT('instructions', game), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
-          />
-          <Button
-            text={I18n.t('skipGame')}
-            onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {
-              this.props.navigation.state.params.gameOver(-1)}
-            }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
-          />
+        <View style={styles.buttonView}>
+          <View style={styles.playerButtonView}>
+            <Button
+              icon="users"
+              onPress={()=>Alert.alert(
+                I18n.t('teams'),
+                I18n.t('team1')+":\n"+teams[0].join(", ")+"\n\n"+I18n.t('team2')+":\n"+teams[1].join(", "),
+                [ {text: 'OK', onPress: () => {}} ],
+                { cancelable: true }
+              )}
+            />
+          </View>
+          <View style={styles.playerButtonView}>
+            <Button
+              icon="infoCircle"
+              onPress={()=>Alert.alert( I18n.t('instructions'), gameT('instructions', game), [ {text: 'OK', onPress: () => {}} ], { cancelable: true } )}
+            />
+          </View>
+          <View style={styles.playerButtonView}>
+            <Button
+              icon="exchange"
+              onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {
+                this.props.navigation.state.params.gameOver(-1)}
+              }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
+            />
+          </View>
         </View>
       </View>
     );
