@@ -11,6 +11,7 @@ The android app is currently in closed alpha, get in touch if you are interested
 # Changes
 ## Next release
  - Fix skip game bug (#2)
+ - Add icons (fontawesome)
 ## 0.1.2 <2017-04-27>
  - Add games
  - Improve layout (incl color scheme)
