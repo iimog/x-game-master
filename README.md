@@ -8,6 +8,10 @@ The android app is currently in closed alpha, get in touch if you are interested
  - The [included font file](android/app/src/main/assets/font/FontAwesome.otf) from [fontawesome](http://fontawesome.io) 4.7.0 is available under
 [SIL OFL 1.1](http://scripts.sil.org/OFL)
 
+# Data privacy statement (Datenschutzerklärung)
+Please see the [DATA_PRIVACY_STATEMENT file](DATA_PRIVACY_STATEMENT).
+This file has not been checked by a lawyer.
+
 # Changes
 ## 0.1.3 <2017-04-28>
  - Fix skip game bug (#2)
