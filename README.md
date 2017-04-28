@@ -2,6 +2,12 @@
 This is a react native app for the x-party-game
 The android app is currently in closed alpha, get in touch if you are interested to try it.
 
+# License
+ - The source code of this app is available under [MIT License](LICENSE).
+ - Third party libraries are included via yarn (or npm) and have their own licenses.
+ - The [included font file](android/app/src/main/assets/font/FontAwesome.otf) from [fontawesome](http://fontawesome.io) 4.7.0 is available under
+[SIL OFL 1.1](http://scripts.sil.org/OFL)
+
 # Changes
 ## Next release
  - Fix skip game bug (#2)
