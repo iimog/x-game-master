@@ -3,6 +3,8 @@ This is a react native app for the x-party-game
 The android app is currently in closed alpha, get in touch if you are interested to try it.
 
 # Changes
+## Next release
+ - Fix skip game bug (#2)
 ## 0.1.2 <2017-04-27>
  - Add games
  - Improve layout (incl color scheme)
