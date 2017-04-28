@@ -9,7 +9,7 @@ The android app is currently in closed alpha, get in touch if you are interested
 [SIL OFL 1.1](http://scripts.sil.org/OFL)
 
 # Changes
-## Next release
+## 0.1.3 <2017-04-28>
  - Fix skip game bug (#2)
  - Add icons (fontawesome)
  - More preliminary games
