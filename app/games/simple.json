@@ -121,5 +121,136 @@
         "instructions": "Jeder spielt eine Runde Quizoid Classic. Der mit der höheren Punktzahl gewinnt. Teammitglieder dürfen Tipps geben aber entscheiden muss der aktive Spieler."
       }
     }
+  },
+  "iimog/tabu": {
+    "name": "Tabu",
+    "instructions": "Describe a term without using it (or some related ones) faster than your opponent",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "instructions": "Erkläre einen Begriff ohne ihn (oder einige ähnliche) zu verwenden und zwar schneller als dein Gegner"
+      }
+    }
+  },
+  "iimog/paint": {
+    "name": "Drawing",
+    "instructions": "Draw a term and make your team guess it faster than your opponent",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Zeichnen",
+        "instructions": "Zeichne einen Begriff. Dein Team muss ihn schneller erraten als das gegnerische Team ihren Begriff."
+      }
+    }
+  },
+  "iimog/pantomime": {
+    "name": "Pantomime",
+    "instructions": "Explain a term via pantomime to your team. They have to guess it faster than the opposing team guesses their term.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+          "instructions": "Stelle einen Begriff pantomimisch dar. Dein Team muss ihn schneller erraten als das gegnerische Team ihren Begriff."
+      }
+    }
+  },
+  "iimog/sautreiber": {
+    "name": "Säutreiberspiel",
+    "instructions": "TODO. Bis 3000",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
+  },
+  "iimog/kubb": {
+    "name": "Kubb",
+    "instructions": "See: https://en.wikipedia.org/wiki/Kubb",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
+  },
+  "iimog/bad6": {
+    "name": "Böse 6",
+    "instructions": "Bis 50. Regeln: https://www.spielwiki.de/Die_b%C3%B6se_Eins",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
+  },
+  "iimog/sausage": {
+    "name": "Sausage",
+    "instructions": "Each team starts with a 500g sausage. For each round an arbitrary (non negative) slice of the sausage is handed in for weighing. The team who handed in more sausage wins the round but the given slice is out of the game.",
+    "bestOf": 9,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+        "name": "Wurst",
+        "instructions": "Zu Beginn erhält jedes Team eine 500g schwere Wurst. Für jede Runde schneidet ein Spieler aus jedem Team je eine belibig große Scheibe ab. Das Team mit der schwereren Scheibe gewinnt, aber die Scheiben werden aus dem Spiel genommen."
+      }
+    }
+  },
+  "iimog/pushups": {
+    "name": "Push-ups",
+    "instructions": "The one who makes more push-ups wins",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Liegestützen",
+        "instructions": "Derjenige der mehr Liegestützen schafft gewinnt die Runde."
+      }
+    }
+  },
+  "iimog/wall-sitting": {
+    "name": "Wall Sitting",
+    "instructions": "The one who can sit longer at a wall (legs 90°) wins the round.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+        "name": "Wandsitzen",
+        "instructions": "Wer länger an der Wand sitzen kann (Beine 90°) gewinnt die Runde."
+      }
+    }
+  },
+  "iimog/ghosts": {
+    "name": "Ghosts",
+    "instructions": "See: http://www.spieletest.at/gesellschaftsspiel/431/guten-und-die-b%C3%B6sen-Geister,-Die",
+    "bestOf": 3,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Geister"
+      }
+    }
+  },
+  "iimog/snake": {
+    "name": "Snake",
+    "instructions": "Play the classic snake game on a mobile phone. More points = winner.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {}
   }
 }
