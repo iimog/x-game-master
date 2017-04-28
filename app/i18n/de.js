@@ -37,6 +37,10 @@ const de = {
   clubMatch: "Schleifchenturnier",
   gameOver: "Siegerehrung",
   games: "Spiele",
+  showTeams: "Teams anzeigen",
+  nobody: "Keiner",
+  both: "Beide",
+  goingFirst: "Zuerst dran",
 }
 
 export default de

@@ -19,6 +19,7 @@ import defaultGame from '../Game/DefaultGame'
 import type Game from '../Game/DefaultGame'
 import _ from 'lodash'
 import { getRandomGameID } from '../../lib'
+import layout from '../../layouts'
 
 const mapStateToProps = (state) => ({
   matchSettings: state.matchSettings,
@@ -90,9 +91,9 @@ class Score extends Component {
     let matchOver = isMatchOver(standing, matchSettings.numberOfGames, matchSettings.scoreIncreasing)
 
     return (
-      <View style={styles.main}>
-        <ScrollView style={styles.content}>
-          <Text style={styles.title}>
+      <View style={layout.main}>
+        <ScrollView style={layout.content}>
+          <Text style={layout.title}>
             {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {score.length}
           </Text>
           <ScoreBoard

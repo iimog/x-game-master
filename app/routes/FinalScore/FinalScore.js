@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import Button from '../../components/Button';
 import styles from './styles'
 import I18n from '../../i18n'
+import layout from '../../layouts'
 
 type myProps = {
   navigation: {
@@ -53,13 +54,15 @@ class FinalScore extends Component {
     const { navigate } = this.props.navigation
     const winningTeam = score[0] > score[1] ? 0 : 1
     return (
-      <View>
-        <Text style={styles.text}>
-          {I18n.t('winnerIs')}: Team {score[0] > score[1] ? I18n.t('team1') : I18n.t('team2')}!{"\n"}
-          {I18n.t('finalScore')}: {score[0]} - {score[1]}.{"\n"}
-          {I18n.t('congratulations')}: {teams[winningTeam].join(', ')}.{"\n"}
-          {I18n.t('moreLuck')}: {teams[1-winningTeam].join(', ')}
-        </Text>
+      <View style={layout.main}>
+        <ScrollView style={layout.content}>
+          <Text style={styles.text}>
+            {I18n.t('winnerIs')}: Team {score[0] > score[1] ? I18n.t('team1') : I18n.t('team2')}!{"\n"}
+            {I18n.t('finalScore')}: {score[0]} - {score[1]}.{"\n"}
+            {I18n.t('congratulations')}: {teams[winningTeam].join(', ')}.{"\n"}
+            {I18n.t('moreLuck')}: {teams[1-winningTeam].join(', ')}
+          </Text>
+        </ScrollView>
         <Button
           text={I18n.t('backToMain')}
           onPress={() => navigate('Home')}

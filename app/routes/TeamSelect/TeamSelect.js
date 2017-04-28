@@ -14,6 +14,8 @@ import TeamList from '../../components/TeamList';
 import styles from './styles';
 import I18n from '../../i18n'
 import { shuffleTeams } from '../../lib'
+import layout from '../../layouts'
+import globalStyle from '../../config/styles'
 
 const mapStateToProps = (store) => ({players: store.players, teams: store.teams, matchSettings: store.matchSettings})
 
@@ -26,24 +28,26 @@ class TeamSelect extends Component {
     const { navigate } = this.props.navigation;
     const { players, teams } = this.props;
     return (
-      <ScrollView>
-        <TeamList
-          title={I18n.t('team1')}
-          list={teams[0].map(i => players[i])}
-          color="skyblue"
-        />
-        <TeamList
-          title={I18n.t('team2')}
-          list={teams[1].map(i => players[i])}
-          color="red"
-        />
+      <View style={layout.main}>
+        <ScrollView style={layout.content}>
+          <TeamList
+            title={I18n.t('team1')}
+            list={teams[0].map(i => players[i])}
+            color={globalStyle.teamColors[0]}
+          />
+          <TeamList
+            title={I18n.t('team2')}
+            list={teams[1].map(i => players[i])}
+            color={globalStyle.teamColors[1]}
+          />
+        </ScrollView>
         <View style={styles.buttons}>
           <Button onPress={()=>{this.props.dispatch(actionCreators.setTeams(shuffleTeams(teams)))}} text={I18n.t('shuffle')}/>
           <Button onPress={()=>{
               navigate('Score')
           }} text={I18n.t('start')}/>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 };

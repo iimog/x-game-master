@@ -14,6 +14,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import PlayerList from '../../components/PlayerList';
 import I18n from '../../i18n'
+import layout from '../../layouts'
 
 const mapStateToProps = (state) => ({players: state.players, matchSettings: state.matchSettings})
 
@@ -43,15 +44,17 @@ class PlayerSelect extends Component {
     const classic = this.props.matchSettings.playMode === PlayMode.CLASSIC
 
     return (
-      <ScrollView>
-        <Input
-          onSubmitEditing={this.onAddPlayer}
-          placeholder={I18n.t('addPlayers')+'... '+I18n.t('removePlayer')}
-        />
-        <PlayerList
-          list={players}
-          onPressItem={this.onRemovePlayer}
-        />
+      <View style={layout.main}>
+        <ScrollView style={layout.content}>
+          <Input
+            onSubmitEditing={this.onAddPlayer}
+            placeholder={I18n.t('addPlayers')+'... '+I18n.t('removePlayer')}
+          />
+          <PlayerList
+            list={players}
+            onPressItem={this.onRemovePlayer}
+          />
+        </ScrollView>
         <Button
           text={classic ? I18n.t('teamSelect') : I18n.t('start')}
           onPress={()=>{
@@ -62,7 +65,7 @@ class PlayerSelect extends Component {
             }
           }}
         />
-      </ScrollView>
+      </View>
     );
   }
 };

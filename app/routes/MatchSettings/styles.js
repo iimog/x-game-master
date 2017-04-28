@@ -2,17 +2,10 @@
 import { StyleSheet } from 'react-native';
 
 const styles: StyleSheet.Styles = StyleSheet.create({
-  buttonView: {
+  gameSelector: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    alignItems: 'center',
   },
-  multiButtonView: {
-    flex: 1,
-    padding: 5
-  },
-  tieButtonView: {
-    padding: 5,
-  }
 });
 
 export default styles;

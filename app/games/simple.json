@@ -3,6 +3,9 @@
     "name": "Rock–Paper–Scissors",
     "instructions": "Rock–paper–scissors or Scissor-Paper-Rock, is a zero-sum hand game usually played between two people, in which each player simultaneously forms one of three shapes with an outstretched hand. These shapes are 'rock' (✊ a simple fist), 'paper' (✋ a flat hand), and 'scissors' (✌️ a fist with the index and middle fingers together forming a V). The game has only three possible outcomes other than a tie: a player who decides to play rock will beat another player who has chosen scissors ('rock crushes scissors') but will lose to one who has played paper ('paper covers rock'); a play of paper will lose to a play of scissors ('scissors cut paper'). If both players choose the same shape, the game is tied and is immediately replayed to break the tie. - Rock–paper–scissors. (2017, March 10). In Wikipedia, The Free Encyclopedia. Retrieved 15:15, April 3, 2017, from https://en.wikipedia.org/w/index.php?title=Rock%E2%80%93paper%E2%80%93scissors&oldid=769516750",
     "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": false,
     "translations": {
       "de": {
         "name": "Schnick Schnack Schnuck",
@@ -14,6 +17,9 @@
     "name": "Coin Toss",
     "instructions": "Put a cup or a glas on a table 10cm from the edge. Take a small coin (e.g. a penny) into your flat hand. Now hit the edge of the table with your hand such that the penny lands in the glas. Ties are broken immediately by replaying until one player hits and the other does not (a slightly different modus is possible: like Elfmeterschiesen)",
     "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
     "translations": {
       "de": {
         "name": "Münzschnackeln",
@@ -24,6 +30,10 @@
   "iimog/interception": {
     "name": "Interception",
     "instructions": "Somebody throws something and somebody catches something.",
+    "bestOf": 5,
+    "activePlayers": 2,
+    "tiePossible": true,
+    "randomStarter": true,
     "translations": {
       "de": {
         "name": "Mundfangen",
@@ -34,7 +44,10 @@
   "iimog/blobby-volley": {
     "name": "Blobby Volley",
     "instructions": "Play this classic game: http://blobby.sourceforge.net/",
-    "bestOf": 1,
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": true,
     "translations": {
       "de": {
         "instructions": "Spiele diesen Klassiker: http://blobby.sourceforge.net/"
@@ -45,6 +58,9 @@
     "name": "Darts",
     "instructions": "Each round is played by each player throwing three darts the higher sum wins.",
     "bestOf": 9,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": true,
     "translations": {
       "de": {
         "instructions": "Jeder Spieler wirft drei Darts, die höhere Summe gewinnt die Runde."
@@ -55,11 +71,186 @@
     "name": "Beer Pong",
     "instructions": "Place ten empty cups at each end of a long table (in the shape of a triangle). The goal is to throw a ping-pong ball into one of the cups of your opponent. The ball has to be thrown from your end of the table (and has to hit the table once before falling into the cup). This cup is removed and the team wins if the opponent has no more cups.",
     "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
     "translations": {
       "de": {
         "name": "Bier Pong",
         "instructions": "An beiden Enden eines langen Tisches werden je zehn leere Becher aufgestellt (in Form eines Dreiecks). Ziel ist es den Ball von der eigenen Seite aus (mit einmal aufkommen) in einen Becher des Gegners zu befördern. Dieser Becher wird aus dem Spiel genommen. Wer zuerst alle Becher des Gegners getroffen hat gewinnt."
       }
     }
+  },
+  "iimog/penny-football": {
+    "name": "Penny Football",
+    "instructions": "Penny football is a coin game played upon a table top. The aim of the game is for a player to score more goals than their opponent. The object of the game is to flick a coin through the other two coins. This is the way in which players move the ball up the table. If the coin falls off the table or fails to pass through the other two coins, it becomes the opposing player's ball and is placed near his end of the table. A player may continue to flick any of the three coins through the other two until he wishes to shoot. At this point, the opposing player holds out his pinky finger and his index finger and places them flat on the table, so that the middle two knuckles of his hand are flat with the table edge. The first player then shoots in any way he wishes, while still hitting a coin between the other two coins. If the coin touches the opponent's knuckles, this counts as a goal.\n\nSource: Penny football. (2016, October 16). In Wikipedia, The Free Encyclopedia. Retrieved 13:24, April 27, 2017, from https://en.wikipedia.org/w/index.php?title=Penny_football&oldid=744587448",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Münzfußball",
+        "instructions": "Ziel des Spieles ist es, eine Münze in einer bestimmten Art und Weise in die Markierung des gegnerischen Tores zu schießen. Der durch Zufall bestimmte Beginner legt alle drei Münzen vor sein eigenes Tor und muss nun versuchen die mittlere Münze durch die beiden anderen in Richtung des Tores seines Gegners zu spielen. Bei jedem Spielzug muss dabei eine der Münzen durch die gedachte Verbindungslinie der beiden anderen bereits liegenden Münzen geschnippt werden. Es ist jeweils nur ein Versuch gestattet. In Tornähe versucht man dann, in das Tor des Gegners zu treffen. Man darf so lange weiterspielen, bis man entweder (1) eine der anderen Münzen berührt, (2) mit einer beliebigen Münze die Spielfeldbegrenzung überschritten hat, (3) es nicht gelingt, zwischen den beiden liegenden Münzen hindurch zu treffen oder (4) ein Tor erzielt hat. Tritt einer dieser Fälle ein, so ist der Mitspieler am Zug und darf nun seinerseits versuchen, erfolgreich zu sein. Die Runde endet nach dem ersten Treffer. Angepasst von: Seite „Englisch Fußball“. In: Wikipedia, Die freie Enzyklopädie. Bearbeitungsstand: 13. September 2016, 09:20 UTC. URL: https://de.wikipedia.org/w/index.php?title=Englisch_Fu%C3%9Fball&oldid=157888993 (Abgerufen: 27. April 2017, 14:02 UTC)"
+      }
+    }
+  },
+  "iimog/pitcher": {
+    "name": "Hold the pitcher",
+    "instructions": "A player from each team holds a pitcher with the arm stretched sideways (90°). The one who can hold the pitcher longer wins (threshold: 80°) the round.",
+    "bestOf": 3,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+        "name": "Krughalten",
+        "instructions": "Ein Spieler aus jedem Team hält einen vollen Maßkrug mit seitlich ausgestrecktem Arm (90°). Wer ihn länger halten kann (mind. 80°) gewinnt die Runde."
+      }
+    }
+  },
+  "iimog/quizoid": {
+    "name": "Quizoid",
+    "instructions": "Each player plays a round of quizoid classic. The higher score wins the round.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "instructions": "Jeder spielt eine Runde Quizoid Classic. Der mit der höheren Punktzahl gewinnt. Teammitglieder dürfen Tipps geben aber entscheiden muss der aktive Spieler."
+      }
+    }
+  },
+  "iimog/tabu": {
+    "name": "Tabu",
+    "instructions": "Describe a term without using it (or some related ones) faster than your opponent",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "instructions": "Erkläre einen Begriff ohne ihn (oder einige ähnliche) zu verwenden und zwar schneller als dein Gegner"
+      }
+    }
+  },
+  "iimog/paint": {
+    "name": "Drawing",
+    "instructions": "Draw a term and make your team guess it faster than your opponent",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Zeichnen",
+        "instructions": "Zeichne einen Begriff. Dein Team muss ihn schneller erraten als das gegnerische Team ihren Begriff."
+      }
+    }
+  },
+  "iimog/pantomime": {
+    "name": "Pantomime",
+    "instructions": "Explain a term via pantomime to your team. They have to guess it faster than the opposing team guesses their term.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+          "instructions": "Stelle einen Begriff pantomimisch dar. Dein Team muss ihn schneller erraten als das gegnerische Team ihren Begriff."
+      }
+    }
+  },
+  "iimog/sautreiber": {
+    "name": "Säutreiberspiel",
+    "instructions": "TODO. Bis 3000",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
+  },
+  "iimog/kubb": {
+    "name": "Kubb",
+    "instructions": "See: https://en.wikipedia.org/wiki/Kubb",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
+  },
+  "iimog/bad6": {
+    "name": "Böse 6",
+    "instructions": "Bis 50. Regeln: https://www.spielwiki.de/Die_b%C3%B6se_Eins",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
+  },
+  "iimog/sausage": {
+    "name": "Sausage",
+    "instructions": "Each team starts with a 500g sausage. For each round an arbitrary (non negative) slice of the sausage is handed in for weighing. The team who handed in more sausage wins the round but the given slice is out of the game.",
+    "bestOf": 9,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+        "name": "Wurst",
+        "instructions": "Zu Beginn erhält jedes Team eine 500g schwere Wurst. Für jede Runde schneidet ein Spieler aus jedem Team je eine belibig große Scheibe ab. Das Team mit der schwereren Scheibe gewinnt, aber die Scheiben werden aus dem Spiel genommen."
+      }
+    }
+  },
+  "iimog/pushups": {
+    "name": "Push-ups",
+    "instructions": "The one who makes more push-ups wins",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Liegestützen",
+        "instructions": "Derjenige der mehr Liegestützen schafft gewinnt die Runde."
+      }
+    }
+  },
+  "iimog/wall-sitting": {
+    "name": "Wall Sitting",
+    "instructions": "The one who can sit longer at a wall (legs 90°) wins the round.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": false,
+    "randomStarter": false,
+    "translations": {
+      "de": {
+        "name": "Wandsitzen",
+        "instructions": "Wer länger an der Wand sitzen kann (Beine 90°) gewinnt die Runde."
+      }
+    }
+  },
+  "iimog/ghosts": {
+    "name": "Ghosts",
+    "instructions": "See: http://www.spieletest.at/gesellschaftsspiel/431/guten-und-die-b%C3%B6sen-Geister,-Die",
+    "bestOf": 3,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Geister"
+      }
+    }
+  },
+  "iimog/snake": {
+    "name": "Snake",
+    "instructions": "Play the classic snake game on a mobile phone. More points = winner.",
+    "bestOf": 5,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {}
   }
 }

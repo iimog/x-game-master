@@ -37,5 +37,9 @@ const en = {
   clubMatch: "Club Mode",
   gameOver: "Game Over",
   games: "Games",
+  showTeams: "Show Teams",
+  nobody: "Nobody",
+  both: "Both",
+  goingFirst: "Going first",
 }
 export default en

@@ -17,6 +17,8 @@ import Input from '../../components/Input';
 import I18n, { gameT } from '../../i18n'
 import type Game from '../Game/DefaultGame'
 import _ from 'lodash'
+import styles from './styles'
+import layout from '../../layouts'
 
 const mapStateToProps = (state) => ({matchSettings: state.matchSettings, games: state.games})
 
@@ -34,8 +36,7 @@ class MatchSettings extends Component {
   constructor(props){
     super(props)
     const simpleGames = require('../../games/simple.json')
-    const lanGames = require('../../games/lan.json')
-    const allList = {...simpleGames, ...lanGames}
+    const allList = {...simpleGames}
     this.state = {
       numberOfGames: props.matchSettings.numberOfGames,
       eventSwitchIsOn: true,
@@ -55,7 +56,7 @@ class MatchSettings extends Component {
     let gameSwitches = Array()
     for(let gameID of Object.keys(allGames)){
       gameSwitches.push(
-        <View key={gameID} style={{flexDirection: 'row'}}><Switch
+        <View key={gameID} style={styles.gameSelector}><Switch
           value={gameID in games}
           onValueChange={(value)=>{
             let newGames = _.cloneDeep(games)
@@ -71,28 +72,30 @@ class MatchSettings extends Component {
     }
 
     return (
-      <ScrollView>
-        <Text>{I18n.t('numberOfGames')+": "+this.state.numberOfGames}</Text>
-        <Slider
-          maximumValue={20}
-          minimumValue={1}
-          value={this.props.matchSettings.numberOfGames}
-          step={1}
-          onSlidingComplete={(value) => dispatch(actionCreators.setNumberOfGames(value))}
-          onValueChange={(value) => this.setState({numberOfGames: value})}
-        />
-        <Text>{I18n.t('scoreCount')} {matchSettings.scoreIncreasing ? I18n.t('increasing') : I18n.t('constant')}</Text>
-        <Switch
-          onValueChange={(value) => dispatch(actionCreators.setScoreIncreasing(value))}
-          value={matchSettings.scoreIncreasing}
-        />
-        <Text>{I18n.t('games')}</Text>
-        {gameSwitches}
+      <View style={layout.main}>
+        <ScrollView style={layout.content}>
+          <Text>{I18n.t('numberOfGames')+": "+this.state.numberOfGames}</Text>
+          <Slider
+            maximumValue={20}
+            minimumValue={1}
+            value={this.props.matchSettings.numberOfGames}
+            step={1}
+            onSlidingComplete={(value) => dispatch(actionCreators.setNumberOfGames(value))}
+            onValueChange={(value) => this.setState({numberOfGames: value})}
+          />
+          <Text>{I18n.t('scoreCount')} {matchSettings.scoreIncreasing ? I18n.t('increasing') : I18n.t('constant')}</Text>
+          <Switch
+            onValueChange={(value) => dispatch(actionCreators.setScoreIncreasing(value))}
+            value={matchSettings.scoreIncreasing}
+          />
+          <Text>{I18n.t('games')}</Text>
+          {gameSwitches}
+        </ScrollView>
         <Button
           text={I18n.t('playerSelect')}
           onPress={()=>{navigate('PlayerSelect')}}
         />
-      </ScrollView>
+      </View>
     );
   }
 };
