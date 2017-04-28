@@ -175,7 +175,7 @@ class GameScreen extends Component {
           <Button
             text={I18n.t('skipGame')}
             onPress={()=>Alert.alert( I18n.t('skipGame'), I18n.t('skipGameDialog'), [ {text: I18n.t('yes'), onPress: () => {
-              this.props.gameOver(-1)}
+              this.props.navigation.state.params.gameOver(-1)}
             }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
           />
         </View>
