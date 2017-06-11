@@ -45,7 +45,6 @@ class MatchSettings extends Component {
 
   componentWillMount(){
     this.props.dispatch(actionCreators.resetMatch())
-    this.props.dispatch(actionCreators.setGames(this.state.allGames))
   }
 
   render() {
