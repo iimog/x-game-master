@@ -20,7 +20,7 @@ import _ from 'lodash'
 import styles from './styles'
 import layout from '../../layouts'
 
-const mapStateToProps = (state) => ({matchSettings: state.matchSettings, games: state.games})
+const mapStateToProps = (state) => ({matchSettings: state.matchSettings, games: state.games, collection: state.collection})
 
 class MatchSettings extends Component {
   static navigationOptions = {
@@ -35,8 +35,7 @@ class MatchSettings extends Component {
 
   constructor(props){
     super(props)
-    const simpleGames = require('../../games/simple.json')
-    const allList = {...simpleGames}
+    const allList = {...props.collection}
     this.state = {
       numberOfGames: props.matchSettings.numberOfGames,
       eventSwitchIsOn: true,

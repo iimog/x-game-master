@@ -52,8 +52,10 @@ export const PlayMode = {
   CLUB: "CLUB",
 }
 
+const simpleGames = require('../games/simple.json')
 // Initial state of the store
 const initialState = {
+  collection: simpleGames,
   players: ['Hannah', 'Markus', 'Tobi', 'Lo', 'Moritz'],
   teams: [[0,1,2],[3,4]],
   games: {},
