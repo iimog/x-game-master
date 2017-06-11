@@ -252,5 +252,14 @@
     "tiePossible": true,
     "randomStarter": true,
     "translations": {}
+  },
+  "iimog/moelkky": {
+    "name": "Mölkky",
+    "instructions": "The players use a wooden pin (also called 'mölkky') to try to knock over wooden pins of almost similar dimensions with the throwing pin, which are marked with numbers from 1 to 12. The pins are initially placed in a tight group in an upright position 3–4 metres away from the throwing place, with the pins organized as follows: 1st row, 1/2; 2nd row, 3/10/4; 3rd row, 5/11/12/6; 4th row, 7/9/8. Knocking over one pin scores the amount of points marked on the pin. Knocking 2 or more pins scores the number of pins knocked over (e.g., knocking over 3 pins scores 3 points). A pin does not count if it is leaning on the mölkky or one of the numbered pins (it must be parallel to the ground to count). After each throw, the pins are stood up again in the exact location where they landed. The first one to reach exactly 50 points wins the game. Scoring more than 50 will be penalised by setting the player's score back to 25 points. A player will be eliminated from the game if they miss all of the target pins three times in a row. - Mölkky. (2017, May 25). In Wikipedia, The Free Encyclopedia. Retrieved 11:21, June 11, 2017, from https://en.wikipedia.org/w/index.php?title=M%C3%B6lkky&oldid=782131094",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
   }
 }
