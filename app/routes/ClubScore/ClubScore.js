@@ -8,6 +8,7 @@ import {
   Image,
   Alert,
   BackHandler,
+  StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux'
 import { actionCreators } from '../../redux'
@@ -91,13 +92,13 @@ class ClubScore extends Component {
           backgroundColor = ['#238b45','#66c2a4','#b2e2e2'][rank-1];
         }
         return (
-          <View key={elem.name} style={{flexDirection: 'row', backgroundColor: backgroundColor}}>
-            <Text style={{width: 30, fontSize: 20}}>{rank}.</Text>
-            <Text style={{flex: 1, fontSize: 20}}>
+          <View key={elem.name} style={StyleSheet.flatten([styles.board, {backgroundColor: backgroundColor}])}>
+            <Text style={styles.rankText}>{rank}.</Text>
+            <Text style={styles.nameText}>
               {elem.name+" "}
               {rank === 1 ? <FontAwesome>{Icons['trophy']}</FontAwesome> : ''}
             </Text>
-            <Text style={{fontSize: 20}}>{elem.score}</Text>
+            <Text style={styles.scoreText}>{elem.score}</Text>
           </View>
         )
       }
