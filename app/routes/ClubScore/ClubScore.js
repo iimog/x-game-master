@@ -21,6 +21,7 @@ import type Game from '../Game/DefaultGame'
 import { shuffleTeams, getRandomGameID } from '../../lib/'
 import _ from 'lodash'
 import layout from '../../layouts'
+import FontAwesome, { Icons } from 'react-native-fontawesome'
 
 const mapStateToProps = (state) => ({
   matchSettings: state.matchSettings,
@@ -92,7 +93,10 @@ class ClubScore extends Component {
         return (
           <View key={elem.name} style={{flexDirection: 'row', backgroundColor: backgroundColor}}>
             <Text style={{width: 30, fontSize: 20}}>{rank}.</Text>
-            <Text style={{flex: 1, fontSize: 20}}>{elem.name}</Text>
+            <Text style={{flex: 1, fontSize: 20}}>
+              {elem.name+" "}
+              {rank === 1 ? <FontAwesome>{Icons['trophy']}</FontAwesome> : ''}
+            </Text>
             <Text style={{fontSize: 20}}>{elem.score}</Text>
           </View>
         )
