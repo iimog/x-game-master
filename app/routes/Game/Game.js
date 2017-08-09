@@ -6,7 +6,8 @@ import {
   View,
   ScrollView,
   Image,
-  Alert
+  Alert,
+  BackHandler,
 } from 'react-native';
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
@@ -84,6 +85,12 @@ class GameScreen extends Component {
       standing: [0,0],
       goingFirst: goingFirst,
     }
+  }
+
+  componentWillMount(){
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
   }
 
   handleScore(teamIndex: number){
