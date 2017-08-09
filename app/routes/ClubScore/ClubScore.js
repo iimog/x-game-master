@@ -77,10 +77,24 @@ class ClubScore extends Component {
     let matchOver = playerWin.length >= matchSettings.numberOfGames
     let playerScores = this.props.players.map(
       (name, index) => ({name: name, score: standing[index]})
-    ).sort((a,b) => b.score-a.score).map(
-      (elem) => {
+    ).sort((a,b) => b.score-a.score)
+    let highestRank = 0;
+    playerScores = playerScores.map(
+      (elem, index) => {
+        rank = highestRank;
+        if(index < 1 || elem.score !== playerScores[index-1].score){
+          rank = highestRank = index + 1;
+        }
+        let backgroundColor = 'transparent';
+        if(rank <= 3){
+          backgroundColor = ['#238b45','#66c2a4','#b2e2e2'][rank-1];
+        }
         return (
-          <Text key={elem.name}>{elem.name}: {elem.score}</Text>
+          <View key={elem.name} style={{flexDirection: 'row', backgroundColor: backgroundColor}}>
+            <Text style={{width: 30, fontSize: 20}}>{rank}.</Text>
+            <Text style={{flex: 1, fontSize: 20}}>{elem.name}</Text>
+            <Text style={{fontSize: 20}}>{elem.score}</Text>
+          </View>
         )
       }
     )
