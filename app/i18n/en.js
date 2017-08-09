@@ -41,5 +41,7 @@ const en = {
   nobody: "Nobody",
   both: "Both",
   goingFirst: "Going first",
+  endMatch: "End Match",
+  endMatchDialog: "Are you sure that you want to end the match early?",
 }
 export default en

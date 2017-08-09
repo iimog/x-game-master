@@ -41,6 +41,8 @@ const de = {
   nobody: "Keiner",
   both: "Beide",
   goingFirst: "Zuerst dran",
+  endMatch: "Match vorzeitig beenden",
+  endMatchDialog: "Bist du sicher, dass du das Match vorzeitig beenden willst?",
 }
 
 export default de

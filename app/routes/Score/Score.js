@@ -94,6 +94,12 @@ class Score extends Component {
     return (
       <View style={layout.main}>
         <ScrollView style={layout.content}>
+          <Button
+            icon="times"
+            onPress={()=>Alert.alert( I18n.t('endMatch'), I18n.t('endMatchDialog'), [ {text: I18n.t('yes'), onPress: () => {
+              navigate('FinalScore', {score: standing})}
+            }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
+          />
           <Text style={layout.title}>
             {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {score.length}
           </Text>
