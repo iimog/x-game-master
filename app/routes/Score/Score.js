@@ -6,7 +6,8 @@ import {
   View,
   ScrollView,
   Image,
-  Alert
+  Alert,
+  BackHandler,
 } from 'react-native';
 import { connect } from 'react-redux'
 import { actionCreators } from '../../redux'
@@ -130,6 +131,12 @@ class Score extends Component {
         </View>
       </View>
     );
+  }
+
+  componentWillMount(){
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
   }
 };
 

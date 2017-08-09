@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Image
+  Image,
 } from 'react-native';
 import Button from '../../components/Button';
 import images from '../../config/images';
