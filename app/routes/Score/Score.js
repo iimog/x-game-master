@@ -70,7 +70,7 @@ function isMatchOver(standing: [number, number], numberOfGames:number, scoreIncr
 
 class Score extends Component {
   static navigationOptions = {
-    header: {visible: false},
+    header: null,
   };
   props: myProps;
   state: {

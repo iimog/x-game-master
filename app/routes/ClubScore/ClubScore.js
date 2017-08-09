@@ -59,7 +59,7 @@ function getStanding(score: Array<Array<number>>, numberOfPlayers: number, score
 
 class ClubScore extends Component {
   static navigationOptions = {
-    header: {visible: false},
+    header: null,
   };
   props: myProps;
   state: {

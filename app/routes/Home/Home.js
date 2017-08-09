@@ -17,7 +17,7 @@ const mapStateToProps = (state) => ({})
 
 class Home extends Component {
   static navigationOptions = {
-    header: {visible: false},
+    header: null,
   };
   render() {
     const { navigate } = this.props.navigation;

@@ -64,7 +64,7 @@ class GameScreen extends Component {
     goingFirst: number,
   }
   static navigationOptions = {
-    header: {visible: false},
+    header: null
   };
 
   drawRandomTeam1: DrawRandomNoRepetitions

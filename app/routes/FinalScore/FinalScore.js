@@ -31,7 +31,7 @@ const mapStateToProps = (store) => ({players: store.players, teams: store.teams}
 
 class FinalScore extends Component {
   static navigationOptions = {
-    header: {visible: false},
+    header: null,
   };
   props: myProps;
   state: {
