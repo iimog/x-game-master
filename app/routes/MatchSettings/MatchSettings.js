@@ -9,9 +9,10 @@ import {
   Alert,
   Slider,
   Switch,
+  Picker,
 } from 'react-native';
 import { connect } from 'react-redux'
-import { actionCreators } from '../../redux'
+import { actionCreators, PlayMode } from '../../redux'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import I18n, { gameT } from '../../i18n'
@@ -72,6 +73,12 @@ class MatchSettings extends Component {
     return (
       <View style={layout.main}>
         <ScrollView style={layout.content}>
+          <Picker
+            selectedValue={this.props.matchSettings.playMode}
+            onValueChange={(itemValue, itemIndex) => dispatch(actionCreators.setPlayMode(itemValue))}>
+            <Picker.Item label={I18n.t('classicMatch')} value={PlayMode.CLASSIC} />
+            <Picker.Item label={I18n.t('clubMatch')} value={PlayMode.CLUB} />
+          </Picker>
           <Text>{I18n.t('numberOfGames')+": "+this.state.numberOfGames}</Text>
           <Slider
             maximumValue={20}

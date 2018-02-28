@@ -25,14 +25,10 @@ class Home extends Component {
       <View style={styles.container}>
         <Image source={images.logo} style={styles.logo}/>
         <View style={styles.buttons}>
-          <Button text={I18n.t('classicMatch')} onPress={() => {
-            this.props.dispatch(actionCreators.setPlayMode(PlayMode.CLASSIC))
+          <Button text={I18n.t('newGame')} onPress={() => {
             navigate("MatchSettings")
           }}></Button>
-          <Button text={I18n.t('clubMatch')} onPress={() => {
-            this.props.dispatch(actionCreators.setPlayMode(PlayMode.CLUB))
-            navigate("MatchSettings")
-          }}></Button>
+          <Button text={I18n.t('settings')}></Button>
         </View>
       </View>
     );
