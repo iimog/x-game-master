@@ -16,7 +16,7 @@
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
-    "redux-persist": "^4.8.0"
+    "redux-persist": "^5.9.1"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

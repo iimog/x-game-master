@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 import { createStore, compose } from 'redux'
 import { Provider } from 'react-redux'
-import { persistStore, autoRehydrate } from 'redux-persist'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
+import { PersistGate } from 'redux-persist/integration/react'
 import { reducer } from './redux'
 import { StackNavigator } from 'react-navigation';
 import Home from './routes/Home';
@@ -31,19 +33,26 @@ const AppNavigator = StackNavigator({
   FinalScore: { screen: FinalScore },
   MatchSettings: { screen: MatchSettings },
   ClubScore: { screen: ClubScore },
+  AddGame: {screen: AddGame},
 });
 
-const store = compose(autoRehydrate())(createStore)(reducer)
 
-persistStore(store, {storage: AsyncStorage}, () => {
-  console.log(store.getState())
-})
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+let store = createStore(persistedReducer)
+let persistor = persistStore(store)
 
 class xMobile extends Component{
   render(){
     return(
       <Provider store={store}>
-        <AppNavigator />
+        <PersistGate loading={null} persistor={persistor}>
+          <AppNavigator />
+        </PersistGate>
       </Provider>
     )
   }
