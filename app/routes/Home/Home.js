@@ -12,10 +12,15 @@ import styles from './styles'
 import I18n from '../../i18n'
 import { connect } from 'react-redux'
 import { actionCreators, PlayMode } from '../../redux'
+import { isMatchOver } from '../../lib'
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({playedGames: state.playedGames})
 
 class Home extends Component {
+  constructor(props){
+    super(props)
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -29,6 +34,15 @@ class Home extends Component {
             navigate("MatchSettings")
           }}></Button>
           <Button text={I18n.t('settings')}></Button>
+          <Button
+            text={I18n.t('addGame')}
+            onPress={()=>navigate("AddGame")}
+          ></Button>
+          <Button
+            text={this.props.playedGames.length > 0 ? I18n.t('continueGame') : 'No game to continue'}
+            disabled={true /*does not work - our Button component uses TouchableHighlight*/}
+            onPress={() => console.log(this.props.playedGames.length)}
+          ></Button>
         </View>
       </View>
     );

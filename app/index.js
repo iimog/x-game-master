@@ -23,6 +23,8 @@ import Score from './routes/Score';
 import FinalScore from './routes/FinalScore';
 import MatchSettings from './routes/MatchSettings'
 import ClubScore from './routes/ClubScore'
+import AddGame from './routes/AddGame'
+
 
 const AppNavigator = StackNavigator({
   Home: { screen: Home },

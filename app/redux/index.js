@@ -14,6 +14,7 @@ export const types = {
   SET_GAMES: 'SET_GAMES',
   ADD_RESULT: 'ADD_RESULT',
   RESET_MATCH: 'RESET_MATCH',
+  ADD_GAME: 'ADD_GAME',
 }
 
 // Helper functions to dispatch actions, optionally with payloads
@@ -45,6 +46,9 @@ export const actionCreators = {
   resetMatch: () => {
     return {type: types.RESET_MATCH, payload: null}
   },
+  addGame: (gameID: string, newGame: Object) => {
+    return {type: types.ADD_GAME, payload: {id: gameID, game: newGame}}
+  }
 }
 
 export const PlayMode = {
@@ -186,6 +190,11 @@ export const reducer = (state: typeof initialState = initialState, action: {type
         teamWin: [],
         playerWin: [],
       }
+    }
+    case types.ADD_GAME: {
+      let newState = {...state}
+      newState.collection[payload.id] = payload.game
+      return newState
     }
   }
 
