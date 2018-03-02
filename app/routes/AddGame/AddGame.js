@@ -9,6 +9,7 @@ import {
   Switch,
   Alert,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation'
 import Button from '../../components/Button';
 import styles from './styles'
 import I18n from '../../i18n'
@@ -36,7 +37,7 @@ class AddGame extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const backAction = NavigationActions.back();
     return (
       <View style={layout.container}>
         <TextInput
@@ -96,7 +97,7 @@ class AddGame extends Component {
                 randomStarter: this.state.randomStarter
               }
               this.props.dispatch(actionCreators.addGame(gameID, newGame))
-              this.props.navigation.navigate('Home')
+              this.props.navigation.dispatch(backAction)
             }else{
               Alert.alert( 'Error', "Du hast etwas vergessen! Finde den Fehler.", [ {text: 'Mach ich', onPress: () => {}} ], { cancelable: true } );
             }
