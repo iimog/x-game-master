@@ -74,6 +74,8 @@ class GameScreen extends Component {
   constructor(props: props) {
     super(props)
     const {teams, gameNumber, game} = props.navigation.state.params;
+    // make sure that gameOver can only be called once
+    this.gameOver = _.once(this.props.navigation.state.params.gameOver);
     this.drawRandomTeam1 = new DrawRandomNoRepetitions(I18n.t('team1'), teams[0])
     this.drawRandomTeam2 = new DrawRandomNoRepetitions(I18n.t('team2'), teams[1])
     let goingFirst = Math.floor(Math.random()*2)
@@ -102,7 +104,7 @@ class GameScreen extends Component {
     if(teamIndex >= 0){
       st[teamIndex]++
       if(st[teamIndex]>(this.state.game.bestOf/2) && st[teamIndex]>st[1-teamIndex]){
-        this.props.navigation.state.params.gameOver(teamIndex)
+        this.gameOver(teamIndex)
       }
     }
     this.setState({
