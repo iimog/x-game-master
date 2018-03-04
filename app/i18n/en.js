@@ -6,6 +6,7 @@ const en = {
   tiePossible: "Allow tie",
   randomStarter: "Random starter",
   continueGame: "Continue Game",
+  noContinueGame: "No game to continue",
   settings: "Settings",
   addPlayers: "Add players",
   activePlayers: "Active players",
@@ -48,6 +49,6 @@ const en = {
   both: "Both",
   goingFirst: "Going first",
   endMatch: "End Match",
-  endMatchDialog: "Are you sure that you want to end the match early?",
+  endMatchDialog: "Are you sure that you want to end the match early? If you press no you can continue this game later.",
 }
 export default en

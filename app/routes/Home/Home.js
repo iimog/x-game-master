@@ -33,13 +33,12 @@ class Home extends Component {
           <Button text={I18n.t('newGame')} onPress={() => {
             navigate("MatchSettings")
           }}></Button>
-          <Button text={I18n.t('settings')}></Button>
           <Button
             text={I18n.t('addGame')}
             onPress={()=>navigate("AddGame")}
           ></Button>
           <Button
-            text={this.props.playedGames.length > 0 ? I18n.t('continueGame') : 'No game to continue'}
+            text={this.props.playedGames.length > 0 ? I18n.t('continueGame') : I18n.t('noContinueGame')}
             disabled={true /*does not work - our Button component uses TouchableHighlight*/}
             onPress={() => console.log(this.props.playedGames.length)}
           ></Button>

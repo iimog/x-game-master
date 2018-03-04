@@ -6,6 +6,7 @@ const de = {
   tiePossible: "Unentschieden möglich",
   randomStarter: "Startspieler auslosen",
   continueGame: "Spiel fortsetzen",
+  noContinueGame: "Kein laufendes Spiel",
   settings: "Einstellungen",
   addPlayers: "Spieler hinzufügen",
   activePlayers: "Aktive Spieler",
@@ -48,7 +49,7 @@ const de = {
   both: "Beide",
   goingFirst: "Zuerst dran",
   endMatch: "Match vorzeitig beenden",
-  endMatchDialog: "Bist du sicher, dass du das Match vorzeitig beenden willst?",
+  endMatchDialog: "Bist du sicher, dass du das Match vorzeitig beenden willst? Falls nein kannst du das Spiel später fortsetzen.",
 }
 
 export default de
