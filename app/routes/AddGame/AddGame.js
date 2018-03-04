@@ -49,8 +49,8 @@ class AddGame extends Component {
           multiline={true}
           numberOfLines={5}
           placeholder={I18n.t('gameDesc')}
-          text={this.state.description}
-          onChangeText={(text) => this.setState({description: text})}
+          text={this.state.instructions}
+          onChangeText={(text) => this.setState({instructions: text})}
         />
         <Text>{I18n.t('bestOf') + ": " + this.state.bestOf}</Text>
         <Slider
