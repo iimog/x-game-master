@@ -110,8 +110,8 @@ class ClubScore extends Component {
           <Button
             icon="times"
             onPress={()=>Alert.alert( I18n.t('endMatch'), I18n.t('endMatchDialog'), [ {text: I18n.t('yes'), onPress: () => {
-              navigate('Home')}
-            }, {text: I18n.t('no'), onPress: () => {}} ], { cancelable: true } )}
+              this.props.dispatch(actionCreators.resetMatch()); navigate('Home')}
+            }, {text: I18n.t('no'), onPress: () => {navigate('Home')}} ], { cancelable: true } )}
           />
           <Text style={layout.title}>
             {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {playerWin.length}
@@ -123,6 +123,7 @@ class ClubScore extends Component {
             text={matchOver ? I18n.t('backToMain') : I18n.t('nextGame')}
             onPress={() => {
               if(matchOver){
+                this.props.dispatch(actionCreators.resetMatch())
                 navigate('Home')
               } else {
                 const {teams, players, games, playedGames} = this.props

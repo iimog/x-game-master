@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import { actionCreators, PlayMode } from '../../redux'
 import { isMatchOver } from '../../lib'
 
-const mapStateToProps = (state) => ({playedGames: state.playedGames})
+const mapStateToProps = (state) => ({playedGames: state.playedGames, matchSettings: state.matchSettings})
 
 class Home extends Component {
   constructor(props){
@@ -40,7 +40,15 @@ class Home extends Component {
           <Button
             text={this.props.playedGames.length > 0 ? I18n.t('continueGame') : I18n.t('noContinueGame')}
             disabled={true /*does not work - our Button component uses TouchableHighlight*/}
-            onPress={() => console.log(this.props.playedGames.length)}
+            onPress={() => {
+              if(this.props.playedGames.length > 0){
+                if(this.props.matchSettings.playMode === PlayMode.CLUB){
+                  navigate("ClubScore")
+                } else if (this.props.matchSettings.playMode === PlayMode.CLASSIC){
+                  navigate("Score")
+                }
+              }
+            }}
           ></Button>
         </View>
       </View>

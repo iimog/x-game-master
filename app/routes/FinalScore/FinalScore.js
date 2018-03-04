@@ -13,6 +13,7 @@ import Button from '../../components/Button';
 import styles from './styles'
 import I18n from '../../i18n'
 import layout from '../../layouts'
+import { actionCreators } from '../../redux'
 
 type myProps = {
   navigation: {
@@ -65,7 +66,10 @@ class FinalScore extends Component {
         </ScrollView>
         <Button
           text={I18n.t('backToMain')}
-          onPress={() => navigate('Home')}
+          onPress={() => {
+            this.props.dispatch(actionCreators.resetMatch())
+            navigate('Home')
+          }}
         />
       </View>
     )

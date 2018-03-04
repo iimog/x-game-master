@@ -41,10 +41,6 @@ class MatchSettings extends Component {
     }
   }
 
-  componentDidMount(){
-    this.props.dispatch(actionCreators.resetMatch())
-  }
-
   render() {
     const { matchSettings, dispatch, games } = this.props
     const { navigate } = this.props.navigation
@@ -99,7 +95,10 @@ class MatchSettings extends Component {
         </ScrollView>
         <Button
           text={I18n.t('playerSelect')}
-          onPress={()=>{navigate('PlayerSelect')}}
+          onPress={()=>{
+            this.props.dispatch(actionCreators.resetMatch())
+            navigate('PlayerSelect')
+          }}
         />
       </View>
     );
