@@ -13,6 +13,10 @@ Please see the [DATA_PRIVACY_STATEMENT file](DATA_PRIVACY_STATEMENT).
 This file has not been checked by a lawyer.
 
 # Changes
+## 0.2.0 <2018-03-04>
+ - Add capability to add custom games
+ - Add button to continue a running game (#6)
+ - Fix double win bug (#3)
 ## 0.1.4 <2017-08-10>
  - Improve design of score in club mode
  - Disable back button during a match
