@@ -6,7 +6,9 @@ import {
   View,
   ScrollView,
   Image,
-  Alert
+  Alert,
+  BackHandler,
+  StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux'
 import { actionCreators } from '../../redux'
@@ -20,6 +22,7 @@ import type Game from '../Game/DefaultGame'
 import { shuffleTeams, getRandomGameID } from '../../lib/'
 import _ from 'lodash'
 import layout from '../../layouts'
+import FontAwesome, { Icons } from 'react-native-fontawesome'
 
 const mapStateToProps = (state) => ({
   matchSettings: state.matchSettings,
@@ -59,7 +62,7 @@ function getStanding(score: Array<Array<number>>, numberOfPlayers: number, score
 
 class ClubScore extends Component {
   static navigationOptions = {
-    header: {visible: false},
+    header: null,
   };
   props: myProps;
   state: {
@@ -76,10 +79,27 @@ class ClubScore extends Component {
     let matchOver = playerWin.length >= matchSettings.numberOfGames
     let playerScores = this.props.players.map(
       (name, index) => ({name: name, score: standing[index]})
-    ).sort((a,b) => b.score-a.score).map(
-      (elem) => {
+    ).sort((a,b) => b.score-a.score)
+    let highestRank = 0;
+    playerScores = playerScores.map(
+      (elem, index) => {
+        rank = highestRank;
+        if(index < 1 || elem.score !== playerScores[index-1].score){
+          rank = highestRank = index + 1;
+        }
+        let backgroundColor = 'transparent';
+        if(rank <= 3){
+          backgroundColor = ['#238b45','#66c2a4','#b2e2e2'][rank-1];
+        }
         return (
-          <Text key={elem.name}>{elem.name}: {elem.score}</Text>
+          <View key={elem.name} style={StyleSheet.flatten([styles.board, {backgroundColor: backgroundColor}])}>
+            <Text style={styles.rankText}>{rank}.</Text>
+            <Text style={styles.nameText}>
+              {elem.name+" "}
+              {rank === 1 ? <FontAwesome>{Icons['trophy']}</FontAwesome> : ''}
+            </Text>
+            <Text style={styles.scoreText}>{elem.score}</Text>
+          </View>
         )
       }
     )
@@ -87,6 +107,12 @@ class ClubScore extends Component {
     return (
       <View style={layout.main}>
         <ScrollView style={layout.content}>
+          <Button
+            icon="times"
+            onPress={()=>Alert.alert( I18n.t('endMatch'), I18n.t('endMatchDialog'), [ {text: I18n.t('yes'), onPress: () => {
+              this.props.dispatch(actionCreators.resetMatch()); navigate('Home')}
+            }, {text: I18n.t('no'), onPress: () => {navigate('Home')}} ], { cancelable: true } )}
+          />
           <Text style={layout.title}>
             {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {playerWin.length}
           </Text>
@@ -97,6 +123,7 @@ class ClubScore extends Component {
             text={matchOver ? I18n.t('backToMain') : I18n.t('nextGame')}
             onPress={() => {
               if(matchOver){
+                this.props.dispatch(actionCreators.resetMatch())
                 navigate('Home')
               } else {
                 const {teams, players, games, playedGames} = this.props
@@ -119,6 +146,12 @@ class ClubScore extends Component {
         </View>
       </View>
     );
+  }
+
+  componentDidMount(){
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
   }
 };
 

@@ -1,8 +1,15 @@
 const en = {
   newGame: "New Game",
+  addGame: "Add Game",
+  gameName: "Name of the game",
+  gameDesc: "Game description",
+  tiePossible: "Allow tie",
+  randomStarter: "Random starter",
   continueGame: "Continue Game",
+  noContinueGame: "No game to continue",
   settings: "Settings",
   addPlayers: "Add players",
+  activePlayers: "Active players",
   removePlayer: "Remove by tapping on them",
   teamSelect: "Select Teams",
   playerSelect: "Set Players",
@@ -41,5 +48,7 @@ const en = {
   nobody: "Nobody",
   both: "Both",
   goingFirst: "Going first",
+  endMatch: "End Match",
+  endMatchDialog: "Are you sure that you want to end the match early? If you press no you can continue this game later.",
 }
 export default en

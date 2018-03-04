@@ -13,6 +13,7 @@ import Button from '../../components/Button';
 import styles from './styles'
 import I18n from '../../i18n'
 import layout from '../../layouts'
+import { actionCreators } from '../../redux'
 
 type myProps = {
   navigation: {
@@ -31,7 +32,7 @@ const mapStateToProps = (store) => ({players: store.players, teams: store.teams}
 
 class FinalScore extends Component {
   static navigationOptions = {
-    header: {visible: false},
+    header: null,
   };
   props: myProps;
   state: {
@@ -65,7 +66,10 @@ class FinalScore extends Component {
         </ScrollView>
         <Button
           text={I18n.t('backToMain')}
-          onPress={() => navigate('Home')}
+          onPress={() => {
+            this.props.dispatch(actionCreators.resetMatch())
+            navigate('Home')
+          }}
         />
       </View>
     )

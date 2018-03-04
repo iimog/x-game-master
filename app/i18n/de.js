@@ -1,8 +1,15 @@
 const de = {
   newGame: "Neues Spiel",
+  addGame: "Spiel hinzufügen",
+  gameName: "Name des Spiels",
+  gameDesc: "Spielbeschreibung",
+  tiePossible: "Unentschieden möglich",
+  randomStarter: "Startspieler auslosen",
   continueGame: "Spiel fortsetzen",
+  noContinueGame: "Kein laufendes Spiel",
   settings: "Einstellungen",
   addPlayers: "Spieler hinzufügen",
+  activePlayers: "Aktive Spieler",
   removePlayer: "Entfernen durch antippen",
   teamSelect: "Teams wählen",
   playerSelect: "Spieler wählen",
@@ -41,6 +48,8 @@ const de = {
   nobody: "Keiner",
   both: "Beide",
   goingFirst: "Zuerst dran",
+  endMatch: "Match vorzeitig beenden",
+  endMatchDialog: "Bist du sicher, dass du das Match vorzeitig beenden willst? Falls nein kannst du das Spiel später fortsetzen.",
 }
 
 export default de

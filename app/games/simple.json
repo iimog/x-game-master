@@ -252,5 +252,140 @@
     "tiePossible": true,
     "randomStarter": true,
     "translations": {}
+  },
+  "iimog/moelkky": {
+    "name": "Mölkky",
+    "instructions": "The players use a wooden pin (also called 'mölkky') to try to knock over wooden pins of almost similar dimensions with the throwing pin, which are marked with numbers from 1 to 12. The pins are initially placed in a tight group in an upright position 3–4 metres away from the throwing place, with the pins organized as follows: 1st row, 1/2; 2nd row, 3/10/4; 3rd row, 5/11/12/6; 4th row, 7/9/8. Knocking over one pin scores the amount of points marked on the pin. Knocking 2 or more pins scores the number of pins knocked over (e.g., knocking over 3 pins scores 3 points). A pin does not count if it is leaning on the mölkky or one of the numbered pins (it must be parallel to the ground to count). After each throw, the pins are stood up again in the exact location where they landed. The first one to reach exactly 50 points wins the game. Scoring more than 50 will be penalised by setting the player's score back to 25 points. A player will be eliminated from the game if they miss all of the target pins three times in a row. - Mölkky. (2017, May 25). In Wikipedia, The Free Encyclopedia. Retrieved 11:21, June 11, 2017, from https://en.wikipedia.org/w/index.php?title=M%C3%B6lkky&oldid=782131094",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {}
+  },
+  "iimog/disc-golf": {
+    "name": "Disc Golf",
+    "instructions": "Throw the disc into the target area with as little attempts as possible. The next throw is from the position where the disc lands.",
+    "bestOf": 3,
+    "activePlayers": 0,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Disc Golf",
+        "instructions": "Die Frisbee muss vom Start mit so wenig Würfen wie möglich ins Ziel (Hulahup Ring) gebracht werden. Es wird jeweils von dort weiter geworfen wo die Disc gelandet ist. Das Team mit weniger Versuchen gewinnt. Es können mehrere Bahnen gespielt werden."
+      }
+    }
+  },
+  "iimog/disc-throw": {
+    "name": "Frisbee",
+    "instructions": "Two players have to throw the disc to eachother as often as possible. The distance is increased for each successful attempt. The two players stand on chairs so that they can not move. If they leave the chair or the disc hits the ground the distance is fixed. The pair with the widest distance wins the round. Ties are broken by continuing until one team makes the distance and the other does'nt",
+    "bestOf": 9,
+    "activePlayers": 2,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Frisbee",
+        "instructions": "Zwei Spieler werfen eine Frisbee hin und her während sie auf Stühlen stehen. Nach jedem erfolgreichen Wurf werden die Stühle einen Schritt auseinander gestellt. Verlässt ein Spieler den Stuhl oder wird eine Frisbee nicht gefangen wird die Weite gemerkt. Das Paar mit der weitesten Entfernung gewinnt die Runde. Bei Unentschieden wird im k.o. System weiter geworfen."
+      }
+    }
+  },
+  "iimog/coconut-shy": {
+    "name": "Coconut Shy",
+    "instructions": "You know the rules",
+    "bestOf": 9,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Dosenwerfen",
+        "instructions": "Zwei Würfe pro Team (je ein Spieler). Start auf die Vollen. Wer mehr abräumt gewinnt die Runde."
+      }
+    }
+  },
+  "iimog/cornhole": {
+    "name": "Cornhole",
+    "instructions": "Throw a sack with corn into the hole.",
+    "bestOf": 1,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Cornhole",
+        "instructions": "Wirf die Säckchen mit Mais ins Loch."
+      }
+    }
+  },
+  "iimog/football": {
+    "name": "Football",
+    "instructions": "Two players have to throw the football to eachother as often as possible. The distance is increased for each successful attempt. The two players stand on chairs so that they can not move. If they leave the chair or the disc hits the ground the distance is fixed. The pair with the widest distance wins the round. Ties are broken by continuing until one team makes the distance and the other does'nt",
+    "bestOf": 9,
+    "activePlayers": 2,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Football",
+        "instructions": "Zwei Spieler werfen einen Football hin und her während sie auf Stühlen stehen. Nach jedem erfolgreichen Wurf werden die Stühle einen Schritt auseinander gestellt. Verlässt ein Spieler den Stuhl oder wird ein Ball nicht gefangen wird die Weite gemerkt. Das Paar mit der weitesten Entfernung gewinnt die Runde. Bei Unentschieden wird im k.o. System weiter geworfen."
+      }
+    }
+  },
+  "iimog/boccia": {
+    "name": "Boccia",
+    "instructions": "Each player has one ball for their team. The closest counts 3, the second 2 and the third 1 point. The higher points are awarded first. When one team passes the points required it wins (even if the other team would pass the mark as well, even if the other team would have more points after awarding them all)",
+    "bestOf": 15,
+    "activePlayers": 0,
+    "tiePossible": false,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Boccia",
+        "instructions": "Jeder Spieler hat eine Kugel für sein Team. Sobald alle ihre Kugel geworfen haben wird abgerechnet. Die näheste Kugel zählt 3 Punkte, die zweite 2 und die dritte 1 Punkt. Die Punkte werden der Höhe nach gutgeschrieben, die Höchste zuerst. Sobald ein Team die Punktzahl zum Sieg überschreitet hat es sofort gewonnen (auch wenn das andere in der gleichen Runde auch über die Grenze gekommen wäre und selbst dann wenn das andere Team nach vollständiger Abrechnung sogar führen würde)."
+      }
+    }
+  },
+  "iimog/frog-hop": {
+    "name": "Frog Hop",
+    "instructions": "Let the frog jump into a glass. Either make frogs by folding paper or flip one coin by pressing it down at the edge with another coin.",
+    "bestOf": 9,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Froschhüpfen",
+        "instructions": "Lass kleine aus Papier gefaltene Frösche in ein Glas springen. Die aktiven Spieler lassen abwechselnd springen bis einer trifft (falls derjenige trifft der begonnen hat darf der Gegner noch nachziehen). Treffen beide in der gleichen Runde ist die Runde unentschieden. Statt Fröschen aus Papier können auch Münzen verwendet werden die mit einer anderen Münze springen gelassen werden."
+      }
+    }
+  },
+  "iimog/cup-ping-pong": {
+    "name": "Cup Ping Pong",
+    "instructions": "Two players of each team have to throw and catch a ping pong ball with cups over a given disttance. The team with more successful catches out of 10 win the round. Each round can have another pre-defined special rule or handicap. The team that starts (rotates) defines the rule. No practicing.",
+    "bestOf": 9,
+    "activePlayers": 2,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Bechertischtennis",
+        "instructions": "Je zwei Spieler eines Teams müssen sich einen Tischtennisball mit Bechern über eine bestimmte Entfernung zuspielen (und fangen). Das Team dass es von 10 Versuchen häufiger schafft gewinnt die Runde. Jede Runde kann durch eine neue Regel erschwert werden (z.B. unter dem Bein durch). Die Teams bestimmen abwechselnd die Regeln, jeweils das Team das beginnt darf die Regel festlegen. Es gibt keine Probewürfe."
+      }
+    }
+  },
+  "iimog/Jenga": {
+    "name": "Jenga",
+    "instructions": "Draw a brick out of the tower until it collapses. Each player draws one brick.",
+    "bestOf": 1,
+    "activePlayers": 1,
+    "tiePossible": true,
+    "randomStarter": true,
+    "translations": {
+      "de": {
+        "name": "Jenga",
+        "instructions": "Ziehe Steine aus dem Turm bis er zusammenbricht."
+      }
+    }
   }
 }

@@ -6,7 +6,8 @@ import {
   View,
   ScrollView,
   Image,
-  Alert
+  Alert,
+  BackHandler,
 } from 'react-native';
 import { connect } from 'react-redux'
 import { actionCreators } from '../../redux'
@@ -70,7 +71,7 @@ function isMatchOver(standing: [number, number], numberOfGames:number, scoreIncr
 
 class Score extends Component {
   static navigationOptions = {
-    header: {visible: false},
+    header: null,
   };
   props: myProps;
   state: {
@@ -93,6 +94,12 @@ class Score extends Component {
     return (
       <View style={layout.main}>
         <ScrollView style={layout.content}>
+          <Button
+            icon="times"
+            onPress={()=>Alert.alert( I18n.t('endMatch'), I18n.t('endMatchDialog'), [ {text: I18n.t('yes'), onPress: () => {
+              navigate('FinalScore', {score: standing})}
+            }, {text: I18n.t('no'), onPress: () => {navigate('Home')}} ], { cancelable: true } )}
+          />
           <Text style={layout.title}>
             {I18n.t('score')} {I18n.t('after')} {I18n.t('game')} {score.length}
           </Text>
@@ -130,6 +137,12 @@ class Score extends Component {
         </View>
       </View>
     );
+  }
+
+  componentDidMount(){
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
   }
 };
 

@@ -6,7 +6,8 @@ import {
   View,
   ScrollView,
   Image,
-  Alert
+  Alert,
+  BackHandler,
 } from 'react-native';
 import Button from '../../components/Button';
 import ScoreBoard from '../../components/ScoreBoard';
@@ -64,7 +65,7 @@ class GameScreen extends Component {
     goingFirst: number,
   }
   static navigationOptions = {
-    header: {visible: false},
+    header: null
   };
 
   drawRandomTeam1: DrawRandomNoRepetitions
@@ -73,6 +74,8 @@ class GameScreen extends Component {
   constructor(props: props) {
     super(props)
     const {teams, gameNumber, game} = props.navigation.state.params;
+    // make sure that gameOver can only be called once
+    this.gameOver = _.once(this.props.navigation.state.params.gameOver);
     this.drawRandomTeam1 = new DrawRandomNoRepetitions(I18n.t('team1'), teams[0])
     this.drawRandomTeam2 = new DrawRandomNoRepetitions(I18n.t('team2'), teams[1])
     let goingFirst = Math.floor(Math.random()*2)
@@ -86,6 +89,12 @@ class GameScreen extends Component {
     }
   }
 
+  componentDidMount(){
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
+  }
+
   handleScore(teamIndex: number){
     let st = [...this.state.standing]
     if(teamIndex === -1){
@@ -95,7 +104,7 @@ class GameScreen extends Component {
     if(teamIndex >= 0){
       st[teamIndex]++
       if(st[teamIndex]>(this.state.game.bestOf/2) && st[teamIndex]>st[1-teamIndex]){
-        this.props.navigation.state.params.gameOver(teamIndex)
+        this.gameOver(teamIndex)
       }
     }
     this.setState({
@@ -108,9 +117,14 @@ class GameScreen extends Component {
     });
   }
 
+  getDebouncedHandleScoreFunction() {
+    return _.bind(_.debounce(this.handleScore, 100, {}),this)
+  }
+
   render() {
     const {teams, game, players, gameNumber} = this.state
     const { navigate } = this.props.navigation
+    const debouncedHandleScoreFunction = this.getDebouncedHandleScoreFunction()
 
     return (
       <View style={layout.main}>
@@ -130,7 +144,7 @@ class GameScreen extends Component {
             <View style={styles.tieButtonView}>
               <Button
                 text={I18n.t('both')}
-                onPress={()=>this.handleScore(-1)}
+                onPress={()=>debouncedHandleScoreFunction(-1)}
               />
             </View>
           }
@@ -138,13 +152,13 @@ class GameScreen extends Component {
             <View style={styles.multiButtonView}>
             <Button
               text={players[0]}
-              onPress={()=>this.handleScore(0)}
+              onPress={()=>debouncedHandleScoreFunction(0)}
             />
             </View>
             <View style={styles.multiButtonView}>
             <Button
               text={players[1]}
-              onPress={()=>this.handleScore(1)}
+              onPress={()=>debouncedHandleScoreFunction(1)}
             />
             </View>
           </View>
@@ -154,7 +168,7 @@ class GameScreen extends Component {
               <Button
                 style={styles.tieButton}
                 text={I18n.t('nobody')}
-                onPress={()=>this.handleScore(-2)}
+                onPress={()=>debouncedHandleScoreFunction(-2)}
               />
             </View>
           }
