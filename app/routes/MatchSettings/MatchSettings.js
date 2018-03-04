@@ -31,16 +31,13 @@ class MatchSettings extends Component {
   state: {
     numberOfGames: number,
     eventSwitchIsOn: boolean,
-    allGames: {[string]: Game},
   }
 
   constructor(props){
     super(props)
-    const allList = {...props.collection}
     this.state = {
       numberOfGames: props.matchSettings.numberOfGames,
       eventSwitchIsOn: true,
-      allGames: allList,
     }
   }
 
@@ -51,7 +48,7 @@ class MatchSettings extends Component {
   render() {
     const { matchSettings, dispatch, games } = this.props
     const { navigate } = this.props.navigation
-    const { allGames } = this.state
+    const allGames = {...this.props.collection}
     let gameSwitches = Array()
     for(let gameID of Object.keys(allGames)){
       gameSwitches.push(
@@ -95,6 +92,10 @@ class MatchSettings extends Component {
           />
           <Text>{I18n.t('games')}</Text>
           {gameSwitches}
+          <Button
+            text={I18n.t('addGame')}
+            onPress={()=>navigate("AddGame")}
+          ></Button>
         </ScrollView>
         <Button
           text={I18n.t('playerSelect')}
