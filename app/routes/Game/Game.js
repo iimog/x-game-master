@@ -117,9 +117,14 @@ class GameScreen extends Component {
     });
   }
 
+  getDebouncedHandleScoreFunction() {
+    return _.bind(_.debounce(this.handleScore, 100, {}),this)
+  }
+
   render() {
     const {teams, game, players, gameNumber} = this.state
     const { navigate } = this.props.navigation
+    const debouncedHandleScoreFunction = this.getDebouncedHandleScoreFunction()
 
     return (
       <View style={layout.main}>
@@ -139,7 +144,7 @@ class GameScreen extends Component {
             <View style={styles.tieButtonView}>
               <Button
                 text={I18n.t('both')}
-                onPress={()=>this.handleScore(-1)}
+                onPress={()=>debouncedHandleScoreFunction(-1)}
               />
             </View>
           }
@@ -147,13 +152,13 @@ class GameScreen extends Component {
             <View style={styles.multiButtonView}>
             <Button
               text={players[0]}
-              onPress={()=>this.handleScore(0)}
+              onPress={()=>debouncedHandleScoreFunction(0)}
             />
             </View>
             <View style={styles.multiButtonView}>
             <Button
               text={players[1]}
-              onPress={()=>this.handleScore(1)}
+              onPress={()=>debouncedHandleScoreFunction(1)}
             />
             </View>
           </View>
@@ -163,7 +168,7 @@ class GameScreen extends Component {
               <Button
                 style={styles.tieButton}
                 text={I18n.t('nobody')}
-                onPress={()=>this.handleScore(-2)}
+                onPress={()=>debouncedHandleScoreFunction(-2)}
               />
             </View>
           }
