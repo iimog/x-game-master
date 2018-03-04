@@ -89,7 +89,7 @@ class GameScreen extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     BackHandler.addEventListener('hardwareBackPress', () => {
       return true;
     });

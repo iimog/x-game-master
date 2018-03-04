@@ -41,7 +41,7 @@ class MatchSettings extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(actionCreators.resetMatch())
   }
 
