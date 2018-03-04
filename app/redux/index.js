@@ -192,9 +192,12 @@ export const reducer = (state: typeof initialState = initialState, action: {type
       }
     }
     case types.ADD_GAME: {
-      let newState = {...state}
-      newState.collection[payload.id] = payload.game
-      return newState
+      let newCollection = {...state.collection}
+      newCollection[payload.id] = payload.game
+      return {
+        ...state,
+        collection: newCollection
+      }
     }
   }
 
