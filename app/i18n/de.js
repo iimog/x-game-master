@@ -1,7 +1,9 @@
 const de = {
   newGame: "Neues Spiel",
-  addGame: "Spiel hinzufügen",
   gameName: "Name des Spiels",
+  addGame: "Spiel hinzufügen",
+  editGame: "Spiel bearbeiten",
+  saveChanges: "Änderungen speichern",
   gameDesc: "Spielbeschreibung",
   tiePossible: "Unentschieden möglich",
   randomStarter: "Startspieler auslosen",

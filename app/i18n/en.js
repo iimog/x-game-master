@@ -1,6 +1,8 @@
 const en = {
   newGame: "New Game",
   addGame: "Add Game",
+  editGame: "Edit Game",
+  saveChanges: "Save Changes",
   gameName: "Name of the game",
   gameDesc: "Game description",
   tiePossible: "Allow tie",
