@@ -14,6 +14,7 @@ This file has not been checked by a lawyer.
 
 # Changes
 ## Next
+ - Add possibility to remove games from the collection (#10)
  - Fix end game with both button (#4)
 ## 0.2.0 <2018-03-04>
  - Add capability to add custom games
