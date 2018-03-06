@@ -63,8 +63,8 @@ class MatchSettings extends Component {
         />
         <Text>{gameT('name',allGames[gameID]) + " "}</Text>
         <Button icon="trash" onPress={() => {
-          Alert.alert('Delete',
-           'Realy delete this game?',
+          Alert.alert(I18n.t('deleteGame'),
+           I18n.t('deleteGameDialog'),
             [ {text: I18n.t('yes'), onPress: () => {this.props.dispatch(actionCreators.deleteGame(gameID))}}, {text: I18n.t('no'), onPress: () => {}}],
             { cancelable: true }
           )

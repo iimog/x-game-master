@@ -50,6 +50,8 @@ const de = {
   goingFirst: "Zuerst dran",
   endMatch: "Match vorzeitig beenden",
   endMatchDialog: "Bist du sicher, dass du das Match vorzeitig beenden willst? Falls nein kannst du das Spiel später fortsetzen.",
+  deleteGame: "Spiel löschen",
+  deleteGameDialog: "Bist du sicher, dass du dieses Spiel löschen möchtest?",
 }
 
 export default de

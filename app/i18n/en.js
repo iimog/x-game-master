@@ -50,5 +50,7 @@ const en = {
   goingFirst: "Going first",
   endMatch: "End Match",
   endMatchDialog: "Are you sure that you want to end the match early? If you press no you can continue this game later.",
+  deleteGame: "Delete Game",
+  deleteGameDialog: "Do you really want to delete this game?",
 }
 export default en
