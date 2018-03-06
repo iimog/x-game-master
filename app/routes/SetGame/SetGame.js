@@ -20,7 +20,7 @@ import layout from '../../layouts'
 
 const mapStateToProps = (state) => ({collection: state.collection})
 
-class AddGame extends Component {
+class SetGame extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
     return {
@@ -118,4 +118,4 @@ class AddGame extends Component {
   }
 };
 
-export default connect(mapStateToProps)(AddGame)
+export default connect(mapStateToProps)(SetGame)

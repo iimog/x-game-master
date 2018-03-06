@@ -69,7 +69,7 @@ class MatchSettings extends Component {
             { cancelable: true }
           )
         }}/>
-        <Button icon="edit" onPress={()=>navigate("AddGame", {gameID: gameID})} />
+        <Button icon="edit" onPress={()=>navigate("SetGame", {gameID: gameID})} />
       </View>
       )
     }
@@ -101,7 +101,7 @@ class MatchSettings extends Component {
           {gameSwitches}
           <Button
             text={I18n.t('addGame')}
-            onPress={()=>navigate("AddGame", {gameID: null})}
+            onPress={()=>navigate("SetGame", {gameID: null})}
           ></Button>
         </ScrollView>
         <Button
