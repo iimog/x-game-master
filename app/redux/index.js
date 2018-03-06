@@ -15,6 +15,7 @@ export const types = {
   ADD_RESULT: 'ADD_RESULT',
   RESET_MATCH: 'RESET_MATCH',
   ADD_GAME: 'ADD_GAME',
+  DELETE_GAME: 'DELETE_GAME',
 }
 
 // Helper functions to dispatch actions, optionally with payloads
@@ -48,6 +49,9 @@ export const actionCreators = {
   },
   addGame: (gameID: string, newGame: Object) => {
     return {type: types.ADD_GAME, payload: {id: gameID, game: newGame}}
+  },
+  deleteGame: (gameID: string) => {
+    return {type: types.DELETE_GAME, payload: {id: gameID}}
   }
 }
 
@@ -194,6 +198,14 @@ export const reducer = (state: typeof initialState = initialState, action: {type
     case types.ADD_GAME: {
       let newCollection = {...state.collection}
       newCollection[payload.id] = payload.game
+      return {
+        ...state,
+        collection: newCollection
+      }
+    }
+    case types.DELETE_GAME: {
+      let newCollection = {...state.collection}
+      delete newCollection[payload.id]
       return {
         ...state,
         collection: newCollection
