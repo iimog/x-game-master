@@ -35,7 +35,7 @@ class Home extends Component {
           }}></Button>
           <Button
             text={I18n.t('addGame')}
-            onPress={()=>navigate("AddGame")}
+            onPress={()=>navigate("SetGame", {gameID: null})}
           ></Button>
           <Button
             text={this.props.playedGames.length > 0 ? I18n.t('continueGame') : I18n.t('noContinueGame')}

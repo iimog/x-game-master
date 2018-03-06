@@ -1,7 +1,9 @@
 const de = {
   newGame: "Neues Spiel",
-  addGame: "Spiel hinzufügen",
   gameName: "Name des Spiels",
+  addGame: "Spiel hinzufügen",
+  editGame: "Spiel bearbeiten",
+  saveChanges: "Änderungen speichern",
   gameDesc: "Spielbeschreibung",
   tiePossible: "Unentschieden möglich",
   randomStarter: "Startspieler auslosen",
@@ -50,6 +52,8 @@ const de = {
   goingFirst: "Zuerst dran",
   endMatch: "Match vorzeitig beenden",
   endMatchDialog: "Bist du sicher, dass du das Match vorzeitig beenden willst? Falls nein kannst du das Spiel später fortsetzen.",
+  deleteGame: "Spiel löschen",
+  deleteGameDialog: "Bist du sicher, dass du dieses Spiel löschen möchtest?",
 }
 
 export default de

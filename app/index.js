@@ -23,7 +23,7 @@ import Score from './routes/Score';
 import FinalScore from './routes/FinalScore';
 import MatchSettings from './routes/MatchSettings'
 import ClubScore from './routes/ClubScore'
-import AddGame from './routes/AddGame'
+import SetGame from './routes/SetGame'
 
 
 const AppNavigator = StackNavigator({
@@ -35,7 +35,7 @@ const AppNavigator = StackNavigator({
   FinalScore: { screen: FinalScore },
   MatchSettings: { screen: MatchSettings },
   ClubScore: { screen: ClubScore },
-  AddGame: {screen: AddGame},
+  SetGame: {screen: SetGame},
 });
 
 

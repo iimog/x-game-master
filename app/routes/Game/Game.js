@@ -100,6 +100,10 @@ class GameScreen extends Component {
     if(teamIndex === -1){
       st[0]++
       st[1]++
+      if(st[0]+st[1]>=this.state.game.bestOf && st[0] !== st[1]){
+        let winnerIndex = (st[0]>st[1]) ? 0 : 1
+        this.gameOver(winnerIndex)
+      }
     }
     if(teamIndex >= 0){
       st[teamIndex]++

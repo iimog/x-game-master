@@ -18,14 +18,18 @@ import { actionCreators, PlayMode } from '../../redux'
 import { isMatchOver } from '../../lib'
 import layout from '../../layouts'
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({collection: state.collection})
 
-class AddGame extends Component {
-  static navigationOptions = {
-    title: I18n.t('addGame'),
+class SetGame extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    return {
+      title: params ? params.title : I18n.t('addGame'),
+    }
   };
   constructor(props){
     super(props)
+    this.gameID = this.props.navigation.state.params.gameID
     this.state = {
       name: "",
       instructions: "",
@@ -33,6 +37,12 @@ class AddGame extends Component {
       activePlayers: 1,
       tiePossible: false,
       randomStarter: false,
+    }
+    if(this.gameID !== null){
+      this.state = {...this.state, ...this.props.collection[this.gameID]}
+      this.props.navigation.setParams({title: I18n.t('editGame')})
+    } else {
+      this.props.navigation.setParams({title: I18n.t('addGame')})
     }
   }
 
@@ -42,14 +52,14 @@ class AddGame extends Component {
       <View style={layout.container}>
         <TextInput
           placeholder={I18n.t('gameName')}
-          text={this.state.name}
+          value={this.state.name}
           onChangeText={(text) => this.setState({name: text})}
         />
         <TextInput
           multiline={true}
           numberOfLines={5}
           placeholder={I18n.t('gameDesc')}
-          text={this.state.instructions}
+          value={this.state.instructions}
           onChangeText={(text) => this.setState({instructions: text})}
         />
         <Text>{I18n.t('bestOf') + ": " + this.state.bestOf}</Text>
@@ -84,10 +94,10 @@ class AddGame extends Component {
         </View>
 
         <Button
-          text={I18n.t('addGame')}
+          text={this.gameID === null ? I18n.t('addGame') : I18n.t('saveChanges')}
           onPress={()=>{
             if(this.state.name !== ""){
-              let gameID = "custom/" + this.state.name
+              let gameID = (this.gameID !== null) ? this.gameID : "custom/" + this.state.name
               let newGame = {
                 name: this.state.name,
                 instructions: this.state.instructions,
@@ -96,7 +106,7 @@ class AddGame extends Component {
                 tiePossible: this.state.tiePossible,
                 randomStarter: this.state.randomStarter
               }
-              this.props.dispatch(actionCreators.addGame(gameID, newGame))
+              this.props.dispatch(actionCreators.setGame(gameID, newGame))
               this.props.navigation.dispatch(backAction)
             }else{
               Alert.alert( 'Error', "Du hast etwas vergessen! Finde den Fehler.", [ {text: 'Mach ich', onPress: () => {}} ], { cancelable: true } );
@@ -108,4 +118,4 @@ class AddGame extends Component {
   }
 };
 
-export default connect(mapStateToProps)(AddGame)
+export default connect(mapStateToProps)(SetGame)

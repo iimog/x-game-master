@@ -13,6 +13,10 @@ Please see the [DATA_PRIVACY_STATEMENT file](DATA_PRIVACY_STATEMENT).
 This file has not been checked by a lawyer.
 
 # Changes
+## 0.2.1 <2018-03-06>
+ - Add possibility to edit existing games (#9)
+ - Add possibility to remove games from the collection (#10)
+ - Fix end game with both button (#4)
 ## 0.2.0 <2018-03-04>
  - Add capability to add custom games
  - Add button to continue a running game (#6)
