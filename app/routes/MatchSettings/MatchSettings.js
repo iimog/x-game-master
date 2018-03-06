@@ -48,7 +48,8 @@ class MatchSettings extends Component {
     let gameSwitches = Array()
     for(let gameID of Object.keys(allGames)){
       gameSwitches.push(
-        <View key={gameID} style={styles.gameSelector}><Switch
+        <View key={gameID} style={styles.gameSelector}>
+          <Switch
           value={gameID in games}
           onValueChange={(value)=>{
             let newGames = _.cloneDeep(games)
@@ -59,7 +60,16 @@ class MatchSettings extends Component {
             }
             dispatch(actionCreators.setGames(newGames))
           }}
-        /><Text>{gameT('name',allGames[gameID])}</Text></View>
+        />
+        <Text>{gameT('name',allGames[gameID]) + " "}</Text>
+        <Button icon="trash" onPress={() => {
+          Alert.alert('Delete',
+           'Realy delete this game?',
+            [ {text: I18n.t('yes'), onPress: () => {this.props.dispatch(actionCreators.deleteGame(gameID))}}, {text: I18n.t('no'), onPress: () => {}}],
+            { cancelable: true }
+          )
+        }}/>
+      </View>
       )
     }
 
