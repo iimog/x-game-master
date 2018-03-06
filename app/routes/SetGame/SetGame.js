@@ -106,7 +106,7 @@ class SetGame extends Component {
                 tiePossible: this.state.tiePossible,
                 randomStarter: this.state.randomStarter
               }
-              this.props.dispatch(actionCreators.addGame(gameID, newGame))
+              this.props.dispatch(actionCreators.setGame(gameID, newGame))
               this.props.navigation.dispatch(backAction)
             }else{
               Alert.alert( 'Error', "Du hast etwas vergessen! Finde den Fehler.", [ {text: 'Mach ich', onPress: () => {}} ], { cancelable: true } );
