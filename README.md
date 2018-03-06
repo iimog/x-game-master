@@ -13,7 +13,7 @@ Please see the [DATA_PRIVACY_STATEMENT file](DATA_PRIVACY_STATEMENT).
 This file has not been checked by a lawyer.
 
 # Changes
-## Next
+## 0.2.1 <2018-03-06>
  - Add possibility to edit existing games (#9)
  - Add possibility to remove games from the collection (#10)
  - Fix end game with both button (#4)
