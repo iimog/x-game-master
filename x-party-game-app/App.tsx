@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableWithoutFeedback, View, Keyboard, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, Text, TouchableWithoutFeedback, View, Keyboard, TextInput, Button, Alert, FlatList } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
-class NewGameScreen extends React.Component {
+class NewGameScreen extends React.Component<{navigation: any},{}> {
   static navigationOptions = {
     title: 'New Game',
   };
@@ -34,16 +34,28 @@ class LeaderboardScreen extends React.Component {
   render() {
     return (
         <View style={styles.container}> 
-          <Text style={styles.title}>X</Text>
-          <Text style={styles.label}>Spieler:</Text>
-          <TextInput multiline={true} style={styles.inputArea}>Spieler A</TextInput>
-          <Text style={styles.label}>Spiele:</Text>
-          <TextInput multiline={true} style={styles.inputArea}>Spiel 1</TextInput>
+          <FlatList
+            data={players}
+            renderItem={({item, index}) => <LeaderboardEntry rank={index+1} name={item.name} points={17}/>}
+            keyExtractor={item => item.name}
+          />
           <Button
               title="Next Game"
               onPress={() => Alert.alert("Let's go!")}
             />
         </View>
+    );
+  }
+}
+
+class LeaderboardEntry extends React.Component<{rank: number, name: string, points: number}, {}> {
+  render() {
+    return (
+      <View style={styles.lbEntryContainer}>
+        <Text style={styles.lbEntryRank}>{this.props.rank}</Text>
+        <Text style={styles.lbEntryName}>{this.props.name}</Text>
+        <Text style={styles.lbEntryPoints}>{this.props.points}</Text>
+      </View>
     );
   }
 }
@@ -76,6 +88,21 @@ const styles = StyleSheet.create({
   inputArea: {
     backgroundColor: "#ddd",
     minWidth: 200,
+  },
+  lbEntryContainer: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  lbEntryRank: {
+    fontSize: 20,
+    marginHorizontal: 5,
+  },
+  lbEntryName: {
+    fontSize: 20,
+  },
+  lbEntryPoints: {
+    fontSize: 20,
+    marginHorizontal: 5,
   },
 });
 
