@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedback, View, Keyboard, TextInput, Button, Alert, FlatList } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import _ from 'lodash';
 
 class NewGameScreen extends React.Component<{navigation: any},{}> {
   static navigationOptions = {
@@ -20,7 +21,7 @@ class NewGameScreen extends React.Component<{navigation: any},{}> {
           <Button
               title="Start"
               onPress={() => {
-                Alert.alert("Let's go!")
+                //Alert.alert("Let's go!")
                 navigate('Leaderboard', {players: players})
               }}
             />
@@ -30,8 +31,9 @@ class NewGameScreen extends React.Component<{navigation: any},{}> {
   }
 }
 
-class LeaderboardScreen extends React.Component {
+class LeaderboardScreen extends React.Component<{navigation},{}> {
   render() {
+    const {navigate} = this.props.navigation;
     return (
         <View style={styles.container}> 
           <FlatList
@@ -41,7 +43,44 @@ class LeaderboardScreen extends React.Component {
           />
           <Button
               title="Next Game"
-              onPress={() => Alert.alert("Let's go!")}
+              onPress={() => navigate('Game', {game: games[0]})}
+            />
+        </View>
+    );
+  }
+}
+
+class GameScreen extends React.Component<{navigate, game: string},{}> {
+  getRandomTeams: (players: Array<Player>) => Array<Array<Player>> = (players) => {
+    let shuffledPlayers = _.shuffle(players);
+    let splitPoint = Math.floor(players.length/2)
+    if(players.length % 2){
+      splitPoint += _.random();
+    }
+    let teams = [shuffledPlayers.slice(0,splitPoint), shuffledPlayers.slice(splitPoint)]
+    return teams;
+  }
+  render() {
+    let teams = this.getRandomTeams(players);
+    return (
+        <View style={styles.container}>
+          <FlatList
+            data={teams[0]}
+            renderItem={({item, index}) => <Text>{item.name}</Text>}
+            keyExtractor={item => item.name}
+          />
+          <FlatList
+            data={teams[1]}
+            renderItem={({item, index}) => <Text>{item.name}</Text>}
+            keyExtractor={item => item.name}
+          />
+          <Button
+              title="Win Team1"
+              onPress={() => Alert.alert("Winner 1")}
+            />
+          <Button
+              title="Win Team2"
+              onPress={() => Alert.alert("Winner 2")}
             />
         </View>
     );
@@ -61,6 +100,7 @@ class LeaderboardEntry extends React.Component<{rank: number, name: string, poin
 }
 
 const MainNavigator = createStackNavigator({
+  Game: {screen: GameScreen},
   NewGame: {screen: NewGameScreen},
   Leaderboard: {screen: LeaderboardScreen},
 });
