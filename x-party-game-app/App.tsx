@@ -3,6 +3,8 @@ import { StyleSheet, Text, TouchableWithoutFeedback, View, Keyboard, TextInput, 
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
+import {Provider, connect} from 'react-redux';
+import {Player, Round, store} from './store'
 
 class NewGameScreen extends React.Component<{navigation: any},{}> {
   static navigationOptions = {
@@ -50,7 +52,7 @@ class LeaderboardScreen extends React.Component<{navigation},{}> {
   }
 }
 
-class GameScreen extends React.Component<{navigate, game: string},{}> {
+class GameScreen extends React.Component<{navigation, game: string, players: Array<Player>},{}> {
   getRandomTeams: (players: Array<Player>) => Array<Array<Player>> = (players) => {
     let shuffledPlayers = _.shuffle(players);
     let splitPoint = Math.floor(players.length/2)
@@ -61,7 +63,7 @@ class GameScreen extends React.Component<{navigate, game: string},{}> {
     return teams;
   }
   render() {
-    let teams = this.getRandomTeams(players);
+    let teams = this.getRandomTeams(this.props.players);
     return (
         <View style={styles.container}>
           <FlatList
@@ -76,16 +78,23 @@ class GameScreen extends React.Component<{navigate, game: string},{}> {
           />
           <Button
               title="Win Team1"
-              onPress={() => Alert.alert("Winner 1")}
+              onPress={() => {
+                Alert.alert("Winner 1");
+                this.props.navigation.navigate('Leaderboard')
+              }}
             />
           <Button
               title="Win Team2"
-              onPress={() => Alert.alert("Winner 2")}
+              onPress={() => {
+                Alert.alert("Winner 2");
+                this.props.navigation.navigate('Leaderboard')
+              }}
             />
         </View>
     );
   }
 }
+const ConnectedGameScreen = connect(state => {return {players: state.players}})(GameScreen)
 
 class LeaderboardEntry extends React.Component<{rank: number, name: string, points: number}, {}> {
   render() {
@@ -100,14 +109,22 @@ class LeaderboardEntry extends React.Component<{rank: number, name: string, poin
 }
 
 const MainNavigator = createStackNavigator({
-  Game: {screen: GameScreen},
+  Game: {screen: ConnectedGameScreen},
   NewGame: {screen: NewGameScreen},
   Leaderboard: {screen: LeaderboardScreen},
 });
 
-const App = createAppContainer(MainNavigator);
+const Navigation = createAppContainer(MainNavigator);
 
-export default App;
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -146,11 +163,6 @@ const styles = StyleSheet.create({
   },
 });
 
-type Player = {
-  name: string,
-  active: boolean
-}
-
 let players: Array<Player> = [
   {name: "Markus", active: true},
   {name: "Hannah", active: true},
@@ -163,11 +175,5 @@ let games: Array<string> = [
   "Blobby Volley",
   "Böse 6"
 ]
-
-type Round = {
-  game: string,
-  teams: [Array<Player>, Array<Player>],
-  winner: -1 | 0 | 1 | null
-}
 
 let rounds: Array<Round> = []
