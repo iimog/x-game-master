@@ -1,10 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableWithoutFeedback, View, Keyboard, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import { Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, ScrollView, FlatList } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
 import {Provider, connect} from 'react-redux';
 import {Player, Round, store} from './store'
+import { ListItem, List, Text, Input, ApplicationProvider, IconRegistry, Layout, Button, Icon } from '@ui-kitten/components';
+import { mapping, dark as darkTheme } from '@eva-design/eva';
+import { SafeAreaView } from 'react-navigation';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+
+// TODO replace with background-basic-color-1 from theme
+const dartThemeBackground = '#222B45'
+const fullWidth = Dimensions.get('window').width
 
 class NewGameScreen extends React.Component<{navigation, dispatch, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
   constructor(props) {
@@ -14,40 +22,40 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
       gameText: this.props.games.join("\n"),
     };
   }
-  static navigationOptions = {
-    title: 'New Game',
-  };
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
-        <View style={styles.container}>
-          <Text style={styles.title}>X</Text>
-          <Text style={styles.label}>Player:</Text>
-          <TextInput multiline={true} style={styles.inputArea} onChangeText={(text) => this.setState({playerText: text})} value={this.state.playerText}></TextInput>
-          <Text style={styles.label}>Games:</Text>
-          <TextInput multiline={true} style={styles.inputArea} onChangeText={(text) => this.setState({gameText: text})} value={this.state.gameText}></TextInput>
-          <Button
-              title="Start"
-              onPress={() => {
-                //Alert.alert("Let's go!")
-                this.props.dispatch({
-                  type: 'START_MATCH',
-                  payload: {
-                    players: this.state.playerText.split('\n').map((word) => {return {name: word, active: true}}),
-                    games: _.shuffle(this.state.gameText.split('\n'))
-                  }})
-                navigate('Leaderboard')
-              }}
-            />
-        </View>
-      </TouchableWithoutFeedback>
+      <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
+      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+          <View>
+            <ScrollView style={{width: fullWidth, padding: 15}}>
+            <Text category="h1" style={{flex: 1, textAlign: 'center', margin: 15}}>X</Text>
+            <Text category="h3">Players</Text>
+            <Input multiline={true} onChangeText={(text) => this.setState({playerText: text})} value={this.state.playerText}></Input>
+            <Text category="h3">Games</Text>
+            <Input multiline={true} onChangeText={(text) => this.setState({gameText: text})} value={this.state.gameText}></Input>
+            <Button
+                onPress={() => {
+                  //Alert.alert("Let's go!")
+                  this.props.dispatch({
+                    type: 'START_MATCH',
+                    payload: {
+                      players: this.state.playerText.split('\n').map((word) => {return {name: word, active: true}}),
+                      games: _.shuffle(this.state.gameText.split('\n'))
+                    }})
+                  navigate('Leaderboard')
+                }}
+              >Start</Button></ScrollView>
+          </View>
+        </TouchableWithoutFeedback>
+      </Layout></SafeAreaView>
     );
   }
 }
 const ConnectedNewGameScreen = connect(state=>state)(NewGameScreen)
 
-class LeaderboardScreen extends React.Component<{navigation, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
+class LeaderboardScreen extends React.Component<{navigation, dispatch, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
   getPlayerScores: () => { [key: string]: number; } = () => {
     let playerScores = {};
     const {rounds, players} = this.props;
@@ -64,18 +72,30 @@ class LeaderboardScreen extends React.Component<{navigation, players: Array<Play
     const {navigate} = this.props.navigation;
     let playerScores = this.getPlayerScores();
     let isOver = this.props.rounds.length >= this.props.games.length;
+    let sortedPlayers = this.props.players.sort((x,y) => playerScores[y.name]-playerScores[x.name])
     return (
-        <View style={styles.container}> 
-          <FlatList
-            data={this.props.players.sort((x,y) => playerScores[y.name]-playerScores[x.name])}
-            renderItem={({item, index}) => <LeaderboardEntry rank={index+1} name={item.name} points={playerScores[item.name]}/>}
+      <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
+      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{width: fullWidth, padding: 15}}> 
+          <List
+            data={sortedPlayers}
+            renderItem={({item, index}) => {
+              return(
+                <ListItem onPress={(index) => {
+                  this.props.dispatch({type: 'TOGGLE_PLAYER', payload: sortedPlayers[index].name})
+                }}>
+                  <LeaderboardEntry rank={index+1} name={item.name} points={playerScores[item.name]} active={item.active}/>
+                </ListItem>
+              )}
+            }
             keyExtractor={item => item.name}
           />
-          <Button
-              title={isOver ? "Back to Main" : "Next Game"}
-              onPress={() => isOver ? navigate('NewGame') : navigate('Game')}
-            />
+          <Button onPress={() => isOver ? navigate('NewGame') : navigate('Game')}>
+            {isOver ? "Back to Main" : "Next Game"}
+          </Button>
         </View>
+      </Layout>
+      </SafeAreaView>
     );
   }
 }
@@ -83,9 +103,10 @@ const ConnectedLeaderboardScreen = connect(state => state)(LeaderboardScreen)
 
 class GameScreen extends React.Component<{navigation, dispatch, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
   getRandomTeams: (players: Array<Player>) => Array<Array<Player>> = (players) => {
-    let shuffledPlayers = _.shuffle(players);
-    let splitPoint = Math.floor(players.length/2)
-    if(players.length % 2){
+    let activePlayers = players.filter(p => p.active)
+    let shuffledPlayers = _.shuffle(activePlayers);
+    let splitPoint = Math.floor(activePlayers.length/2)
+    if(activePlayers.length % 2){
       splitPoint += _.random();
     }
     let teams = [shuffledPlayers.slice(0,splitPoint), shuffledPlayers.slice(splitPoint)]
@@ -98,8 +119,10 @@ class GameScreen extends React.Component<{navigation, dispatch, players: Array<P
   render() {
     let teams = this.getRandomTeams(this.props.players);
     return (
-        <View style={styles.container}>
-          <Text style={styles.title}>{this.game}</Text>
+      <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
+      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View>
+          <Text category="h1">{this.game}</Text>
           <FlatList
             data={teams[0]}
             renderItem={({item}) => <Text>{item.name}</Text>}
@@ -111,32 +134,33 @@ class GameScreen extends React.Component<{navigation, dispatch, players: Array<P
             keyExtractor={item => item.name}
           />
           <Button
-              title="Win Team1"
               onPress={() => {
                 this.reportResult(0, teams)
                 this.props.navigation.navigate('Leaderboard')
               }}
-            />
+          >Win Team1</Button>
           <Button
-              title="Win Team2"
               onPress={() => {
                 this.reportResult(1, teams)
                 this.props.navigation.navigate('Leaderboard')
               }}
-            />
+          >Win Team2</Button>
         </View>
+      </Layout>
+      </SafeAreaView>
     );
   }
 }
 const ConnectedGameScreen = connect(state => state)(GameScreen)
 
-class LeaderboardEntry extends React.Component<{rank: number, name: string, points: number}, {}> {
+class LeaderboardEntry extends React.Component<{rank: number, name: string, points: number, active: boolean}, {}> {
   render() {
     return (
       <View style={styles.lbEntryContainer}>
-        <Text style={styles.lbEntryRank}>{this.props.rank}</Text>
-        <Text style={styles.lbEntryName}>{this.props.name}</Text>
-        <Text style={styles.lbEntryPoints}>{this.props.points}</Text>
+        <Text category="h3">{this.props.rank.toString()}</Text>
+        <View style={{flex: 1, marginLeft: 10}}><Text category="h3">{this.props.name}</Text></View>
+        <Icon name={this.props.active ? 'checkmark-circle-2' : 'checkmark-circle-2-outline'} width={25} height={25} fill="#fff"/>
+        <Text style={{marginLeft: 10}} category="h3">{this.props.points.toString()}</Text>
       </View>
     );
   }
@@ -146,19 +170,22 @@ const MainNavigator = createStackNavigator({
   Game: {screen: ConnectedGameScreen},
   NewGame: {screen: ConnectedNewGameScreen},
   Leaderboard: {screen: ConnectedLeaderboardScreen},
-}, {initialRouteName: 'NewGame'});
+}, {initialRouteName: 'NewGame', headerMode: 'none'});
 
 const Navigation = createAppContainer(MainNavigator);
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Navigation />
-      </Provider>
-    );
-  }
-}
+const App = () => (
+      <React.Fragment>
+        <IconRegistry icons={EvaIconsPack}/>
+        <ApplicationProvider mapping={mapping} theme={darkTheme}>
+          <Provider store={store}>
+            <Navigation />
+          </Provider>
+        </ApplicationProvider>
+      </React.Fragment>
+  );
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -183,6 +210,8 @@ const styles = StyleSheet.create({
   lbEntryContainer: {
     flex: 1,
     flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   lbEntryRank: {
     fontSize: 20,

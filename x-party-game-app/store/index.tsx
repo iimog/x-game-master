@@ -25,7 +25,7 @@ const INITIAL_STATE: State = {
     {name: "Moni", active: true},
     {name: "Moritz", active: true},
   ],
-  games: [],
+  games: ["Snake","Tron","Darts"],
   rounds: []
 };
 
@@ -44,6 +44,20 @@ const matchReducer = (state = INITIAL_STATE, action) => {
         return {
             rounds: [...state.rounds, action.payload],
             players: state.players,
+            games: state.games,
+        };
+    case 'TOGGLE_PLAYER':
+        // Toggle active/inactive status of player with payload name
+        let newPlayers = state.players.map(p => {
+            let newPlayer = p;
+            if(p.name == action.payload){
+                newPlayer.active = !newPlayer.active;
+            }
+            return newPlayer;
+        })
+        return {
+            rounds: state.rounds,
+            players: newPlayers,
             games: state.games,
         };
     default:
