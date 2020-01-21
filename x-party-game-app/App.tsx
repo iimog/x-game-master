@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, ScrollView, FlatList, KeyboardAvoidingView } from 'react-native';
+import { Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, FlatList } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
@@ -9,6 +9,7 @@ import { ListItem, List, Text, Input, ApplicationProvider, IconRegistry, Layout,
 import { mapping, dark as darkTheme } from '@eva-design/eva';
 import { SafeAreaView } from 'react-navigation';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import InputScrollView from 'react-native-input-scroll-view';
 
 // TODO replace with background-basic-color-1 from theme
 const dartThemeBackground = '#222B45'
@@ -28,12 +29,12 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
       <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
-          <ScrollView style={{width: fullWidth, padding: 15}}>
+          <InputScrollView style={{flex:1, width: fullWidth, padding: 15}}>
             <Text category="h1" style={{flex: 1, textAlign: 'center', margin: 15}}>X</Text>
             <Text category="h3">Players</Text>
-            <Input multiline={true} onChangeText={(text) => this.setState({playerText: text})} value={this.state.playerText}></Input>
+            <Input multiline={true} scrollEnabled={false} onChangeText={(text) => this.setState({playerText: text})} value={this.state.playerText}></Input>
             <Text category="h3">Games</Text>
-            <Input multiline={true} onChangeText={(text) => this.setState({gameText: text})} value={this.state.gameText}></Input>
+            <Input multiline={true} scrollEnabled={false} onChangeText={(text) => this.setState({gameText: text})} value={this.state.gameText}></Input>
             <Button
                 onPress={() => {
                   //Alert.alert("Let's go!")
@@ -46,7 +47,7 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
                   navigate('Leaderboard')
                 }}
               >Start</Button>
-          </ScrollView>
+          </InputScrollView>
         </TouchableWithoutFeedback>
       </Layout></SafeAreaView>
     );
