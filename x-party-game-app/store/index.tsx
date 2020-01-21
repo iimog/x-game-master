@@ -25,7 +25,7 @@ const INITIAL_STATE: State = {
     {name: "Moni", active: true},
     {name: "Moritz", active: true},
   ],
-  games: ["Snake","Tron","Darts"],
+  games: ["Snake 🐍","Tron 🏍","Darts 🎯"],
   rounds: []
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, ScrollView, FlatList } from 'react-native';
+import { Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, ScrollView, FlatList, KeyboardAvoidingView } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
@@ -28,8 +28,7 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
       <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
-          <View>
-            <ScrollView style={{width: fullWidth, padding: 15}}>
+          <ScrollView style={{width: fullWidth, padding: 15}}>
             <Text category="h1" style={{flex: 1, textAlign: 'center', margin: 15}}>X</Text>
             <Text category="h3">Players</Text>
             <Input multiline={true} onChangeText={(text) => this.setState({playerText: text})} value={this.state.playerText}></Input>
@@ -46,8 +45,8 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
                     }})
                   navigate('Leaderboard')
                 }}
-              >Start</Button></ScrollView>
-          </View>
+              >Start</Button>
+          </ScrollView>
         </TouchableWithoutFeedback>
       </Layout></SafeAreaView>
     );
@@ -120,31 +119,35 @@ class GameScreen extends React.Component<{navigation, dispatch, players: Array<P
     let teams = this.getRandomTeams(this.props.players);
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
-      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <View>
+      <Layout style={{flex: 1}}>
+        <View style={{flex: 1, width: fullWidth, justifyContent: "space-around", alignItems: "center", padding: 15}}>
           <Text category="h1">{this.game}</Text>
-          <FlatList
-            data={teams[0]}
-            renderItem={({item}) => <Text>{item.name}</Text>}
-            keyExtractor={item => item.name}
-          />
-          <FlatList
-            data={teams[1]}
-            renderItem={({item}) => <Text>{item.name}</Text>}
-            keyExtractor={item => item.name}
-          />
-          <Button
-              onPress={() => {
-                this.reportResult(0, teams)
-                this.props.navigation.navigate('Leaderboard')
-              }}
-          >Win Team1</Button>
-          <Button
-              onPress={() => {
-                this.reportResult(1, teams)
-                this.props.navigation.navigate('Leaderboard')
-              }}
-          >Win Team2</Button>
+          <View style={{flex: 1, flexDirection: "row", justifyContent: 'space-around', alignItems: 'flex-start', paddingTop: 30}}>
+            <FlatList
+              data={teams[0]}
+              renderItem={({item}) => <Text category="h4">{item.name}</Text>}
+              keyExtractor={item => item.name}
+            />
+            <FlatList
+              data={teams[1]}
+              renderItem={({item}) => <Text category="h4" style={{textAlign: "right"}}>{item.name}</Text>}
+              keyExtractor={item => item.name}
+            />
+          </View>
+          <View style={{flex: 1, flexDirection: "row", width: fullWidth, justifyContent: "space-around", alignItems: 'baseline'}}>
+            <Button
+                onPress={() => {
+                  this.reportResult(0, teams)
+                  this.props.navigation.navigate('Leaderboard')
+                }}
+            >Win Team1</Button>
+            <Button
+                onPress={() => {
+                  this.reportResult(1, teams)
+                  this.props.navigation.navigate('Leaderboard')
+                }}
+            >Win Team2</Button>
+          </View>
         </View>
       </Layout>
       </SafeAreaView>
