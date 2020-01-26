@@ -4,12 +4,13 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
 import {Provider, connect} from 'react-redux';
-import {Player, Round, store} from './store'
+import {Player, Round, store, persistor} from './store'
 import { ListItem, List, Text, Input, ApplicationProvider, IconRegistry, Layout, Button, Icon } from '@ui-kitten/components';
 import { mapping, dark as darkTheme } from '@eva-design/eva';
 import { SafeAreaView } from 'react-navigation';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import InputScrollView from 'react-native-input-scroll-view';
+import { PersistGate } from 'redux-persist/integration/react';
 
 // TODO replace with background-basic-color-1 from theme
 const dartThemeBackground = '#222B45'
@@ -183,7 +184,9 @@ const App = () => (
         <IconRegistry icons={EvaIconsPack}/>
         <ApplicationProvider mapping={mapping} theme={darkTheme}>
           <Provider store={store}>
-            <Navigation />
+            <PersistGate loading={null} persistor={persistor}>
+              <Navigation />
+            </PersistGate>
           </Provider>
         </ApplicationProvider>
       </React.Fragment>

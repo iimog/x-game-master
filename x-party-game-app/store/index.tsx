@@ -1,4 +1,12 @@
 import { createStore, StoreCreator } from 'redux';
+//import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorage } from 'react-native';
+import { persistStore, persistReducer } from 'redux-persist';
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage
+}
 
 export type Player = {
   name: string,
@@ -65,4 +73,7 @@ const matchReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export const store = createStore(matchReducer);
+const persistedReducer = persistReducer(persistConfig, matchReducer)
+
+export const store = createStore(persistedReducer);
+export const persistor = persistStore(store);
