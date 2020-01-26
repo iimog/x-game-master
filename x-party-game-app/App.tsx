@@ -193,12 +193,13 @@ const ConnectedGameScreen = connect(state => state)(GameScreen)
 
 class LeaderboardEntry extends React.Component<{rank: number, name: string, points: number, active: boolean}, {}> {
   render() {
+    const appearance = this.props.active ? "default" : "hint";
     return (
       <View style={styles.lbEntryContainer}>
-        <Text category="h3">{this.props.rank.toString()}</Text>
-        <View style={{flex: 1, marginLeft: 10}}><Text category="h3">{this.props.name}</Text></View>
+        <Text category="h3" appearance={appearance}>{this.props.rank.toString()}</Text>
+        <View style={{flex: 1, marginLeft: 10}}><Text category="h3" appearance={appearance}>{this.props.name}</Text></View>
+        <Text style={{marginRight: 10}} category="h3" appearance={appearance}>{this.props.points.toString()}</Text>
         <Icon name={this.props.active ? 'checkmark-circle-2' : 'checkmark-circle-2-outline'} width={25} height={25} fill="#fff"/>
-        <Text style={{marginLeft: 10}} category="h3">{this.props.points.toString()}</Text>
       </View>
     );
   }
