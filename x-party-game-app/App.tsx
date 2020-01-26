@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, FlatList } from 'react-native';
+import { Image, Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, FlatList, Alert } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
@@ -43,6 +43,12 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
       gameText: this.props.games.join("\n"),
     };
   }
+  getPlayersFromText: (text: string) => Array<Player> = (text) => {
+    return text.split('\n').filter(x => x.trim().length>0).map((word) => {return {name: word, active: true}})
+  }
+  getDuplicatePlayers: (players: Array<Player>) => string[] = (players) => {
+    return _.values(_.keys(_.pickBy(_.groupBy(players.map(x => x.name)), x => x.length > 1)))
+  }
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -57,15 +63,23 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
             <Input multiline={true} scrollEnabled={false} onChangeText={(text) => this.setState({gameText: text})} value={this.state.gameText}></Input>
             <Button
                 onPress={() => {
-                  //Alert.alert("Let's go!")
-                  this.props.dispatch({
-                    type: 'START_MATCH',
-                    payload: {
-                      players: this.state.playerText.split('\n').map((word) => {return {name: word, active: true}}),
-                      games: _.shuffle(this.state.gameText.split('\n'))
-                    }})
-                  navigate('Leaderboard')
-                }}
+                  let players = this.getPlayersFromText(this.state.playerText);
+                  let duplicates = this.getDuplicatePlayers(players);
+                  if(players.length < 2){
+                    Alert.alert("It takes two to tango!")
+                  }
+                  if(duplicates.length > 0){
+                    Alert.alert("Duplicate players: "+duplicates.join(", "));
+                  } else {
+                    this.props.dispatch({
+                      type: 'START_MATCH',
+                      payload: {
+                        players: players,
+                        games: _.shuffle(this.state.gameText.split('\n').filter(x => x.trim().length > 0))
+                      }})
+                      navigate('Leaderboard')
+                    }}
+                  }
               >Start</Button>
           </InputScrollView>
         </TouchableWithoutFeedback>
