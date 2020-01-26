@@ -105,6 +105,21 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
     let playerScores = this.getPlayerScores();
     let isOver = this.props.rounds.length >= this.props.games.length;
     let sortedPlayers = this.props.players.sort((x,y) => playerScores[y.name]-playerScores[x.name])
+    let lastScore = -1;
+    let tieIndex = -1;
+    let ranks = sortedPlayers.map((player,index) => {
+      let thisScore = playerScores[player.name];
+      if(thisScore == lastScore){
+        return (tieIndex+1).toString();
+      } else {
+        lastScore = thisScore;
+        tieIndex = index;
+        return (index+1).toString();
+      }
+    });
+    if(isOver){
+      ranks = ranks.map(x => x=='1' ? '🏆' : x);
+    }
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -116,7 +131,7 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
                 <ListItem onPress={(index) => {
                   this.props.dispatch({type: 'TOGGLE_PLAYER', payload: sortedPlayers[index].name})
                 }}>
-                  <LeaderboardEntry rank={index+1} name={item.name} points={playerScores[item.name]} active={item.active}/>
+                  <LeaderboardEntry rank={ranks[index]} name={item.name} points={playerScores[item.name]} active={item.active}/>
                 </ListItem>
               )}
             }
@@ -191,12 +206,12 @@ class GameScreen extends React.Component<{navigation, dispatch, players: Array<P
 }
 const ConnectedGameScreen = connect(state => state)(GameScreen)
 
-class LeaderboardEntry extends React.Component<{rank: number, name: string, points: number, active: boolean}, {}> {
+class LeaderboardEntry extends React.Component<{rank: string, name: string, points: number, active: boolean}, {}> {
   render() {
     const appearance = this.props.active ? "default" : "hint";
     return (
       <View style={styles.lbEntryContainer}>
-        <Text category="h3" appearance={appearance}>{this.props.rank.toString()}</Text>
+        <Text category="h3" appearance={appearance}>{this.props.rank}</Text>
         <View style={{flex: 1, marginLeft: 10}}><Text category="h3" appearance={appearance}>{this.props.name}</Text></View>
         <Text style={{marginRight: 10}} category="h3" appearance={appearance}>{this.props.points.toString()}</Text>
         <Icon name={this.props.active ? 'checkmark-circle-2' : 'checkmark-circle-2-outline'} width={25} height={25} fill="#fff"/>
