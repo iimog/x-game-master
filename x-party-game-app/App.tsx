@@ -16,7 +16,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 const dartThemeBackground = '#222B45'
 const fullWidth = Dimensions.get('window').width
 
-class MainScreen extends React.Component<{navigation, games: Array<String>, rounds: Array<Round>},{}> {
+class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> {
   constructor(props) {
     super(props);
   }
@@ -27,7 +27,7 @@ class MainScreen extends React.Component<{navigation, games: Array<String>, roun
         <Layout style={{flex: 1, justifyContent: 'space-around', alignItems: 'center'}}>
           <Image source={require('./assets/xmenu.png')} style={{width: 250, height: 200}}/>
           <Button onPress={() => {navigate('NewGame')}}> New Game </Button>
-          <Button onPress={() => {navigate('Leaderboard')}}> Continue </Button>
+          <Button onPress={() => {navigate('Leaderboard')}} disabled={this.props.rounds.length==0}> Continue </Button>
         </Layout>
       </SafeAreaView>
     );
