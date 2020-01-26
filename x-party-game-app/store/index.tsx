@@ -2,6 +2,7 @@ import { createStore, StoreCreator } from 'redux';
 //import AsyncStorage from '@react-native-community/async-storage';
 import { AsyncStorage } from 'react-native';
 import { persistStore, persistReducer } from 'redux-persist';
+import _ from 'lodash';
 
 const persistConfig = {
   key: 'root',
@@ -48,9 +49,22 @@ const matchReducer = (state = INITIAL_STATE, action) => {
             rounds: [],
         };
     case 'GAME_RESULT':
+        // Set result of this game
+        let rounds = _.cloneDeep(state.rounds);
+        rounds[rounds.length-1].winner = action.payload;
+        return {
+            rounds: rounds,
+            players: state.players,
+            games: state.games,
+        };
+    case 'START_NEXT_GAME':
         // Add result of this game to previous rounds
         return {
-            rounds: [...state.rounds, action.payload],
+            rounds: [...state.rounds, {
+              teams: action.payload,
+              game: state.games[state.rounds.length],
+              winner: -1
+            }],
             players: state.players,
             games: state.games,
         };

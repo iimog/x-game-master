@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, FlatList } from 'react-native';
+import { Image, Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, FlatList } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
@@ -15,6 +15,25 @@ import { PersistGate } from 'redux-persist/integration/react';
 // TODO replace with background-basic-color-1 from theme
 const dartThemeBackground = '#222B45'
 const fullWidth = Dimensions.get('window').width
+
+class MainScreen extends React.Component<{navigation, games: Array<String>, rounds: Array<Round>},{}> {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const {navigate} = this.props.navigation;
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
+        <Layout style={{flex: 1, justifyContent: 'space-around', alignItems: 'center'}}>
+          <Image source={require('./assets/xmenu.png')} style={{width: 250, height: 200}}/>
+          <Button onPress={() => {navigate('NewGame')}}> New Game </Button>
+          <Button onPress={() => {navigate('Leaderboard')}}> Continue </Button>
+        </Layout>
+      </SafeAreaView>
+    );
+  }
+}
+const ConnectedMainScreen = connect(state=>state)(MainScreen)
 
 class NewGameScreen extends React.Component<{navigation, dispatch, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
   constructor(props) {
@@ -63,14 +82,26 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
     players.map(x => playerScores[x.name] = 0);
     for(let i=0; i<rounds.length; i++){
       let round = rounds[i]
-     // if(round.winner in [0,1]){
+     if(round.winner in [0,1]){
         round.teams[round.winner].map(player => playerScores[player.name]+=(i+1));
-     // }
+     }
     }
     return playerScores;
   }
+  getRandomTeams: (players: Array<Player>) => Array<Array<Player>> = (players) => {
+    let activePlayers = players.filter(p => p.active)
+    let shuffledPlayers = _.shuffle(activePlayers);
+    let splitPoint = Math.floor(activePlayers.length/2)
+    if(activePlayers.length % 2){
+      splitPoint += _.random();
+    }
+    let teams = [shuffledPlayers.slice(0,splitPoint), shuffledPlayers.slice(splitPoint)]
+    return teams;
+  }
   render() {
     const {navigate} = this.props.navigation;
+    const gameIndex = this.props.rounds.length-1;
+    const gameRunning = gameIndex >= 0 && this.props.rounds[gameIndex].winner == -1;
     let playerScores = this.getPlayerScores();
     let isOver = this.props.rounds.length >= this.props.games.length;
     let sortedPlayers = this.props.players.sort((x,y) => playerScores[y.name]-playerScores[x.name])
@@ -91,8 +122,19 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
             }
             keyExtractor={item => item.name}
           />
-          <Button onPress={() => isOver ? navigate('NewGame') : navigate('Game')}>
-            {isOver ? "Back to Main" : "Next Game"}
+          <Button onPress={() => {
+                if(isOver){
+                  navigate('Main');
+                } else {
+                  if(!gameRunning){
+                    let teams = this.getRandomTeams(this.props.players)
+                    this.props.dispatch({type: 'START_NEXT_GAME', payload: teams})
+                  }
+                  navigate('Game')
+                }
+              }
+            }>
+            {isOver ? "Back to Main" : (gameRunning ? "Back to Game" : "Next Game")}
           </Button>
         </View>
       </Layout>
@@ -103,22 +145,13 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
 const ConnectedLeaderboardScreen = connect(state => state)(LeaderboardScreen)
 
 class GameScreen extends React.Component<{navigation, dispatch, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
-  getRandomTeams: (players: Array<Player>) => Array<Array<Player>> = (players) => {
-    let activePlayers = players.filter(p => p.active)
-    let shuffledPlayers = _.shuffle(activePlayers);
-    let splitPoint = Math.floor(activePlayers.length/2)
-    if(activePlayers.length % 2){
-      splitPoint += _.random();
-    }
-    let teams = [shuffledPlayers.slice(0,splitPoint), shuffledPlayers.slice(splitPoint)]
-    return teams;
+  reportResult: (index: number) => void = (index) => {
+    this.props.dispatch({type: 'GAME_RESULT', payload: index})
   }
-  reportResult: (index: number, teams: Array<Array<Player>>) => void = (index, teams) => {
-    this.props.dispatch({type: 'GAME_RESULT', payload: { game: this.game, teams: teams, winner: index }})
-  }
-  game: string = this.props.games[this.props.rounds.length];
+  gameIndex: number = this.props.rounds.length - 1;
+  game: string = this.props.games[this.gameIndex];
   render() {
-    let teams = this.getRandomTeams(this.props.players);
+    const teams = this.props.rounds[this.gameIndex].teams;
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
       <Layout style={{flex: 1}}>
@@ -139,13 +172,13 @@ class GameScreen extends React.Component<{navigation, dispatch, players: Array<P
           <View style={{flex: 1, flexDirection: "row", width: fullWidth, justifyContent: "space-around", alignItems: 'baseline'}}>
             <Button
                 onPress={() => {
-                  this.reportResult(0, teams)
+                  this.reportResult(0)
                   this.props.navigation.navigate('Leaderboard')
                 }}
             >Win Team1</Button>
             <Button
                 onPress={() => {
-                  this.reportResult(1, teams)
+                  this.reportResult(1)
                   this.props.navigation.navigate('Leaderboard')
                 }}
             >Win Team2</Button>
@@ -175,7 +208,8 @@ const MainNavigator = createStackNavigator({
   Game: {screen: ConnectedGameScreen},
   NewGame: {screen: ConnectedNewGameScreen},
   Leaderboard: {screen: ConnectedLeaderboardScreen},
-}, {initialRouteName: 'NewGame', headerMode: 'none'});
+  Main: {screen: ConnectedMainScreen},
+}, {initialRouteName: 'Main', headerMode: 'none'});
 
 const Navigation = createAppContainer(MainNavigator);
 
