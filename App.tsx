@@ -26,7 +26,7 @@ class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> 
       <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
         <Layout style={{flex: 1, justifyContent: 'space-around', alignItems: 'center'}}>
           <Image source={require('./assets/xmenu.png')} style={{width: 250, height: 200}}/>
-          <Button onPress={() => {navigate('NewGame')}}> New Game </Button>
+          <Button onPress={() => {navigate('NewMatch')}}> New Match </Button>
           <Button onPress={() => {navigate('Leaderboard')}} disabled={this.props.rounds.length==0}> Continue </Button>
         </Layout>
       </SafeAreaView>
@@ -35,7 +35,7 @@ class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> 
 }
 const ConnectedMainScreen = connect(state=>state)(MainScreen)
 
-class NewGameScreen extends React.Component<{navigation, dispatch, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
+class NewMatchScreen extends React.Component<{navigation, dispatch, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,7 +87,7 @@ class NewGameScreen extends React.Component<{navigation, dispatch, players: Arra
     );
   }
 }
-const ConnectedNewGameScreen = connect(state=>state)(NewGameScreen)
+const ConnectedNewMatchScreen = connect(state=>state)(NewMatchScreen)
 
 class LeaderboardScreen extends React.Component<{navigation, dispatch, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
   getPlayerScores: () => { [key: string]: number; } = () => {
@@ -236,7 +236,7 @@ class LeaderboardEntry extends React.Component<{rank: string, name: string, poin
 
 const MainNavigator = createStackNavigator({
   Game: {screen: ConnectedGameScreen},
-  NewGame: {screen: ConnectedNewGameScreen},
+  NewMatch: {screen: ConnectedNewMatchScreen},
   Leaderboard: {screen: ConnectedLeaderboardScreen},
   Main: {screen: ConnectedMainScreen},
 }, {initialRouteName: 'Main', headerMode: 'none'});
