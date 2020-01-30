@@ -41,3 +41,13 @@ Only features that proof to be desirable when playing the game will be considere
 ## Issues
 
 If you find bugs or unexpected behaviour or if you have ideas for any kind of improvement please open an [issue on GitHub](https://github.com/iimog/x-party-game-app/issues).
+
+## Data Privacy
+
+As outlined in our [data privacy statement](./DATA_PRIVACY_STATEMENT] this app does not collect any user data.
+
+## Change Log
+
+### 0.3.0
+- simplified design and game play
+- complete re-write from <=0.2.1
