@@ -42,9 +42,14 @@ Only features that proof to be desirable when playing the game will be considere
 
 If you find bugs or unexpected behaviour or if you have ideas for any kind of improvement please open an [issue on GitHub](https://github.com/iimog/x-party-game-app/issues).
 
+## Logo
+
+The game logo was designed by Tobias Ankenbrand
+![X Game Manager Logo](./assets/xmenu.png)
+
 ## Data Privacy
 
-As outlined in our [data privacy statement](./DATA_PRIVACY_STATEMENT] this app does not collect any user data.
+As outlined in our [data privacy statement](DATA_PRIVACY_STATEMENT) this app does not collect any user data.
 
 ## Change Log
 
