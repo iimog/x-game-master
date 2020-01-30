@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Dimensions, StyleSheet, TouchableWithoutFeedback, View, Keyboard, FlatList, Alert } from 'react-native';
+import { Image, Dimensions, Linking, StyleSheet, TouchableWithoutFeedback, View, Keyboard, FlatList, Alert } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import _ from 'lodash';
@@ -28,12 +28,42 @@ class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> 
           <Image source={require('./assets/xmenu.png')} style={{width: 250, height: 200}}/>
           <Button onPress={() => {navigate('NewMatch')}}> New Match </Button>
           <Button onPress={() => {navigate('Leaderboard')}} disabled={this.props.rounds.length==0}> Continue </Button>
+          <Button onPress={() => {navigate('About')}}> App Info </Button>
         </Layout>
       </SafeAreaView>
     );
   }
 }
 const ConnectedMainScreen = connect(state=>state)(MainScreen)
+
+class AboutScreen extends React.Component<{navigation},{}> {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const {navigate} = this.props.navigation;
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: dartThemeBackground}}>
+        <Layout style={{flex: 1, justifyContent: 'space-around', alignItems: 'center'}}>
+          <Image source={require('./assets/xmenu.png')} style={{width: 250, height: 200}}/>
+          <Text category="h3">About X</Text>
+          <Text>
+            For a description of how to play the game please see: <Text style={{color: 'blue'}}
+            onPress={() => Linking.openURL('https://github.com/iimog/x-party-game-app')}>
+              X Game Manager Website
+            </Text>
+            This app is open source, please report bugs and suggestions at the website as well.
+            
+            Data Privacy: 
+            This app does not collect any user data.
+Nor does it share any user information with any third party.
+          </Text>
+          <Button onPress={() => {navigate('Main')}}> Back </Button>
+        </Layout>
+      </SafeAreaView>
+    );
+  }
+}
 
 class NewMatchScreen extends React.Component<{navigation, dispatch, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
   constructor(props) {
@@ -239,6 +269,7 @@ const MainNavigator = createStackNavigator({
   NewMatch: {screen: ConnectedNewMatchScreen},
   Leaderboard: {screen: ConnectedLeaderboardScreen},
   Main: {screen: ConnectedMainScreen},
+  About: {screen: AboutScreen},
 }, {initialRouteName: 'Main', headerMode: 'none'});
 
 const Navigation = createAppContainer(MainNavigator);

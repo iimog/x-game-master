@@ -30,8 +30,7 @@ const INITIAL_STATE: State = {
   players: [
     {name: "Markus", active: true},
     {name: "Hannah", active: true},
-    {name: "Bernd", active: true},
-    {name: "Moni", active: true},
+    {name: "Tobias", active: true},
     {name: "Moritz", active: true},
   ],
   games: ["Snake 🐍","Tron 🏍","Darts 🎯"],
