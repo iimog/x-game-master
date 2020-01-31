@@ -208,7 +208,7 @@ class GameScreen extends React.Component<{navigation, dispatch, players: Array<P
     this.props.dispatch({type: 'GAME_RESULT', payload: index})
   }
   gameIndex: number = this.props.rounds.length - 1;
-  game: string = this.props.games[this.gameIndex];
+  game: string = (this.gameIndex+1) + ". " +this.props.games[this.gameIndex];
   render() {
     const teams = this.props.rounds[this.gameIndex].teams;
     return (
