@@ -40,7 +40,7 @@ Only features that proof to be desirable when playing the game will be considere
 
 ## Issues
 
-If you find bugs or unexpected behaviour or if you have ideas for any kind of improvement please open an [issue on GitHub](https://github.com/iimog/x-party-game-app/issues).
+If you find bugs or unexpected behaviour or if you have ideas for any kind of improvement please open an [issue on GitHub](https://github.com/iimog/x-game-master/issues).
 
 ## Logo
 
