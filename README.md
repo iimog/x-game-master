@@ -12,7 +12,7 @@ You absolutely need two things for a fun game night:
 
 You probably have both of these and don't need an app for that.  But this app is your X factor to combine separate games to a unique gaming experience. So grab some friends and your favorite games and let the `X Game Master` transform it into an awesome competition.
 
-## How it works
+## How it Works
 
 Note: a *game* refers to the thing you play in one round while a *match* refers to the whole sequence of games. 
 
@@ -32,7 +32,7 @@ The leaderboard view is shown before and after every game. It shows the rank of 
 
 If a player can not play a round you can set them inactive by clicking on them in the leaderboard view. This player will not participate in any games until it is set active again and hence will not receive any points.
 
-## Design principles
+## Design Principles
 
 The app is designed to be clean and simple to use.
 The UI is meant to be intuitive and pretty without unnecessary clutter.
@@ -45,11 +45,20 @@ If you find bugs or unexpected behaviour or if you have ideas for any kind of im
 ## Logo
 
 The game logo was designed by Tobias Ankenbrand
+
 ![X Game Manager Logo](./assets/xmenu.png)
 
 ## Data Privacy
 
 As outlined in our [data privacy statement](DATA_PRIVACY_STATEMENT) this app does not collect any user data.
+
+## Third Party Libraries
+The app is built using a collection of open source libraries including
+ - [TypeScript](https://www.typescriptlang.org/)
+ - [React Native](https://facebook.github.io/react-native/)
+ - [Expo](https://docs.expo.io/)
+ - [Redux](https://redux.js.org/)
+ - [UI Kitten 4.0](https://akveo.github.io/react-native-ui-kitten/)
 
 ## Change Log
 
