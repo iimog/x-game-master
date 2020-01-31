@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "0.3.0",
+    "version": "0.3.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -25,10 +25,12 @@
     ],
     "ios": {
       "bundleIdentifier": "org.iimog.xapp",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "2"
     },
     "android": {
-      "package": "org.iimog.xapp"
+      "package": "org.iimog.xapp",
+      "versionCode": 2
     }
   }
 }
