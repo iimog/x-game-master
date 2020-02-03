@@ -19,6 +19,7 @@ Note: a *game* refers to the thing you play in one round while a *match* refers 
 ### New Match
 Start a match by entering the list of players (one per line) and the list of games (one per line). Feel free to use Emojis :rocket:
 Player names have to be unique while you can duplicate game names (in separate lines) for the number of times you want to play them. A good game is one that can be played with two teams and a clear winner.
+
 <img src="./screenshots/ios/iphone/NewMatchScreen.png" width="300">
 
 ### Procedure
@@ -26,12 +27,14 @@ You play all entries in the game list in a random order exactly once. For each g
 
 ### Game View
 In the game view you see the name of the game and the players of each team. After you played the game in real life just press the button for the winning team accordingly.
+
 <img src="./screenshots/ios/iphone/GameScreen1Darts.png" width="300">
 
 ### Leaderboard View
 The leaderboard view is shown before and after every game. It shows the rank of each player together with the sum of their points and their status (active/inactive).
 
 If a player can not play a round you can set them inactive by clicking on them in the leaderboard view. This player will not participate in any games until it is set active again and hence will not receive any points.
+
 <img src="./screenshots/ios/iphone/LeaderboardScreen2b.png" width="300">
 
 ## Design Principles
