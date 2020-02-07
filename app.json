@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "X",
-    "slug": "x-party-game-app",
+    "name": "X Game Master",
+    "slug": "x-game-master",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -26,11 +26,14 @@
     "ios": {
       "bundleIdentifier": "org.iimog.xapp",
       "supportsTablet": true,
-      "buildNumber": "2"
+      "buildNumber": "2",
+      "icon": "./assets/apple_icon.png"
     },
     "android": {
       "package": "org.iimog.xapp",
       "versionCode": 2
-    }
+    },
+    "description": "Your companion app to organize a fun game night (or day)",
+    "githubUrl": "https://github.com/iimog/x-game-master"
   }
 }
