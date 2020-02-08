@@ -71,6 +71,12 @@ The app is built using a collection of open source libraries including
 
 ## Change Log
 
+### next release
+- fix early finish bug [#18](https://github.com/iimog/x-game-master/issues/18)
+
+### 0.3.1
+- game state persists restarts of the app
+
 ### 0.3.0
 - simplified design and game play
 - complete re-write from <=0.2.1
