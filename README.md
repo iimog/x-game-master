@@ -12,6 +12,10 @@ You absolutely need two things for a fun game night:
 
 You probably have both of these and don't need an app for that.  But this app is your X factor to combine separate games to a unique gaming experience. So grab some friends and your favorite games and let the `X Game Master` transform it into an awesome competition.
 
+## Synopsis
+
+Enter a list of players and games and press start. The games will be played in a randomized order with new random teams for each game. The winners of each game get points (1 for the first game, 2 for the second, ...). In the end the player with the highest score wins.
+
 ## How it Works
 
 Note: a *game* refers to the thing you play in one round while a *match* refers to the whole sequence of games. 
