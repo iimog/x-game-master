@@ -1,11 +1,24 @@
 import React from "react";
-import { Image, Linking } from "react-native";
+import { Image, Linking, AsyncStorage } from "react-native";
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView"
 import { Layout, Button, Text } from "@ui-kitten/components";
 
 class AboutScreen extends React.Component<{navigation},{}> {
     constructor(props) {
       super(props);
+      this.getAllKeys()
+    }
+    getAllKeys = async () => {
+      let keys = []
+      try {
+        keys = await AsyncStorage.getAllKeys()
+      } catch(e) {
+        // read key error
+      }
+    
+      console.log(keys)
+      // example console.log result:
+      // ['@MyApp_user', '@MyApp_key']
     }
     render() {
       const {navigate} = this.props.navigation;

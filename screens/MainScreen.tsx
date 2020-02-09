@@ -16,7 +16,7 @@ class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> 
           <Layout style={{flex: 1, justifyContent: 'space-around', alignItems: 'center'}}>
             <Image source={require('../assets/xmenu.png')} style={{width: 250, height: 200}}/>
             <Button onPress={() => {navigate('NewMatch')}}> New Match </Button>
-            <Button onPress={() => {navigate('Leaderboard')}} disabled={this.props.rounds.length==0}> Continue </Button>
+            <Button onPress={() => {navigate('Matches')}}> Matches </Button>
             <Button onPress={() => {navigate('About')}}> App Info </Button>
           </Layout>
         </ThemedSafeAreaView>

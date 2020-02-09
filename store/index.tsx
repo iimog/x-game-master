@@ -23,7 +23,9 @@ export type Round = {
 type State = {
     players: Array<Player>,
     games: Array<String>,
-    rounds: Array<Round>
+    rounds: Array<Round>,
+    matchId: number,
+    lastChange: number,
 }
 
 const INITIAL_STATE: State = {
@@ -34,7 +36,9 @@ const INITIAL_STATE: State = {
     {name: "Moritz", active: true},
   ],
   games: ["Snake 🐍","Tron 🏍","Darts 🎯"],
-  rounds: []
+  rounds: [],
+  matchId: -1,
+  lastChange: -1,
 };
 
 // TODO can I check payload types?
@@ -46,26 +50,29 @@ const matchReducer = (state = INITIAL_STATE, action) => {
             players: action.payload.players,
             games: action.payload.games,
             rounds: [],
+            matchId: Date.now(),
+            lastChange: Date.now(),
         };
+    case 'LOAD_MATCH':
+        // Load match with state from payload (replacing old state)
+        return action.payload;
     case 'GAME_RESULT':
         // Set result of this game
         let rounds = _.cloneDeep(state.rounds);
         rounds[rounds.length-1].winner = action.payload;
-        return {
+        return {...state, 
             rounds: rounds,
-            players: state.players,
-            games: state.games,
+            lastChange: Date.now(),
         };
     case 'START_NEXT_GAME':
         // Add result of this game to previous rounds
-        return {
+        return {...state,
             rounds: [...state.rounds, {
               teams: action.payload,
               game: state.games[state.rounds.length],
               winner: -1
             }],
-            players: state.players,
-            games: state.games,
+            lastChange: Date.now(),
         };
     case 'TOGGLE_PLAYER':
         // Toggle active/inactive status of player with payload name
@@ -76,10 +83,8 @@ const matchReducer = (state = INITIAL_STATE, action) => {
             }
             return newPlayer;
         })
-        return {
-            rounds: state.rounds,
+        return {...state,
             players: newPlayers,
-            games: state.games,
         };
     default:
       return state

@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions } from "react-native";
+import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions, AsyncStorage } from "react-native";
 import { Layout, Button, Input, Text } from "@ui-kitten/components";
 import { Player } from "../store";
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import _ from "lodash";
 import InputScrollView from "react-native-input-scroll-view";
 
-class NewMatchScreen extends React.Component<{navigation, dispatch, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
+class NewMatchScreen extends React.Component<{navigation, dispatch, matchId: number, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
     constructor(props) {
       super(props);
       this.state = {

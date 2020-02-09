@@ -12,11 +12,14 @@ import LeaderboardScreen from './screens/LeaderboardScreen';
 import MainScreen from './screens/MainScreen';
 import NewMatchScreen from './screens/NewMatchScreen';
 import { persistor, store } from './store';
+import { AsyncStorage } from 'react-native';
+import MatchesScreen from './screens/MatchesScreen';
 
 const MainNavigator = createStackNavigator({
   Game: {screen: GameScreen},
   NewMatch: {screen: NewMatchScreen},
   Leaderboard: {screen: LeaderboardScreen},
+  Matches: {screen: MatchesScreen},
   Main: {screen: MainScreen},
   About: {screen: AboutScreen},
 }, {initialRouteName: 'Main', headerMode: 'none'});
@@ -35,5 +38,19 @@ const App = () => (
         </ApplicationProvider>
       </React.Fragment>
   );
+
+store.subscribe(() => {
+  const state = store.getState();
+  try {
+    AsyncStorage.setItem('@match:'+state.matchId, JSON.stringify({
+      players: state.players,
+      games: state.games,
+      rounds: state.rounds,
+      lastChange: state.lastChange,
+    }));
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 export default App;
