@@ -71,8 +71,10 @@ The app is built using a collection of open source libraries including
 
 ## Change Log
 
-### next release
+### 0.4.0
 - fix early finish bug [#18](https://github.com/iimog/x-game-master/issues/18)
+- multiple matches are saved independently
+- finished matches are kept
 
 ### 0.3.1
 - game state persists restarts of the app
