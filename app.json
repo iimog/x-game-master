@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "0.4.0",
+    "version": "0.5.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -26,12 +26,12 @@
     "ios": {
       "bundleIdentifier": "org.iimog.xapp",
       "supportsTablet": true,
-      "buildNumber": "3",
+      "buildNumber": "4",
       "icon": "./assets/apple_icon.png"
     },
     "android": {
       "package": "org.iimog.xapp",
-      "versionCode": 3
+      "versionCode": 4
     },
     "description": "Your companion app to organize a fun game night (or day)",
     "githubUrl": "https://github.com/iimog/x-game-master"

@@ -71,6 +71,11 @@ The app is built using a collection of open source libraries including
 
 ## Change Log
 
+### 0.5.0
+- add list of played games with winners
+- add ability to change winner of a finished game
+- add ability to remove games from match
+
 ### 0.4.0
 - fix early finish bug [#18](https://github.com/iimog/x-game-master/issues/18)
 - multiple matches are saved independently

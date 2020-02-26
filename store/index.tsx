@@ -92,7 +92,7 @@ const matchReducer = (state = INITIAL_STATE, action) => {
         let winnerBefore = newRounds[action.payload].winner
         if(winnerBefore>=0)
           newRounds[action.payload].winner = winnerBefore == 0 ? 1 : 0
-        return {...state, rounds: newRounds}
+        return {...state, rounds: newRounds, lastChange: Date.now()}
     case 'REMOVE_GAME':
         // Remove a game (can be played or unplayed)
         let newState = _.cloneDeep(state);
@@ -100,6 +100,7 @@ const matchReducer = (state = INITIAL_STATE, action) => {
         if(newState.rounds.length > action.payload){
           newState.rounds.splice(action.payload,1)
         }
+        newState.lastChange = Date.now()
         return newState
     default:
       return state
