@@ -1,12 +1,18 @@
 import React from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
-import { Layout, Button, Text, List, ListItem, Icon } from "@ui-kitten/components";
+import { Layout, Button, Text, List, ListItem, Icon, Tab, TabView } from "@ui-kitten/components";
 import { Player, Round } from "../store";
 import { connect } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import _ from "lodash";
 
-class LeaderboardScreen extends React.Component<{navigation, dispatch, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
+class LeaderboardScreen extends React.Component<{navigation, dispatch, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{selectedIndex: number}> {
+    constructor(props) {
+      super(props);
+      this.state = {
+        selectedIndex: 0,
+      };
+    }
     getPlayerScores: () => { [key: string]: number; } = () => {
       let playerScores = {};
       const {rounds, players} = this.props;
@@ -54,6 +60,11 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
       }
       return (
         <ThemedSafeAreaView>
+              <TabView
+      selectedIndex={this.state.selectedIndex}
+      onSelect={(index) => this.setState({selectedIndex: index})}
+      style={{flex: 1}}>
+      <Tab title='Leaderboard'>
         <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <View style={{width: fullWidth, padding: 15}}> 
             <List
@@ -69,7 +80,30 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
               }
               keyExtractor={item => item.name}
             />
-            <Button onPress={() => {
+          </View>
+        </Layout>
+      </Tab>
+      <Tab title='Games'>
+      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{width: fullWidth, padding: 15}}> 
+            <List
+              data={this.props.rounds}
+              renderItem={({item, index}) => {
+                return(
+                  <ListItem key={index} onPress={(index) => {
+                    console.log(index)
+                    this.props.dispatch({type: 'TOGGLE_GAME_RESULT', payload: index})
+                  }}>
+                      <GameListEntry gameIndex={index} name={item.game} winner={item.winner} teams={item.teams}/>
+                  </ListItem>
+                )}
+              }
+            />
+          </View>
+        </Layout>
+      </Tab>
+    </TabView>
+    <Button onPress={() => {
                   if(isOver){
                     navigate('Main');
                   } else {
@@ -83,8 +117,6 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
               }>
               {isOver ? "Back to Main" : (gameRunning ? "Back to Game" : "Next Game")}
             </Button>
-          </View>
-        </Layout>
         </ThemedSafeAreaView>
       );
     }
@@ -105,6 +137,20 @@ class LeaderboardEntry extends React.Component<{rank: string, name: string, poin
     }
   }
 
+class GameListEntry extends React.Component<{gameIndex: number, name: string, winner: number, teams: Array<Array<Player>>}, {}> {
+    render() {
+      const appearance = this.props.winner >= 0 ? "default" : "hint";
+      return (
+        <View style={styles.lbEntryContainer}>
+          <Text category="h3" appearance={appearance}>{(this.props.gameIndex+1).toString()}.</Text>
+          <View style={{flex: 1, marginLeft: 10}}><Text category="h3" appearance={appearance}>{this.props.name}</Text></View>
+          <Text style={{marginRight: 10}}>
+            { this.props.winner<0 ? '...running...' : this.props.teams[this.props.winner].map(x => x.name).join(",")}
+          </Text>
+        </View>
+      );
+    }
+  }
   
 const styles = StyleSheet.create({
     lbEntryContainer: {

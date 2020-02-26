@@ -86,6 +86,13 @@ const matchReducer = (state = INITIAL_STATE, action) => {
         return {...state,
             players: newPlayers,
         };
+    case 'TOGGLE_GAME_RESULT':
+        // Swap winner of a finished game
+        let newRounds = _.cloneDeep(state.rounds);
+        let winnerBefore = newRounds[action.payload].winner
+        if(winnerBefore>=0)
+          newRounds[action.payload].winner = winnerBefore == 0 ? 1 : 0
+        return {...state, rounds: newRounds}
     default:
       return state
   }
