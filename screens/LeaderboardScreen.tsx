@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions, Alert } from "react-native";
 import { Layout, Button, Text, List, ListItem, Icon, Tab, TabView } from "@ui-kitten/components";
 import { Player, Round } from "../store";
 import { connect } from 'react-redux';
@@ -90,9 +90,28 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
               data={this.props.rounds}
               renderItem={({item, index}) => {
                 return(
-                  <ListItem key={index} onPress={(index) => {
-                    console.log(index)
-                    this.props.dispatch({type: 'TOGGLE_GAME_RESULT', payload: index})
+                  <ListItem key={index} onLongPress={(index) => {
+                    Alert.alert(
+                      'Rewrite history?',
+                      'Change winner or remove (no undo for that)?',
+                      [
+                        {
+                          text: 'Change winner',
+                          onPress: () => this.props.dispatch({type: 'TOGGLE_GAME_RESULT', payload: index})
+                        },
+                        {
+                          text: 'Remove',
+                          onPress: () => this.props.dispatch({type: 'REMOVE_GAME', payload: index}),
+                          style: 'destructive'
+                        },
+                        {
+                          text: 'Cancel',
+                          style: 'cancel',
+                        },
+                      ],
+                      {cancelable: true},
+                    );
+                    
                   }}>
                       <GameListEntry gameIndex={index} name={item.game} winner={item.winner} teams={item.teams}/>
                   </ListItem>

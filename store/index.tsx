@@ -93,6 +93,14 @@ const matchReducer = (state = INITIAL_STATE, action) => {
         if(winnerBefore>=0)
           newRounds[action.payload].winner = winnerBefore == 0 ? 1 : 0
         return {...state, rounds: newRounds}
+    case 'REMOVE_GAME':
+        // Remove a game (can be played or unplayed)
+        let newState = _.cloneDeep(state);
+        newState.games.splice(action.payload,1)
+        if(newState.rounds.length > action.payload){
+          newState.rounds.splice(action.payload,1)
+        }
+        return newState
     default:
       return state
   }
