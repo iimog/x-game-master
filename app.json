@@ -31,7 +31,8 @@
     },
     "android": {
       "package": "org.iimog.xapp",
-      "versionCode": 4
+      "versionCode": 4,
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=org.iimog.xapp"
     },
     "description": "Your companion app to organize a fun game night (or day)",
     "githubUrl": "https://github.com/iimog/x-game-master"
