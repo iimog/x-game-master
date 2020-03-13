@@ -41,15 +41,17 @@ const App = () => (
 
 store.subscribe(() => {
   const state = store.getState();
-  try {
-    AsyncStorage.setItem('@match:'+state.matchId, JSON.stringify({
-      players: state.players,
-      games: state.games,
-      rounds: state.rounds,
-      lastChange: state.lastChange,
-    }));
-  } catch (error) {
-    console.error(error)
+  if(state.matchId>0){
+    try {
+      AsyncStorage.setItem('@match:'+state.matchId, JSON.stringify({
+        players: state.players,
+        games: state.games,
+        rounds: state.rounds,
+        lastChange: state.lastChange,
+      }));
+    } catch (error) {
+      console.error(error)
+    }
   }
 })
 
