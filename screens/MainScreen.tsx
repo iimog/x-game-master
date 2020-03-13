@@ -19,7 +19,7 @@ class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> 
             <Button onPress={() => {navigate('NewMatch')}}> New Match </Button>
             <Button onPress={() => {navigate('Matches')}}> Matches </Button>
             <Button onPress={() => {navigate('About')}}> App Info </Button>
-            <Text>Version {Constants.manifest.version}</Text>
+            <Text appearance="hint">Version {Constants.manifest.version}</Text>
           </Layout>
         </ThemedSafeAreaView>
       );

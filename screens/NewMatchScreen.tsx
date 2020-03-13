@@ -1,6 +1,6 @@
 import React from "react";
-import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions, AsyncStorage } from "react-native";
-import { Layout, Button, Input, Text } from "@ui-kitten/components";
+import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions, AsyncStorage, View } from "react-native";
+import { Layout, Button, Input, Text, Icon } from "@ui-kitten/components";
 import { Player } from "../store";
 import { connect } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
@@ -14,6 +14,9 @@ class NewMatchScreen extends React.Component<{navigation, dispatch, matchId: num
         playerText: this.props.players.map(p => p.name).join("\n"),
         gameText: this.props.games.join("\n"),
       };
+    }
+    getGamesFromText: (text: string) => Array<String> = (text) => {
+      return _.shuffle(text.split('\n').filter(x => x.trim().length > 0))
     }
     getPlayersFromText: (text: string) => Array<Player> = (text) => {
       return text.split('\n').filter(x => x.trim().length>0).map((word) => {return {name: word, active: true}})
@@ -30,25 +33,41 @@ class NewMatchScreen extends React.Component<{navigation, dispatch, matchId: num
           <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
             <InputScrollView style={{flex:1, width: fullWidth, padding: 15}}>
               <Text category="h1" style={{flex: 1, textAlign: 'center', margin: 15}}>X</Text>
-              <Text category="h3">Players</Text>
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text category="h3">Players</Text>
+                <TouchableWithoutFeedback onPress={() => Alert.alert("Players","Enter all players: one per line.\nFeel free to use emojis 😈")}>
+                  <Icon name="question-mark-circle" width={32} height={32} fill="#fff"/>
+                </TouchableWithoutFeedback>
+              </View>
               <Input multiline={true} scrollEnabled={false} onChangeText={(text) => this.setState({playerText: text})} value={this.state.playerText}></Input>
-              <Text category="h3">Games</Text>
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text category="h3">Games</Text>
+                <TouchableWithoutFeedback onPress={() => 
+                    Alert.alert(
+                      "Games",
+                      "Enter all games you want to play: one per line. This app does not contain any games you have to play all the games in real life. Keep in mind that you play each game in two teams. Popular choices include:\nDarts 🎯\nLiar's dice 🎲\nBlack Jack 🃏\nSnake 🐍\nTron 🏍\nBlobby Volley 🏐")
+                  }>
+                  <Icon name="question-mark-circle" width={32} height={32} fill="#fff"/>
+                </TouchableWithoutFeedback>
+              </View>
               <Input multiline={true} scrollEnabled={false} onChangeText={(text) => this.setState({gameText: text})} value={this.state.gameText}></Input>
               <Button
                   onPress={() => {
                     let players = this.getPlayersFromText(this.state.playerText);
                     let duplicates = this.getDuplicatePlayers(players);
+                    let games = this.getGamesFromText(this.state.gameText);
                     if(players.length < 2){
                       Alert.alert("It takes two to tango!")
-                    }
-                    if(duplicates.length > 0){
+                    } else if(duplicates.length > 0){
                       Alert.alert("Duplicate players: "+duplicates.join(", "));
+                    }  else if(games.length == 0){
+                      Alert.alert("Please enter at least one game!");
                     } else {
                       this.props.dispatch({
                         type: 'START_MATCH',
                         payload: {
                           players: players,
-                          games: _.shuffle(this.state.gameText.split('\n').filter(x => x.trim().length > 0))
+                          games: games,
                         }})
                         navigate('Leaderboard')
                       }}
