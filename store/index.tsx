@@ -29,13 +29,8 @@ type State = {
 }
 
 const INITIAL_STATE: State = {
-  players: [
-    {name: "Markus", active: true},
-    {name: "Hannah", active: true},
-    {name: "Tobias", active: true},
-    {name: "Moritz", active: true},
-  ],
-  games: ["Snake 🐍","Tron 🏍","Darts 🎯"],
+  players: [],
+  games: [],
   rounds: [],
   matchId: -1,
   lastChange: -1,
