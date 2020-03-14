@@ -58,6 +58,7 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
       if(isOver){
         ranks = ranks.map(x => x=='1' ? '🏆' : x);
       }
+      let remainingGames = _.shuffle(this.props.games.slice(this.props.rounds.length));
       return (
         <ThemedSafeAreaView>
               <TabView
@@ -118,6 +119,17 @@ class LeaderboardScreen extends React.Component<{navigation, dispatch, players: 
                 )}
               }
             />
+            <Text category="h4" appearance="hint" style={{marginTop:25}}>{remainingGames.length>0 ? "Remaining games:" : ""}</Text>
+            <List
+              data={remainingGames}
+              renderItem={({item, index}) => {
+                return(
+                  <ListItem key={index}>
+                      <UnplayedGameListEntry name={item}/>
+                  </ListItem>
+                )}
+              }
+            />
           </View>
         </Layout>
       </Tab>
@@ -162,10 +174,22 @@ class GameListEntry extends React.Component<{gameIndex: number, name: string, wi
       return (
         <View style={styles.lbEntryContainer}>
           <Text category="h3" appearance={appearance}>{(this.props.gameIndex+1).toString()}.</Text>
-          <View style={{flex: 1, marginLeft: 10}}><Text category="h3" appearance={appearance}>{this.props.name}</Text></View>
-          <Text style={{marginRight: 10}}>
-            { this.props.winner<0 ? '...running...' : this.props.teams[this.props.winner].map(x => x.name).join(",")}
+          <View style={{flex: 2, marginLeft: 10}}><Text category="h3" appearance={appearance}>{this.props.name}</Text></View>
+          <Text style={{flex: 1, marginRight: 10}}>
+            { this.props.winner<0 ? '...running...' : this.props.teams[this.props.winner].map(x => x.name).join(", ")}
           </Text>
+        </View>
+      );
+    }
+  }
+
+class UnplayedGameListEntry extends React.Component<{name: string}, {}> {
+    render() {
+      const appearance = "hint";
+      return (
+        <View style={styles.lbEntryContainer}>
+          <Text category="h3" appearance={appearance}>?.</Text>
+          <View style={{flex: 1, marginLeft: 10}}><Text category="h3" appearance={appearance}>{this.props.name}</Text></View>
         </View>
       );
     }
