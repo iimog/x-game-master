@@ -30,7 +30,7 @@ class AboutScreen extends React.Component<{navigation},{}> {
             <Text>
               For a description of how to play the game please see: <Text style={{color: 'blue'}}
               onPress={() => Linking.openURL('https://github.com/iimog/x-game-master')}>
-                X Game Manager Website
+                X Game Manager Website.{" "}
               </Text>
               This app is open source, please report bugs and suggestions at the website as well.
               

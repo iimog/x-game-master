@@ -9,8 +9,9 @@
       "android",
       "web"
     ],
-    "version": "0.5.0",
+    "version": "1.0.0",
     "orientation": "portrait",
+    "primaryColor": "#222B45",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -26,12 +27,16 @@
     "ios": {
       "bundleIdentifier": "org.iimog.xapp",
       "supportsTablet": true,
-      "buildNumber": "4",
-      "icon": "./assets/apple_icon.png"
+      "buildNumber": "5",
+      "icon": "./assets/apple_icon.png",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "org.iimog.xapp",
-      "versionCode": 4,
+      "versionCode": 5,
+      "permissions" : [],
       "playStoreUrl": "https://play.google.com/store/apps/details?id=org.iimog.xapp"
     },
     "description": "Your companion app to organize a fun game night (or day)",
