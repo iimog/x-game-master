@@ -39,6 +39,12 @@ const INITIAL_STATE: State = {
 // TODO can I check payload types?
 const matchReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case 'RESET':
+        return {...state,
+          rounds: [],
+          lastChange: -1,
+          matchId: -1,
+      };
     case 'START_MATCH':
         // Start new game with players and games (replacing old state)
         return {

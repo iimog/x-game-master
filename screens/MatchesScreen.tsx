@@ -27,6 +27,8 @@ class MatchesScreen extends React.Component<{navigation, dispatch},{matches}> {
   }
   removeMatch: (id: string) => void = async (id) => {
     await AsyncStorage.removeItem(id);
+    // reset current match so it is not re-created if it was the deleted one
+    this.props.dispatch({type: 'RESET'})
     this.getMatches().then(m => this.setState({matches: m}));
   }
   getMatches = async () => {
