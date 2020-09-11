@@ -18,7 +18,7 @@ export type Player = {
 export type Round = {
   game: string,
   teams: [Array<Player>, Array<Player>],
-  winner: -1 | 0 | 1 | null
+  winner: -1 | 0 | 1
 }
 
 export type State = {
@@ -27,6 +27,13 @@ export type State = {
     rounds: Array<Round>,
     matchId: number,
     lastChange: number,
+}
+
+export type Match = {
+  players: Array<Player>,
+  games: Array<string>,
+  rounds: Array<Round>,
+  lastChange: number
 }
 
 const INITIAL_STATE: State = {

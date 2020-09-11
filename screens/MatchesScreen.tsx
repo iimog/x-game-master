@@ -1,12 +1,13 @@
 import { Button, Layout, Text, List, ListItem, Icon } from "@ui-kitten/components";
 import React from "react";
 import { View, Dimensions, AsyncStorage, Alert } from "react-native";
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
-import { Player, Round } from "../store";
+import { Player, Round, State, actions, Match } from "../store";
+import { NavigationStackScreenProps } from "react-navigation-stack";
 
-class MatchesScreen extends React.Component<{navigation, dispatch},{matches}> {
-  constructor(props) {
+class MatchesScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux,{matches: [string, Match][]}> {
+  constructor(props: any) {
     super(props);
     this.state = {
       matches: []
@@ -14,29 +15,29 @@ class MatchesScreen extends React.Component<{navigation, dispatch},{matches}> {
     this.getMatches().then(m => this.setState({matches: m}));
   }
   loadMatch: (id: string) => void = async (id) => {
-    const m = await AsyncStorage.getItem(id);
-    const match = JSON.parse(m);
-    this.props.dispatch({type: 'LOAD_MATCH', payload: {
+    const m = await AsyncStorage.getItem(id) || "";
+    const match: Match = JSON.parse(m);
+    this.props.loadMatch({
       players: match.players,
       games: match.games,
       rounds: match.rounds,
       lastChange: match.lastChange,
-      matchId: id.substr(7),
-    }})
+      matchId: parseInt(id.substr(7)),
+    })
     this.props.navigation.navigate('Leaderboard');
   }
   removeMatch: (id: string) => void = async (id) => {
     await AsyncStorage.removeItem(id);
     // reset current match so it is not re-created if it was the deleted one
-    this.props.dispatch({type: 'RESET'})
+    this.props.reset()
     this.getMatches().then(m => this.setState({matches: m}));
   }
   getMatches = async () => {
-    let matches = []
+    let matches: [string, Match][] = []
     try {
       let keys = await AsyncStorage.getAllKeys()
-      matches = await AsyncStorage.multiGet(keys.filter(x => x.startsWith("@match:")))
-      matches = matches.map(x => [x[0], JSON.parse(x[1])])
+      let raw_matches = await AsyncStorage.multiGet(keys.filter(x => x.startsWith("@match:")))
+      matches = raw_matches.map(x => [x[0], JSON.parse(x[1]) as Match])
       matches.sort((a,b) => b[1].lastChange - a[1].lastChange)
     } catch(e) {
       console.error(e)
@@ -50,7 +51,7 @@ class MatchesScreen extends React.Component<{navigation, dispatch},{matches}> {
       <Layout style={{flex: 1}}>
         <View style={{flex: 1, width: fullWidth, justifyContent: "space-around", alignItems: "center", padding: 15}}>
           <Text category="h1">Matches</Text>
-          <List data={this.state.matches} renderItem={({item}) => {
+          <List data={this.state.matches} renderItem={({item}: {item: [string, Match]}) => {
               let key = item[0];
               let match = item[1];
                 return(
@@ -81,9 +82,12 @@ class MatchesScreen extends React.Component<{navigation, dispatch},{matches}> {
     );
   }
 }
-export default connect(state => state)(MatchesScreen)
 
-class MatchEntry extends React.Component<{match}, {}> {
+const connector = connect((state: State) => state, actions)
+type PropsFromRedux = ConnectedProps<typeof connector>
+export default connector(MatchesScreen)
+
+class MatchEntry extends React.Component<{match: Match}, {}> {
   render() {
     const {rounds, players, lastChange, games} = this.props.match;
     const gameIndex = rounds.length-1;

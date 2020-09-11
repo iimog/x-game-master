@@ -28,7 +28,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
     if (activePlayers.length % 2) {
       splitPoint += _.random();
     }
-    let teams = [shuffledPlayers.slice(0, splitPoint), shuffledPlayers.slice(splitPoint)] as const
+    let teams: [Player[], Player[]] = [shuffledPlayers.slice(0, splitPoint), shuffledPlayers.slice(splitPoint)]
     return teams;
   }
   render() {
@@ -69,7 +69,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                   renderItem={({ item, index }: {item: Player, index: number}) => {
                     return (
                       <ListItem onPress={(index) => {
-                        this.props.dispatch({ type: 'TOGGLE_PLAYER', payload: sortedPlayers[index].name })
+                        this.props.togglePlayer(sortedPlayers[index].name)
                       }}>
                         <LeaderboardEntry rank={ranks[index]} name={item.name} points={playerScores[item.name]} active={item.active} />
                       </ListItem>
@@ -86,7 +86,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
               <View style={{ width: fullWidth, padding: 15 }}>
                 <List
                   data={this.props.rounds}
-                  renderItem={({ item, index }) => {
+                  renderItem={({ item, index }: {item: Round, index: number}) => {
                     return (
                       <ListItem key={index} onLongPress={(index) => {
                         Alert.alert(
@@ -95,11 +95,11 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                           [
                             {
                               text: 'Change winner',
-                              onPress: () => this.props.dispatch({ type: 'TOGGLE_GAME_RESULT', payload: index })
+                              onPress: () => this.props.toggleGameResult({roundIndex: index})
                             },
                             {
                               text: 'Remove',
-                              onPress: () => this.props.dispatch({ type: 'REMOVE_GAME', payload: index }),
+                              onPress: () => this.props.removeGame({roundIndex: index}),
                               style: 'destructive'
                             },
                             {
@@ -120,7 +120,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                 <Text category="h4" appearance="hint" style={{ marginTop: 25 }}>{remainingGames.length > 0 ? "Remaining games:" : ""}</Text>
                 <List
                   data={remainingGames}
-                  renderItem={({ item, index }) => {
+                  renderItem={({ item, index }: { item: string, index: number }) => {
                     return (
                       <ListItem key={index}>
                         <UnplayedGameListEntry name={item} />
@@ -172,7 +172,7 @@ class LeaderboardEntry extends React.Component<{ rank: string, name: string, poi
   }
 }
 
-class GameListEntry extends React.Component<{ gameIndex: number, name: string, winner: number, teams: Array<Array<Player>> }, {}> {
+class GameListEntry extends React.Component<{ gameIndex: number, name: string, winner: -1|0|1, teams: Array<Array<Player>> }, {}> {
   render() {
     const appearance = this.props.winner >= 0 ? "default" : "hint";
     return (

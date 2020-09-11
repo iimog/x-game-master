@@ -1,13 +1,14 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
 import React from "react";
 import { FlatList, View, Dimensions } from "react-native";
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
-import { Player, Round } from "../store";
+import { Player, Round, State, actions } from "../store";
+import { NavigationStackScreenProps } from "react-navigation-stack";
 
-class GameScreen extends React.Component<{navigation, dispatch, players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
-  reportResult: (index: number) => void = (index) => {
-    this.props.dispatch({type: 'GAME_RESULT', payload: index})
+class GameScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux, {}>{// & {players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
+  reportResult: (index: -1|0|1) => void = (index) => {
+    this.props.gameResult({winnerIndex: index})
   }
   gameIndex: number = this.props.rounds.length - 1;
   game: string = (this.gameIndex+1) + ". " +this.props.games[this.gameIndex];
@@ -51,4 +52,8 @@ class GameScreen extends React.Component<{navigation, dispatch, players: Array<P
     );
   }
 }
-export default connect(state => state)(GameScreen)
+
+const connector = connect((state: State) => state, actions)
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(GameScreen)

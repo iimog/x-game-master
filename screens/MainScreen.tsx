@@ -2,14 +2,14 @@ import React from "react";
 import { Image } from "react-native";
 import { Layout, Button, Text } from "@ui-kitten/components";
 import { Round } from "../store";
-import { connect } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import Constants from 'expo-constants';
+import { NavigationStackScreenProps } from "react-navigation-stack";
 
-class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> {
-    constructor(props) {
-      super(props);
-    }
+class MainScreen extends React.Component<NavigationStackScreenProps & {rounds: Array<Round>},{}> {
+    //constructor(props) {
+    //  super(props);
+    //}
     render() {
       const {navigate} = this.props.navigation;
       return (
@@ -19,12 +19,12 @@ class MainScreen extends React.Component<{navigation, rounds: Array<Round>},{}> 
             <Button onPress={() => {navigate('NewMatch')}}> New Match </Button>
             <Button onPress={() => {navigate('Matches')}}> Matches </Button>
             <Button onPress={() => {navigate('About')}}> App Info </Button>
-            <Text appearance="hint">Version {Constants.manifest.version}</Text>
+            <Text appearance="hint">Version {Constants.manifest.version || "?"}</Text>
           </Layout>
         </ThemedSafeAreaView>
       );
     }
   }
 
-  export default connect(state=>state)(MainScreen)
+export default MainScreen
   

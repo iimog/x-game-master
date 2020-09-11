@@ -1,21 +1,22 @@
 import React from "react";
 import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions, AsyncStorage, View } from "react-native";
 import { Layout, Button, Input, Text, Icon } from "@ui-kitten/components";
-import { Player } from "../store";
-import { connect } from 'react-redux';
+import { Player, State, actions } from "../store";
+import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import _ from "lodash";
 import InputScrollView from "react-native-input-scroll-view";
+import { NavigationStackScreenProps } from "react-navigation-stack";
 
-class NewMatchScreen extends React.Component<{navigation, dispatch, matchId: number, players: Array<Player>, games: Array<string>},{playerText: string, gameText: string}> {
-    constructor(props) {
+class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux,{playerText: string, gameText: string}> {
+    constructor(props: NavigationStackScreenProps & PropsFromRedux) {
       super(props);
       this.state = {
         playerText: this.props.players.map(p => p.name).join("\n"),
         gameText: this.props.games.join("\n"),
       };
     }
-    getGamesFromText: (text: string) => Array<String> = (text) => {
+    getGamesFromText: (text: string) => Array<string> = (text) => {
       return _.shuffle(text.split('\n').filter(x => x.trim().length > 0))
     }
     getPlayersFromText: (text: string) => Array<Player> = (text) => {
@@ -63,12 +64,10 @@ class NewMatchScreen extends React.Component<{navigation, dispatch, matchId: num
                     }  else if(games.length == 0){
                       Alert.alert("Please enter at least one game!");
                     } else {
-                      this.props.dispatch({
-                        type: 'START_MATCH',
-                        payload: {
+                      this.props.startMatch({
                           players: players,
                           games: games,
-                        }})
+                        })
                         navigate('Leaderboard')
                       }}
                     }
@@ -79,4 +78,6 @@ class NewMatchScreen extends React.Component<{navigation, dispatch, matchId: num
       );
     }
   }
-  export default connect(state=>state)(NewMatchScreen)
+const connector = connect((state: State) => state, actions)
+type PropsFromRedux = ConnectedProps<typeof connector>
+export default connector(NewMatchScreen)
