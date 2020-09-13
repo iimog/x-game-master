@@ -1,9 +1,9 @@
-import { Button, Layout, Text, List, ListItem, Icon } from "@ui-kitten/components";
+import { Layout, Text, List, ListItem, Icon } from "@ui-kitten/components";
 import React from "react";
 import { View, Dimensions, AsyncStorage, Alert } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
-import { Player, Round, State, actions, Match } from "../store";
+import { State, actions, Match } from "../store";
 import { NavigationStackScreenProps } from "react-navigation-stack";
 
 class MatchesScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux,{matches: [string, Match][]}> {

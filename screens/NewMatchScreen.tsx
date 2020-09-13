@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions, AsyncStorage, View } from "react-native";
 import { Layout, Button, Input, Text, Icon } from "@ui-kitten/components";
-import { Player, State, actions } from "../store";
+import { Player, State, actions, Game } from "../store";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import _ from "lodash";
@@ -16,8 +16,29 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
         gameText: this.props.games.join("\n"),
       };
     }
-    getGamesFromText: (text: string) => Array<string> = (text) => {
-      return _.shuffle(text.split('\n').filter(x => x.trim().length > 0))
+    getGamesFromText: (text: string) => Array<Game> = (text) => {
+      let gameNames = _.shuffle(text.split('\n').filter(x => x.trim().length > 0))
+      let games = gameNames.map(x => {return {name: x, fixedPosition: false}})
+      let game2position: { [name: string] : number; } = {}
+      let gamesWithPos = gameNames.filter(x => /^\d+\. /.test(x))
+      gamesWithPos.map(x => game2position[x] = parseInt(x.match(/^(\d+)\. /)![1]))
+      const isUniq = (a: Array<string|number>) => _.uniq(a).length == a.length 
+      if(gamesWithPos.length > 0){
+        let positions = Object.values(game2position)
+        let noDuplicates = isUniq(positions) && isUniq(gamesWithPos)
+        let rangeOk = _.max(positions)! <= gameNames.length
+        if(noDuplicates && rangeOk){
+          const gamesNoPos = _.difference(gameNames, gamesWithPos)
+          const unusedPos = _.difference(_.range(1,gameNames.length+1), positions)
+          games = Array(gameNames.length)
+          gamesWithPos.map(x => games[game2position[x]-1] = {name: x.substr(x.indexOf(" ")+1), fixedPosition: true})
+          gamesNoPos.map((x,index) => games[unusedPos[index]-1] = {name: x, fixedPosition: false})
+        } else {
+          let reason = noDuplicates ? "position out of range" : "collission"
+          Alert.alert(`Fixed game positions detected but could not respect it: ${reason}`);
+        }
+      }
+      return games
     }
     getPlayersFromText: (text: string) => Array<Player> = (text) => {
       return text.split('\n').filter(x => x.trim().length>0).map((word) => {return {name: word, active: true}})

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Dimensions, Alert } from "react-native";
 import { Layout, Button, Text, List, ListItem, Icon, Tab, TabView } from "@ui-kitten/components";
-import { Player, Round, actions } from "../store";
+import { Player, Round, actions, Game } from "../store";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import _, { fromPairs } from "lodash";
@@ -111,7 +111,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                         );
 
                       }}>
-                        <GameListEntry gameIndex={index} name={item.game} winner={item.winner} teams={item.teams} />
+                        <GameListEntry gameIndex={index} name={item.game.name} winner={item.winner} teams={item.teams} />
                       </ListItem>
                     )
                   }
@@ -120,10 +120,10 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                 <Text category="h4" appearance="hint" style={{ marginTop: 25 }}>{remainingGames.length > 0 ? "Remaining games:" : ""}</Text>
                 <List
                   data={remainingGames}
-                  renderItem={({ item, index }: { item: string, index: number }) => {
+                  renderItem={({ item, index }: { item: Game, index: number }) => {
                     return (
                       <ListItem key={index}>
-                        <UnplayedGameListEntry name={item} />
+                        <UnplayedGameListEntry name={item.name} />
                       </ListItem>
                     )
                   }

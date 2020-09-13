@@ -15,15 +15,20 @@ export type Player = {
   active: boolean
 }
 
+export type Game = {
+  name: string,
+  fixedPosition: boolean
+}
+
 export type Round = {
-  game: string,
+  game: Game,
   teams: [Array<Player>, Array<Player>],
   winner: -1 | 0 | 1
 }
 
 export type State = {
     players: Array<Player>,
-    games: Array<string>,
+    games: Array<Game>,
     rounds: Array<Round>,
     matchId: number,
     lastChange: number,
@@ -31,7 +36,7 @@ export type State = {
 
 export type Match = {
   players: Array<Player>,
-  games: Array<string>,
+  games: Array<Game>,
   rounds: Array<Round>,
   lastChange: number
 }
@@ -63,7 +68,7 @@ const matchSlice = createSlice({
       state.lastChange = -1; 
       state.matchId = -1
     },
-    startMatch: withTime<{players: Player[], games: string[]}>((state, action) => {
+    startMatch: withTime<{players: Player[], games: Game[]}>((state, action) => {
       return {
         players: action.payload.players,
         games: action.payload.games,
