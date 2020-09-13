@@ -38,7 +38,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
     const gameRunning = gameIndex >= 0 && this.props.rounds[gameIndex].winner == -1;
     let playerScores = this.getPlayerScores();
     let isOver = this.props.rounds.length >= this.props.games.length && !gameRunning;
-    let sortedPlayers = this.props.players.sort((x, y) => playerScores[y.name] - playerScores[x.name])
+    let sortedPlayers = _.cloneDeep(this.props.players).sort((x, y) => playerScores[y.name] - playerScores[x.name])
     let lastScore = -1;
     let tieIndex = -1;
     let ranks = sortedPlayers.map((player, index) => {
