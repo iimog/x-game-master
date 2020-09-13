@@ -68,7 +68,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                   data={sortedPlayers}
                   renderItem={({ item, index }: {item: Player, index: number}) => {
                     return (
-                      <ListItem onPress={(index) => {
+                      <ListItem onPress={() => {
                         this.props.togglePlayer(sortedPlayers[index].name)
                       }}>
                         <LeaderboardEntry rank={ranks[index]} name={item.name} points={playerScores[item.name]} active={item.active} />
@@ -88,7 +88,7 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                   data={this.props.rounds}
                   renderItem={({ item, index }: {item: Round, index: number}) => {
                     return (
-                      <ListItem key={index} onLongPress={(index) => {
+                      <ListItem key={index} onLongPress={() => {
                         Alert.alert(
                           'Rewrite history?',
                           'Change winner or remove (no undo for that)?',

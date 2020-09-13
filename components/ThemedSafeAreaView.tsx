@@ -2,11 +2,11 @@ import React from 'react';
 import { withStyles } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const StyledSafeAreaView = (props) => {
-  const { themedStyle, style, ...restProps } = props;
+const StyledSafeAreaView = (props: any) => {
+  const { eva, style, ...restProps } = props;
     
   return (
-    <SafeAreaView {...restProps} style={[themedStyle.view, style]} />
+    <SafeAreaView {...restProps} style={[eva.style.view, style]} />
   );
 };
 
