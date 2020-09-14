@@ -35,7 +35,7 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
           gamesNoPos.map((x,index) => games[unusedPos[index]-1] = {name: x, fixedPosition: false})
         } else {
           let reason = noDuplicates ? "position out of range" : "collission"
-          Alert.alert(`Fixed game positions detected but could not respect it: ${reason}`);
+          throw `Fixed game positions detected but could not respect it: ${reason}`;
         }
       }
       return games
@@ -75,22 +75,27 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
               <Input multiline={true} scrollEnabled={false} onChangeText={(text) => this.setState({gameText: text})} value={this.state.gameText}></Input>
               <Button
                   onPress={() => {
-                    let players = this.getPlayersFromText(this.state.playerText);
-                    let duplicates = this.getDuplicatePlayers(players);
-                    let games = this.getGamesFromText(this.state.gameText);
-                    if(players.length < 2){
-                      Alert.alert("It takes two to tango!")
-                    } else if(duplicates.length > 0){
-                      Alert.alert("Duplicate players: "+duplicates.join(", "));
-                    }  else if(games.length == 0){
-                      Alert.alert("Please enter at least one game!");
-                    } else {
-                      this.props.startMatch({
+                    try{
+                      let players = this.getPlayersFromText(this.state.playerText);
+                      let duplicates = this.getDuplicatePlayers(players);
+                      let games = this.getGamesFromText(this.state.gameText);
+                      if(players.length < 2){
+                        Alert.alert("It takes two to tango!")
+                      } else if(duplicates.length > 0){
+                        Alert.alert("Duplicate players: "+duplicates.join(", "));
+                      }  else if(games.length == 0){
+                        Alert.alert("Please enter at least one game!");
+                      } else {
+                        this.props.startMatch({
                           players: players,
                           games: games,
                         })
                         navigate('Leaderboard')
-                      }}
+                      }
+                    } catch(e) {
+                      Alert.alert(e);
+                    }
+                    }
                     }
                 >Start</Button>
             </InputScrollView>
