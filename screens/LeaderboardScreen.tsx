@@ -54,7 +54,13 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
     if (isOver) {
       ranks = ranks.map(x => x == '1' ? '🏆' : x);
     }
-    let remainingGames = _.shuffle(this.props.games.slice(this.props.rounds.length));
+    let remainingGamesWithIndex = this.props.games.map((x,i) => ({game:x, gameIndex:(i+1).toString()})).slice(this.props.rounds.length);
+    let remainingFixedGames = remainingGamesWithIndex.filter(x => x.game.fixedPosition)
+    let remainingRandomGames = remainingGamesWithIndex.filter(x => !x.game.fixedPosition)
+    if(remainingRandomGames.length > 0){
+      remainingRandomGames = _.shuffle(remainingRandomGames.map(x => ({...x, gameIndex:"?"})))
+    }
+    let remainingGames = [...remainingFixedGames, ...remainingRandomGames]
     return (
       <ThemedSafeAreaView>
         <TabView
@@ -120,10 +126,10 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
                 <Text category="h4" appearance="hint" style={{ marginTop: 25 }}>{remainingGames.length > 0 ? "Remaining games:" : ""}</Text>
                 <List
                   data={remainingGames}
-                  renderItem={({ item, index }: { item: Game, index: number }) => {
+                  renderItem={({ item, index }: { item: {game: Game, gameIndex: string}, index: number }) => {
                     return (
                       <ListItem key={index}>
-                        <UnplayedGameListEntry name={item.name} />
+                        <UnplayedGameListEntry gameIndex={item.gameIndex} name={item.game.name} />
                       </ListItem>
                     )
                   }
@@ -187,12 +193,12 @@ class GameListEntry extends React.Component<{ gameIndex: number, name: string, w
   }
 }
 
-class UnplayedGameListEntry extends React.Component<{ name: string }, {}> {
+class UnplayedGameListEntry extends React.Component<{ gameIndex: string, name: string }, {}> {
   render() {
     const appearance = "hint";
     return (
       <View style={styles.lbEntryContainer}>
-        <Text category="h3" appearance={appearance}>?.</Text>
+        <Text category="h3" appearance={appearance}>{this.props.gameIndex}.</Text>
         <View style={{ flex: 1, marginLeft: 10 }}><Text category="h3" appearance={appearance}>{this.props.name}</Text></View>
       </View>
     );

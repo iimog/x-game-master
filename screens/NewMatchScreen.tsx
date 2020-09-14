@@ -13,7 +13,7 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
       super(props);
       this.state = {
         playerText: this.props.players.map(p => p.name).join("\n"),
-        gameText: this.props.games.join("\n"),
+        gameText: this.props.games.map((x,i)=>(x.fixedPosition ? `${i+1}. ` : "") + x.name).join("\n"),
       };
     }
     getGamesFromText: (text: string) => Array<Game> = (text) => {

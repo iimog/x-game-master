@@ -3,8 +3,18 @@ import React from "react";
 import { View, Dimensions, AsyncStorage, Alert } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
-import { State, actions, Match } from "../store";
+import { State, actions, Match, Game } from "../store";
 import { NavigationStackScreenProps } from "react-navigation-stack";
+
+// necessary to convert games from String <=v1.0.0 to Game >=v1.1.0
+function convertGameTypeFromStringInPlace(match: Omit<Match, 'games'> & { games: Array<string|Game> }){
+  if(typeof match.games[0] === 'string'){
+    match.games = match.games.map(x => {return {name: x.toString(), fixedPosition: false}})
+  }
+  if(typeof match.rounds[0]!.game === 'string'){
+    match.rounds.map(x => x.game = {name: x.game.toString(), fixedPosition: false})
+  }
+}
 
 class MatchesScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux,{matches: [string, Match][]}> {
   constructor(props: any) {
@@ -17,6 +27,8 @@ class MatchesScreen extends React.Component<NavigationStackScreenProps & PropsFr
   loadMatch: (id: string) => void = async (id) => {
     const m = await AsyncStorage.getItem(id) || "";
     const match: Match = JSON.parse(m);
+    // necessary to convert games from String <=v1.0.0 to Game >=v1.1.0
+    convertGameTypeFromStringInPlace(match)
     this.props.loadMatch({
       players: match.players,
       games: match.games,

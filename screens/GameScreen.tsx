@@ -3,15 +3,12 @@ import React from "react";
 import { FlatList, View, Dimensions } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
-import { Player, Round, State, actions } from "../store";
+import { State, actions, Game } from "../store";
 import { NavigationStackScreenProps } from "react-navigation-stack";
 
-function _gameString(index: number, name: string){
+function _gameString(index: number, game: Game){
   let prefix = (index+1)+". "
-  if(!name.startsWith(prefix)){
-    name = prefix + name
-  }
-  return name
+  return prefix+game.name
 }
 
 class GameScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux, {}>{// & {players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
@@ -19,7 +16,7 @@ class GameScreen extends React.Component<NavigationStackScreenProps & PropsFromR
     this.props.gameResult({winnerIndex: index})
   }
   gameIndex: number = this.props.rounds.length - 1;
-  game: string = _gameString(this.gameIndex,this.props.games[this.gameIndex].name);
+  game: string = _gameString(this.gameIndex,this.props.games[this.gameIndex]);
   render() {
     const teams = this.props.rounds[this.gameIndex].teams;
     const fullWidth = Dimensions.get('window').width;
