@@ -20,23 +20,27 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
       let gameNames = _.shuffle(text.split('\n').filter(x => x.trim().length > 0))
       let games = gameNames.map(x => {return {name: x, fixedPosition: false}})
       let game2position: { [name: string] : number; } = {}
-      let gamesWithPos = gameNames.filter(x => /^\d+\. /.test(x))
+      let gamesWithPos = gameNames.filter(x => /^[1-9]\d*\. /.test(x))
       gamesWithPos.map(x => game2position[x] = parseInt(x.match(/^(\d+)\. /)![1]))
       const isUniq = (a: Array<string|number>) => _.uniq(a).length == a.length 
       if(gamesWithPos.length > 0){
         let positions = Object.values(game2position)
-        let noDuplicates = isUniq(positions) && isUniq(gamesWithPos)
-        let rangeOk = _.max(positions)! <= gameNames.length
-        if(noDuplicates && rangeOk){
-          const gamesNoPos = _.difference(gameNames, gamesWithPos)
-          const unusedPos = _.difference(_.range(1,gameNames.length+1), positions)
-          games = Array(gameNames.length)
-          gamesWithPos.map(x => games[game2position[x]-1] = {name: x.substr(x.indexOf(" ")+1), fixedPosition: true})
-          gamesNoPos.map((x,index) => games[unusedPos[index]-1] = {name: x, fixedPosition: false})
-        } else {
-          let reason = noDuplicates ? "position out of range" : "collission"
-          throw `Fixed game positions detected but could not respect it: ${reason}`;
+        if(!isUniq(gamesWithPos)){
+          let dups = _(gamesWithPos).groupBy().pickBy(x => x.length > 1).keys().value()
+          throw `Duplicate game positions found: "${dups[0]}"`;
         }
+        if(!isUniq(positions)){
+          let dups = _(positions).groupBy().pickBy(x => x.length > 1).keys().value()
+          throw `Duplicate game positions found: "${dups[0]}"`;
+        }
+        if(_.max(positions)! > gameNames.length){
+          throw `Game position out of range: "${_.max(positions)}. " found but only ${gameNames.length} games`;
+        }
+        const gamesNoPos = _.difference(gameNames, gamesWithPos)
+        const unusedPos = _.difference(_.range(1,gameNames.length+1), positions)
+        games = Array(gameNames.length)
+        gamesWithPos.map(x => games[game2position[x]-1] = {name: x.substr(x.indexOf(" ")+1), fixedPosition: true})
+        gamesNoPos.map((x,index) => games[unusedPos[index]-1] = {name: x, fixedPosition: false})
       }
       return games
     }
