@@ -71,7 +71,11 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
                 <TouchableWithoutFeedback onPress={() => 
                     Alert.alert(
                       "Games",
-                      "Enter all games you want to play: one per line. This app does not contain any games you have to play all the games in real life. Keep in mind that you play each game in two teams. Popular choices include:\nDarts 🎯\nLiar's dice 🎲\nBlack Jack 🃏\nSnake 🐍\nTron 🏍\nBlobby Volley 🏐")
+                      "Enter all games you want to play: one per line. "+
+                      "This app does not contain any games you have to play all the games in real life. "+
+                      "Keep in mind that you play each game in two teams. "+
+                      "Popular choices include:\nDarts 🎯\nLiar's dice 🎲\nBlack Jack 🃏\nSnake 🐍\nTron 🏍\nBlobby Volley 🏐\n"+
+                      "You can set a game to be played in a fixed position by prepending 'X. ' with X being the position, e.g. '1. ' (omit the quotes but don't forget the space after the dot)")
                   }>
                   <Icon name="question-mark-circle" width={32} height={32} fill="#fff"/>
                 </TouchableWithoutFeedback>
