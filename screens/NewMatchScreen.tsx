@@ -31,9 +31,9 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
         }
         if(!isUniq(positions)){
           let dups = _(positions).groupBy().pickBy(x => x.length > 1).keys().value()
-          throw `Duplicate game positions found: "${dups[0]}"`;
+          throw `Duplicate game positions found: "${dups[0]}. "`;
         }
-        if(_.max(positions)! > gameNames.length){
+        if((_.max(positions) || 0) > gameNames.length){
           throw `Game position out of range: "${_.max(positions)}. " found but only ${gameNames.length} games`;
         }
         const gamesNoPos = _.difference(gameNames, gamesWithPos)
