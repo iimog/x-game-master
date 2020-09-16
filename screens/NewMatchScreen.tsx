@@ -88,7 +88,7 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
                       let duplicates = this.getDuplicatePlayers(players);
                       let games = this.getGamesFromText(this.state.gameText);
                       if(players.length < 2){
-                        Alert.alert("It takes two to tango!")
+                        Alert.alert("Please enter at least two players!")
                       } else if(duplicates.length > 0){
                         Alert.alert("Duplicate players: "+duplicates.join(", "));
                       }  else if(games.length == 0){
