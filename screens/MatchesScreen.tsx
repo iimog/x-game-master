@@ -11,7 +11,7 @@ function convertGameTypeFromStringInPlace(match: Omit<Match, 'games'> & { games:
   if(typeof match.games[0] === 'string'){
     match.games = match.games.map(x => {return {name: x.toString(), fixedPosition: false}})
   }
-  if(typeof match.rounds[0]!.game === 'string'){
+  if(typeof match.rounds[0]?.game === 'string'){
     match.rounds.map(x => x.game = {name: x.game.toString(), fixedPosition: false})
   }
 }
