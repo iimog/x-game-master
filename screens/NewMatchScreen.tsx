@@ -20,8 +20,8 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
       let gameNames = _.shuffle(text.split('\n').filter(x => x.trim().length > 0))
       let games = gameNames.map(x => {return {name: x, fixedPosition: false}})
       let game2position: { [name: string] : number; } = {}
-      let gamesWithPos = gameNames.filter(x => /^[1-9]\d*\. /.test(x))
-      gamesWithPos.map(x => game2position[x] = parseInt(x.match(/^(\d+)\. /)![1]))
+      let gamesWithPos = gameNames.filter(x => /^[1-9]\d*\. ?/.test(x))
+      gamesWithPos.map(x => game2position[x] = parseInt(x.match(/^(\d+)\. ?/)![1]))
       const isUniq = (a: Array<string|number>) => _.uniq(a).length == a.length 
       if(gamesWithPos.length > 0){
         let positions = Object.values(game2position)
@@ -39,7 +39,7 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
         const gamesNoPos = _.difference(gameNames, gamesWithPos)
         const unusedPos = _.difference(_.range(1,gameNames.length+1), positions)
         games = Array(gameNames.length)
-        gamesWithPos.map(x => games[game2position[x]-1] = {name: x.substr(x.indexOf(" ")+1), fixedPosition: true})
+        gamesWithPos.map(x => games[game2position[x]-1] = {name: x.substr(x.indexOf(".")+1).trim(), fixedPosition: true})
         gamesNoPos.map((x,index) => games[unusedPos[index]-1] = {name: x, fixedPosition: false})
       }
       return games
@@ -75,7 +75,7 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
                       "This app does not contain any games you have to play all the games in real life. "+
                       "Keep in mind that you play each game in two teams. "+
                       "Popular choices include:\nDarts 🎯\nLiar's dice 🎲\nBlack Jack 🃏\nSnake 🐍\nTron 🏍\nBlobby Volley 🏐\n"+
-                      "You can set a game to be played in a fixed position by prepending 'X. ' with X being the position, e.g. '1. ' (omit the quotes but don't forget the space after the dot)")
+                      "You can set a game to be played in a fixed position by prepending 'X.' with X being the position, e.g. 1.")
                   }>
                   <Icon name="question-mark-circle" width={32} height={32} fill="#fff"/>
                 </TouchableWithoutFeedback>

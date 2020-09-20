@@ -23,7 +23,7 @@ Note: a *game* refers to the thing you play in one round while a *match* refers 
 ### New Match
 Start a match by entering the list of players (one per line) and the list of games (one per line). Feel free to use Emojis :rocket:
 Player names have to be unique while you can duplicate game names (in separate lines) for the number of times you want to play them. A good game is one that can be played with two teams and a clear winner.
-The order of games will be shuffled but if you want a game to be played in a certain position just prepent "X. " with X being the position, e.g. "3. " (without the quotes but with a space after the dot).
+The order of games will be shuffled but if you want a game to be played in a certain position just prepent "X. " with X being the position, e.g. 3. (space after the dot is optional).
 
 <img src="./screenshots/ios/iphone/6.5/StartMatchScreen.png" width="300">
 
@@ -72,11 +72,17 @@ The app is built using a collection of open source libraries including
 
 ## Change Log
 
-### 1.1.0 <small>2020-09-16</small>
+### 1.1.1
+**2020-09-20**
+ - make space after game position optional (i.e. allow '1.First Game' instead of '1. First Game')
+
+### 1.1.0
+**2020-09-16**
  - add possibility to set game position in advance
  - [internal] change game type from string to Game
 
-### 1.0.0 <small>2020-03-14</small>
+### 1.0.0
+**2020-03-14**
  - add unplayed games
  - add help info
  - minor bug fixes
