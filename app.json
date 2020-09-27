@@ -26,7 +26,7 @@
     "ios": {
       "bundleIdentifier": "org.iimog.xapp",
       "supportsTablet": true,
-      "buildNumber": "8",
+      "buildNumber": "9",
       "icon": "./assets/apple_icon.png",
       "config": {
         "usesNonExemptEncryption": false
@@ -34,7 +34,7 @@
     },
     "android": {
       "package": "org.iimog.xapp",
-      "versionCode": 8,
+      "versionCode": 9,
       "permissions": [],
       "playStoreUrl": "https://play.google.com/store/apps/details?id=org.iimog.xapp"
     },
