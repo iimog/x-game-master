@@ -38,6 +38,9 @@
       "permissions": [],
       "playStoreUrl": "https://play.google.com/store/apps/details?id=org.iimog.xapp"
     },
+    "web": {
+      "build": { "babel": { "include": [ "@ui-kitten/components" ] }}
+    },
     "description": "Your companion app to organize a fun game night (or day)",
     "githubUrl": "https://github.com/iimog/x-game-master"
   }

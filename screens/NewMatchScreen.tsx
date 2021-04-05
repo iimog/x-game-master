@@ -8,6 +8,16 @@ import _ from "lodash";
 import InputScrollView from "react-native-input-scroll-view";
 import { NavigationStackScreenProps } from "react-navigation-stack";
 
+type PSVType = {
+  fullWidth: number
+}
+const PlatformScrollView: FunctionComponent<PSVType> = (props) => {
+  if(Platform.OS === "ios" || Platform.OS === "android"){
+    return <InputScrollView style={{flex:1, width: props.fullWidth, padding: 15}}>{props.children}</InputScrollView>
+  }
+  return <ScrollView style={{flex:1, width: props.fullWidth, padding: 15}}>{props.children}</ScrollView>
+}
+
 class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux,{playerText: string, gameText: string}> {
     constructor(props: NavigationStackScreenProps & PropsFromRedux) {
       super(props);
@@ -57,7 +67,7 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
         <ThemedSafeAreaView>
         <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
-            <InputScrollView style={{flex:1, width: fullWidth, padding: 15}}>
+            <PlatformScrollView fullWidth={fullWidth}>
               <Text category="h1" style={{flex: 1, textAlign: 'center', margin: 15}}>X</Text>
               <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text category="h3">Players</Text>
@@ -106,7 +116,7 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
                     }
                     }
                 >Start</Button>
-            </InputScrollView>
+            </PlatformScrollView>
           </TouchableWithoutFeedback>
         </Layout></ThemedSafeAreaView>
       );
