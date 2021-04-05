@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions, AsyncStorage, View } from "react-native";
+import React, { FunctionComponent } from "react";
+import { TouchableWithoutFeedback, Keyboard, Alert, Dimensions, ScrollView, View, Platform } from "react-native";
 import { Layout, Button, Input, Text, Icon } from "@ui-kitten/components";
 import { Player, State, actions, Game } from "../store";
 import { connect, ConnectedProps } from 'react-redux';

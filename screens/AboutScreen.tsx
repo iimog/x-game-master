@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Linking, AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
+import { Image, Linking } from "react-native";
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView"
 import { Layout, Button, Text } from "@ui-kitten/components";
 import { NavigationStackScreenProps } from "react-navigation-stack";

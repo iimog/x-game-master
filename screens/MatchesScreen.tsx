@@ -1,10 +1,11 @@
 import { Layout, Text, List, ListItem, Icon } from "@ui-kitten/components";
 import React from "react";
-import { View, Dimensions, AsyncStorage, Alert } from "react-native";
+import { View, Dimensions, Alert } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import { State, actions, Match, Game } from "../store";
 import { NavigationStackScreenProps } from "react-navigation-stack";
+import AsyncStorage from "@react-native-community/async-storage";
 
 // necessary to convert games from String <=v1.0.0 to Game >=v1.1.0
 function convertGameTypeFromStringInPlace(match: Omit<Match, 'games'> & { games: Array<string|Game> }){
@@ -49,7 +50,7 @@ class MatchesScreen extends React.Component<NavigationStackScreenProps & PropsFr
     try {
       let keys = await AsyncStorage.getAllKeys()
       let raw_matches = await AsyncStorage.multiGet(keys.filter(x => x.startsWith("@match:")))
-      matches = raw_matches.map(x => [x[0], JSON.parse(x[1]) as Match])
+      matches = raw_matches.map(x => [x[0], JSON.parse(x[1]||"") as Match])
       matches.sort((a,b) => b[1].lastChange - a[1].lastChange)
     } catch(e) {
       console.error(e)

@@ -12,7 +12,7 @@ import LeaderboardScreen from './screens/LeaderboardScreen';
 import MainScreen from './screens/MainScreen';
 import NewMatchScreen from './screens/NewMatchScreen';
 import { persistor, store } from './store';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import MatchesScreen from './screens/MatchesScreen';
 
 const MainNavigator = createStackNavigator({
