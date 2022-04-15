@@ -1,6 +1,6 @@
 import { createStore, StoreCreator } from 'redux'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistStore, persistReducer } from 'redux-persist'
 import _ from 'lodash'
 

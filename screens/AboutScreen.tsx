@@ -1,5 +1,5 @@
 import React from "react";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image, Linking } from "react-native";
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView"
 import { Layout, Button, Text } from "@ui-kitten/components";
@@ -11,7 +11,7 @@ class AboutScreen extends React.Component<NavigationStackScreenProps,{}> {
       this.getAllKeys()
     }
     getAllKeys = async () => {
-      let keys: string[] = []
+      let keys: readonly string[] = []
       try {
         keys = await AsyncStorage.getAllKeys()
       } catch(e) {

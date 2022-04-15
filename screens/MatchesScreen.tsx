@@ -5,7 +5,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import { State, actions, Match, Game } from "../store";
 import { NavigationStackScreenProps } from "react-navigation-stack";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // necessary to convert games from String <=v1.0.0 to Game >=v1.1.0
 function convertGameTypeFromStringInPlace(match: Omit<Match, 'games'> & { games: Array<string|Game> }){
