@@ -1,6 +1,6 @@
 import { Layout, Text, List, ListItem, Icon, Button } from "@ui-kitten/components";
 import React from "react";
-import { View, Dimensions, Alert, Platform } from "react-native";
+import { View, Dimensions, Alert, Platform, ToastAndroid } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import { State, actions, Match, Game } from "../store";
@@ -103,9 +103,20 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
                       'Export copies to clipboard, removing can not be undone',
                       [
                         {text: 'Export', onPress: () => {
-                          AsyncStorage.getItem(key).then(m => Clipboard.setString(m || ""));
+                          AsyncStorage.getItem(key).then(
+                            m => Clipboard.setString(m || "")).then(
+                              () => {
+                                if(Platform.OS === "android"){
+                                  ToastAndroid.show("Copied to clipboard", ToastAndroid.SHORT);
+                                }
+                              }
+                            );
                         }},
-                        {text: 'Remove', onPress: () => this.removeMatch(key), style: 'destructive'},
+                        {text: 'Remove', onPress: () => Alert.alert(
+                          "Do you really want to remove?", "This can not be undone",
+                          [{text: 'Remove', onPress: () => this.removeMatch(key), style: 'destructive'},
+                          {text: 'Cancel', style: 'cancel'}]
+                          )},
                         {
                           text: 'Cancel',
                           style: 'cancel',
@@ -119,7 +130,7 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
                     <MatchEntry match={match}/>
                   </ListItem>
                 )}} keyExtractor={x => x[0]}/>
-            <View style={{flexDirection: "row", justifyContent: "space-around"}}>
+            <View style={{flexDirection: "row", justifyContent: "space-around", alignSelf: "stretch"}}>
             <Button onPress={() => {this.props.navigation.navigate('Main')}}> Back </Button>
             <Button onPress={this.importMatch}> Import </Button>
             </View>
