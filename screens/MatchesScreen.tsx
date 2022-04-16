@@ -1,6 +1,6 @@
-import { Layout, Text, List, ListItem, Icon } from "@ui-kitten/components";
+import { Layout, Text, List, ListItem, Icon, Button } from "@ui-kitten/components";
 import React from "react";
-import { View, Dimensions, Alert } from "react-native";
+import { View, Dimensions, Alert, Platform } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import { State, actions, Match, Game } from "../store";
@@ -70,8 +70,17 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
               let match = item[1];
                 return(
                   <ListItem onPress={() => {
-                    this.loadMatch(key)
-                  }} onLongPress={() => {
+                    if (Platform.OS === "ios" || Platform.OS === "android") {
+                      this.loadMatch(key)
+                    } else {
+                      if(window.confirm("Load match?")){
+                        this.loadMatch(key);
+                      } else if(window.confirm("Delete match?")){
+                        this.removeMatch(key);
+                      }
+                    }
+                  }
+                  } onLongPress={() => {
                     Alert.alert(
                       'Remove Match?',
                       'This can not be undone',
@@ -90,6 +99,7 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
                     <MatchEntry match={match}/>
                   </ListItem>
                 )}} keyExtractor={x => x[0]}/> 
+            <Button onPress={() => {this.props.navigation.navigate('Main')}}> Back </Button>
         </View>
       </Layout>
       </ThemedSafeAreaView>

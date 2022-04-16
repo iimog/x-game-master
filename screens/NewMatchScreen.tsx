@@ -117,6 +117,7 @@ class NewMatchScreen extends React.Component<NativeStackScreenProps<RootStackPar
                     }
                     }
                 >Start</Button>
+            {["ios", "android"].includes(Platform.OS) ? undefined : <Button onPress={() => {this.props.navigation.navigate('Main')}}> Back </Button>}
             </PlatformScrollView>
           </TouchableWithoutFeedback>
         </Layout></ThemedSafeAreaView>
