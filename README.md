@@ -42,6 +42,12 @@ If a player can not play a round you can set them inactive by clicking on them i
 
 <img src="./screenshots/ios/iphone/6.5/LeaderboardScreenFinal.png" width="300">
 
+### Matches
+
+In the matches view you can resume previous games (just tap them). Long press to export the game to clipboard or delete it. The exported game is plain json that you can save to a file or send via any messanger. In order to import a match, copy it to the clipboard and press the Import button at the bottom left.
+
+Long press interaction, native alerts, and copy *to* clipboard don't work in web. So in web after clicking a game you are asked whether to resume, if you click cancel, you are asked whether to delete it.
+
 ## Design Principles
 
 The app is designed to be clean and simple to use.
@@ -71,6 +77,12 @@ The app is built using a collection of open source libraries including
  - [UI Kitten 4.0](https://akveo.github.io/react-native-ui-kitten/)
 
 ## Change Log
+
+### 1.2.0
+**2022-04-16**
+ - add match export/import (via clipboard)
+ - update expo and other dependencies
+ - web version functional (not yet pretty, import works, export doesn't)
 
 ### 1.1.1
 **2020-09-20**
