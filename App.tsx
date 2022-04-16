@@ -1,9 +1,10 @@
+import 'react-native-gesture-handler';
 import { dark as darkTheme, mapping } from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import AboutScreen from './screens/AboutScreen';
@@ -15,28 +16,37 @@ import { persistor, store } from './store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MatchesScreen from './screens/MatchesScreen';
 
-const MainNavigator = createStackNavigator({
-  Game: {screen: GameScreen},
-  NewMatch: {screen: NewMatchScreen},
-  Leaderboard: {screen: LeaderboardScreen},
-  Matches: {screen: MatchesScreen},
-  Main: {screen: MainScreen},
-  About: {screen: AboutScreen},
-}, {initialRouteName: 'Main', headerMode: 'none'});
+const Stack = createNativeStackNavigator();
 
-const Navigation = createAppContainer(MainNavigator);
+export type RootStackParamList = {
+  Main: undefined;
+  About: undefined;
+  Game: undefined;
+  NewMatch: undefined;
+  Matches: undefined;
+  Leaderboard: undefined;
+};
 
 const App = () => (
-      <React.Fragment>
-        <IconRegistry icons={EvaIconsPack}/>
-        <ApplicationProvider mapping={mapping} theme={darkTheme}>
-          <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-              <Navigation />
-            </PersistGate>
-          </Provider>
-        </ApplicationProvider>
-      </React.Fragment>
+  <React.Fragment>
+    <IconRegistry icons={EvaIconsPack} />
+    <ApplicationProvider mapping={mapping} theme={darkTheme}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="Main" component={MainScreen} />
+              <Stack.Screen name="About" component={AboutScreen} />
+              <Stack.Screen name="Game" component={GameScreen} />
+              <Stack.Screen name="NewMatch" component={NewMatchScreen} />
+              <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
+              <Stack.Screen name="Matches" component={MatchesScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
+    </ApplicationProvider>
+  </React.Fragment>
   );
 
 store.subscribe(() => {

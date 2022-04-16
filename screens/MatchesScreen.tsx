@@ -4,8 +4,9 @@ import { View, Dimensions, Alert } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import { State, actions, Match, Game } from "../store";
-import { NavigationStackScreenProps } from "react-navigation-stack";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { RootStackParamList } from "../App";
 
 // necessary to convert games from String <=v1.0.0 to Game >=v1.1.0
 function convertGameTypeFromStringInPlace(match: Omit<Match, 'games'> & { games: Array<string|Game> }){
@@ -17,7 +18,7 @@ function convertGameTypeFromStringInPlace(match: Omit<Match, 'games'> & { games:
   }
 }
 
-class MatchesScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux,{matches: [string, Match][]}> {
+class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackParamList,"Matches"> & PropsFromRedux,{matches: [string, Match][]}> {
   constructor(props: any) {
     super(props);
     this.state = {

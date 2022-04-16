@@ -3,10 +3,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image, Linking } from "react-native";
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView"
 import { Layout, Button, Text } from "@ui-kitten/components";
-import { NavigationStackScreenProps } from "react-navigation-stack";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from "../App";
 
-class AboutScreen extends React.Component<NavigationStackScreenProps,{}> {
-    constructor(props: NavigationStackScreenProps) {
+class AboutScreen extends React.Component<NativeStackScreenProps<RootStackParamList,"About">,{}> {
+    constructor(props: NativeStackScreenProps<RootStackParamList,"About">) {
       super(props);
       this.getAllKeys()
     }

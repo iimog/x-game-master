@@ -4,9 +4,10 @@ import { Layout, Button, Text } from "@ui-kitten/components";
 import { Round } from "../store";
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import Constants from 'expo-constants';
-import { NavigationStackScreenProps } from "react-navigation-stack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
 
-class MainScreen extends React.Component<NavigationStackScreenProps & {rounds: Array<Round>},{}> {
+class MainScreen extends React.Component<NativeStackScreenProps<RootStackParamList,"Main"> & {rounds: Array<Round>},{}> {
     //constructor(props) {
     //  super(props);
     //}
@@ -19,7 +20,7 @@ class MainScreen extends React.Component<NavigationStackScreenProps & {rounds: A
             <Button onPress={() => {navigate('NewMatch')}}> New Match </Button>
             <Button onPress={() => {navigate('Matches')}}> Matches </Button>
             <Button onPress={() => {navigate('About')}}> App Info </Button>
-            <Text appearance="hint">Version {Constants.manifest.version || "?"}</Text>
+            <Text appearance="hint">Version {Constants.manifest?.version || "?"}</Text>
           </Layout>
         </ThemedSafeAreaView>
       );

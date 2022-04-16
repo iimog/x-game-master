@@ -4,9 +4,12 @@ import { Layout, Button, Text, List, ListItem, Icon, Tab, TabView } from "@ui-ki
 import { Player, Round, actions, Game } from "../store";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
-import _, { fromPairs } from "lodash";
+import _ from "lodash";
+import { State } from '../store'
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
 
-class LeaderboardScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux, { selectedIndex: number }> {
+class LeaderboardScreen extends React.Component<NativeStackScreenProps<RootStackParamList, "Leaderboard"> & PropsFromRedux, { selectedIndex: number }> {
   state = { selectedIndex: 0 }
 
   getPlayerScores = () => {
@@ -157,8 +160,6 @@ class LeaderboardScreen extends React.Component<NavigationStackScreenProps & Pro
     );
   }
 }
-import { State } from '../store'
-import { NavigationStackScreenProps } from "react-navigation-stack";
 const connector = connect((state: State) => state, actions)
 type PropsFromRedux = ConnectedProps<typeof connector>
 

@@ -6,7 +6,8 @@ import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import _ from "lodash";
 import InputScrollView from "react-native-input-scroll-view";
-import { NavigationStackScreenProps } from "react-navigation-stack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
 
 type PSVType = {
   fullWidth: number
@@ -18,8 +19,8 @@ const PlatformScrollView: FunctionComponent<PSVType> = (props) => {
   return <ScrollView style={{flex:1, width: props.fullWidth, padding: 15}}>{props.children}</ScrollView>
 }
 
-class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux,{playerText: string, gameText: string}> {
-    constructor(props: NavigationStackScreenProps & PropsFromRedux) {
+class NewMatchScreen extends React.Component<NativeStackScreenProps<RootStackParamList,"NewMatch"> & PropsFromRedux,{playerText: string, gameText: string}> {
+    constructor(props: NativeStackScreenProps<RootStackParamList,"NewMatch"> & PropsFromRedux) {
       super(props);
       this.state = {
         playerText: this.props.players.map(p => p.name).join("\n"),
@@ -110,8 +111,8 @@ class NewMatchScreen extends React.Component<NavigationStackScreenProps & PropsF
                         })
                         navigate('Leaderboard')
                       }
-                    } catch(e) {
-                      Alert.alert(e);
+                    } catch(e: any) {
+                      Alert.alert(e.toString());
                     }
                     }
                     }

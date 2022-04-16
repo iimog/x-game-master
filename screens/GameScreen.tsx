@@ -4,14 +4,15 @@ import { FlatList, View, Dimensions } from "react-native";
 import { connect, ConnectedProps } from 'react-redux';
 import { ThemedSafeAreaView } from "../components/ThemedSafeAreaView";
 import { State, actions, Game } from "../store";
-import { NavigationStackScreenProps } from "react-navigation-stack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
 
 function _gameString(index: number, game: Game){
   let prefix = (index+1)+". "
   return prefix+game.name
 }
 
-class GameScreen extends React.Component<NavigationStackScreenProps & PropsFromRedux, {}>{// & {players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
+class GameScreen extends React.Component<NativeStackScreenProps<RootStackParamList, "Game"> & PropsFromRedux, {}>{// & {players: Array<Player>, rounds: Array<Round>, games: Array<string>},{}> {
   reportResult: (index: -1|0|1) => void = (index) => {
     this.props.gameResult({winnerIndex: index})
   }
