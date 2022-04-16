@@ -1,0 +1,40 @@
+{
+  "background_color": "#222B45",
+  "description": "Your companion app to organize a fun game night (or day)",
+  "display": "standalone",
+  "lang": "en",
+  "name": "X Game Master",
+  "short_name": "X Game Master",
+  "start_url": "/?utm_source=web_app_manifest",
+  "theme_color": "#222B45",
+  "orientation": "portrait",
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "id": "org.iimog.xapp"
+    },
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=org.iimog.xapp",
+      "id": "org.iimog.xapp"
+    }
+  ],
+  "prefer_related_applications": true,
+  "icons": [
+    {
+      "src": "/x-game-master/pwa/chrome-icon/chrome-icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/x-game-master/pwa/chrome-icon/chrome-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/x-game-master/pwa/chrome-icon/chrome-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
