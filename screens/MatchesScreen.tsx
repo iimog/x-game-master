@@ -7,6 +7,7 @@ import { State, actions, Match, Game } from "../store";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RootStackParamList } from "../App";
+import * as Clipboard from "expo-clipboard";
 
 // necessary to convert games from String <=v1.0.0 to Game >=v1.1.0
 function convertGameTypeFromStringInPlace(match: Omit<Match, 'games'> & { games: Array<string|Game> }){
@@ -25,6 +26,22 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
       matches: []
     };
     this.getMatches().then(m => this.setState({matches: m}));
+  }
+  importMatch: () => void = async () => {
+    const m = await Clipboard.getStringAsync() || "";
+    try{
+      const match: Match = JSON.parse(m);
+      this.props.loadMatch({
+        players: match.players,
+        games: match.games,
+        rounds: match.rounds,
+        lastChange: match.lastChange,
+        matchId: Date.now(),
+      })
+      this.props.navigation.navigate('Leaderboard');
+    } catch(e) {
+      Alert.alert("Error", "Could not import match from clipboard");
+    }
   }
   loadMatch: (id: string) => void = async (id) => {
     const m = await AsyncStorage.getItem(id) || "";
@@ -82,9 +99,12 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
                   }
                   } onLongPress={() => {
                     Alert.alert(
-                      'Remove Match?',
-                      'This can not be undone',
+                      'Export or Remove Match?',
+                      'Export copies to clipboard, removing can not be undone',
                       [
+                        {text: 'Export', onPress: () => {
+                          AsyncStorage.getItem(key).then(m => Clipboard.setString(m || ""));
+                        }},
                         {text: 'Remove', onPress: () => this.removeMatch(key), style: 'destructive'},
                         {
                           text: 'Cancel',
@@ -98,8 +118,11 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
                     }}>
                     <MatchEntry match={match}/>
                   </ListItem>
-                )}} keyExtractor={x => x[0]}/> 
+                )}} keyExtractor={x => x[0]}/>
+            <View style={{flexDirection: "row", justifyContent: "space-around"}}>
             <Button onPress={() => {this.props.navigation.navigate('Main')}}> Back </Button>
+            <Button onPress={this.importMatch}> Import </Button>
+            </View>
         </View>
       </Layout>
       </ThemedSafeAreaView>

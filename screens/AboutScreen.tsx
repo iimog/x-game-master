@@ -19,7 +19,7 @@ class AboutScreen extends React.Component<NativeStackScreenProps<RootStackParamL
         // read key error
       }
     
-      console.log(keys)
+      //console.log(keys)
       // example console.log result:
       // ['@MyApp_user', '@MyApp_key']
     }

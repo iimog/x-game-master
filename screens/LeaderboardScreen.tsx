@@ -68,7 +68,7 @@ class LeaderboardScreen extends React.Component<NativeStackScreenProps<RootStack
       <ThemedSafeAreaView>
         <TabView
           selectedIndex={this.state.selectedIndex}
-          onSelect={(index) => {if(!isNaN(index)){console.log("selected"+index); this.setState({ selectedIndex: index })}}}
+          onSelect={(index) => {if(!isNaN(index)){this.setState({ selectedIndex: index })}}}
           style={{ flex: 1 }}>
           <Tab title='Leaderboard'>
             <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
