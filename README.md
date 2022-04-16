@@ -4,6 +4,12 @@ Your companion to organize a fun game night (or day).
 
 Important: This is not a game in itself it is just a tool to help you organize a match made from your own games.
 
+## Get the app
+
+- **Android**: [Play Store](https://play.google.com/store/apps/details?id=org.iimog.xapp)
+- **iOS**: It was available on the App Store for a year, but I refuse to pay $99 every year just to keep this free app available. You can use [Expo](https://expo.dev/@iimog/x-game-master) to get it on your iPhone (you might need to fork it)
+- **Web**: [Experimental Web Interface](https://markus.ankenbrand.me/x-game-master)
+
 ## Idea
 
 You absolutely need two things for a fun game night:
