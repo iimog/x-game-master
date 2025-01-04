@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@ui-kitten/components';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native';
 
 const StyledSafeAreaView = (props: any) => {
   const { eva, style, ...restProps } = props;

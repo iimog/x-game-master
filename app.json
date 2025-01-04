@@ -2,13 +2,13 @@
   "expo": {
     "name": "X Game Master",
     "slug": "x-game-master",
-    "privacy": "public",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
     "version": "1.2.0",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "primaryColor": "#222B45",
     "icon": "./assets/icon.png",
