@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "1.2.0",
+    "version": "1.2.1",
     "newArchEnabled": true,
     "orientation": "portrait",
     "primaryColor": "#222B45",
@@ -26,7 +26,7 @@
     "ios": {
       "bundleIdentifier": "org.iimog.xapp",
       "supportsTablet": true,
-      "buildNumber": "10",
+      "buildNumber": "11",
       "icon": "./assets/apple_icon.png",
       "config": {
         "usesNonExemptEncryption": false
@@ -34,14 +34,25 @@
     },
     "android": {
       "package": "org.iimog.xapp",
-      "versionCode": 10,
+      "versionCode": 11,
       "permissions": [],
       "playStoreUrl": "https://play.google.com/store/apps/details?id=org.iimog.xapp"
     },
     "web": {
-      "build": { "babel": { "include": [ "@ui-kitten/components" ] }}
+      "build": {
+        "babel": {
+          "include": [
+            "@ui-kitten/components"
+          ]
+        }
+      }
     },
     "description": "Your companion app to organize a fun game night (or day)",
-    "githubUrl": "https://github.com/iimog/x-game-master"
+    "githubUrl": "https://github.com/iimog/x-game-master",
+    "extra": {
+      "eas": {
+        "projectId": "cbb9131c-d0b4-433b-b23a-d1146329e52e"
+      }
+    }
   }
 }
