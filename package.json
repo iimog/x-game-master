@@ -7,8 +7,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "deploy": "gh-pages -d web-build",
-    "predeploy": "expo build:web"
+    "deploy": "gh-pages -d dist",
+    "predeploy": "expo export --platform web"
   },
   "dependencies": {
     "@eva-design/eva": "^2.2.0",
