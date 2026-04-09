@@ -10,7 +10,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 
 type PSVType = {
-  fullWidth: number
+  fullWidth: number;
+  children?: React.ReactNode;
 }
 const PlatformScrollView: FunctionComponent<PSVType> = (props) => {
   if(Platform.OS === "ios" || Platform.OS === "android"){

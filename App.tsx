@@ -35,8 +35,8 @@ const App = () => (
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer>
             <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="Main" component={MainScreen} />
-              <Stack.Screen name="About" component={AboutScreen} />
+              <Stack.Screen name="Main" component={MainScreen as React.ComponentType<any>} />
+              <Stack.Screen name="About" component={AboutScreen as React.ComponentType<any>} />
               <Stack.Screen name="Game" component={GameScreen} />
               <Stack.Screen name="NewMatch" component={NewMatchScreen} />
               <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
