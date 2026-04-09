@@ -37,10 +37,10 @@ const App = () => (
             <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Main" component={MainScreen as React.ComponentType<any>} />
               <Stack.Screen name="About" component={AboutScreen as React.ComponentType<any>} />
-              <Stack.Screen name="Game" component={GameScreen} />
-              <Stack.Screen name="NewMatch" component={NewMatchScreen} />
-              <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
-              <Stack.Screen name="Matches" component={MatchesScreen} />
+              <Stack.Screen name="Game" component={GameScreen as React.ComponentType<any>} />
+              <Stack.Screen name="NewMatch" component={NewMatchScreen as React.ComponentType<any>} />
+              <Stack.Screen name="Leaderboard" component={LeaderboardScreen as React.ComponentType<any>} />
+              <Stack.Screen name="Matches" component={MatchesScreen as React.ComponentType<any>} />
             </Stack.Navigator>
           </NavigationContainer>
         </PersistGate>
