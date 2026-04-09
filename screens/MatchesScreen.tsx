@@ -53,7 +53,7 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
       games: match.games,
       rounds: match.rounds,
       lastChange: match.lastChange,
-      matchId: parseInt(id.substr(7)),
+      matchId: parseInt(id.slice(7)),
     })
     this.props.navigation.navigate('Leaderboard');
   }
@@ -104,7 +104,7 @@ class MatchesScreen extends React.Component<NativeStackScreenProps<RootStackPara
                       [
                         {text: 'Export', onPress: () => {
                           AsyncStorage.getItem(key).then(
-                            m => Clipboard.setString(m || "")).then(
+                            m => Clipboard.setStringAsync(m || "")).then(
                               () => {
                                 if(Platform.OS === "android"){
                                   ToastAndroid.show("Copied to clipboard", ToastAndroid.SHORT);

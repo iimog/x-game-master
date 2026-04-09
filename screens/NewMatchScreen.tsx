@@ -51,7 +51,7 @@ class NewMatchScreen extends React.Component<NativeStackScreenProps<RootStackPar
         const gamesNoPos = _.difference(gameNames, gamesWithPos)
         const unusedPos = _.difference(_.range(1,gameNames.length+1), positions)
         games = Array(gameNames.length)
-        gamesWithPos.map(x => games[game2position[x]-1] = {name: x.substr(x.indexOf(".")+1).trim(), fixedPosition: true})
+        gamesWithPos.map(x => games[game2position[x]-1] = {name: x.slice(x.indexOf(".")+1).trim(), fixedPosition: true})
         gamesNoPos.map((x,index) => games[unusedPos[index]-1] = {name: x, fixedPosition: false})
       }
       return games
